@@ -3,7 +3,12 @@
         {{ $paginator := .Paginate .Site.RegularPages }}
         {{ range $paginator.Pages }}
             {{ if eq .Type "post"}}
-                <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                <li>
+                    <article>
+                        <h2><a href={{ .Permalink }}>{{ .Title }}</a></h2>
+                        <p>{{ .Summary }}</p>
+                    </article>
+                </li>
             {{ end }}
         {{ end }}
     </ul>

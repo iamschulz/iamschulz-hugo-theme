@@ -1,3 +1,11 @@
 {{define "main"}}
+    {{ if .Params.banner }}
+        <img src="{{ .Params.banner }}" alt="{{ .Title }}">
+    {{ end }}
+
     {{ .Content }}
+    
+    <aside>
+        <p>{{ .Date.Format "2. Jan, 2006" }}</p>
+    </aside>
 {{end}}
