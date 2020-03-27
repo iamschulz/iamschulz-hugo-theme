@@ -1,0 +1,38 @@
+<header>
+    <h1><a href="/">{{ .Site.Title }}</a></h1>
+    <nav>
+        <ul>
+            {{ $currentPage := . }}
+
+            {{ range $key, $value := .Site.Taxonomies.categories }}
+                {{ $url := print "/categories/" ($key | urlize) "/"  | absURL }}
+                {{ $childIsActive := false }}
+                {{ range $entry := $value }}
+                    {{ if eq ($entry.Permalink) ($currentPage.Permalink) }}
+                        {{ $childIsActive = true }}
+                    {{ end }}
+                {{ end }}
+                {{ $active := or $childIsActive (eq ($url) ($currentPage.Permalink))}}
+
+                <li>
+                    <a 
+                        href="{{ $url }}"
+                        class="{{ if $active }}active{{ end }}"
+                    >{{ $key | humanize }}</a>
+                </li>
+            {{ end }}
+            
+            {{ range .Site.Pages }}
+                {{ if and (eq .Type "page") (eq .Kind "page")}}
+                    <li>
+                        <a 
+                            href="{{ .Permalink }}"
+                            class="{{ if eq (.Permalink) ($currentPage.Permalink) }}active{{ end }}"
+                        >{{ .Title }}</a>
+                    </li>
+                {{ end }}
+            {{ end }}
+        </ul>
+    </nav>
+    <hr>
+</header>

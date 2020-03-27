@@ -1,0 +1,26 @@
+{{ define "main" }}
+    <ul class="all-posts">
+        {{ $paginator := .Paginate .Site.RegularPages }}
+        {{ range $paginator.Pages }}
+            {{ if eq .Type "post"}}
+                <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+            {{ end }}
+        {{ end }}
+    </ul>
+    {{ partial "pagination.html" . }}
+
+    todo:
+    <ul>
+        <li>include basic component set</li>
+        <li>posts:
+            <ul>
+                <li>shortcodes & features</li> 
+                <ul>
+                    <li>Codepen</li>
+                    <li>Dev.to</li>
+                </ul>
+                <li>image processing</li>
+            </ul>
+        </li>
+    </ul>
+{{ end }}
