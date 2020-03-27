@@ -5,7 +5,7 @@
         {{ range $paginator.Pages }}
             <li>
                 <article>
-                    <h2 href={{ .Permalink }}>{{ .Title }}</h2>
+                    <h2><a href={{ .Permalink }}>{{ .Title }}</a></h2>
                     <p>{{ .Summary }}</p>
                 </article>
             </li>
