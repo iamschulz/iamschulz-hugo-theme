@@ -1,0 +1,10 @@
+<article aria-label="{{ .Title }}">
+    <a href={{ .Permalink }}>
+        {{ if .Params.banner }}
+            <img src="{{ .Params.banner }}" alt="{{ .Title }}">
+        {{ end }}
+        <h2>{{ .Title }}</h2>
+    </a>
+    <p>({{ .Date.Format "02.01.2006" }})</p>
+    <p>{{ .Summary }}</p>
+</article>

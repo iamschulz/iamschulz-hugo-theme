@@ -4,10 +4,7 @@
         {{ range $paginator.Pages }}
             {{ if eq .Type "post"}}
                 <li>
-                    <article aria-label="{{ .Title }}">
-                        <h2><a href={{ .Permalink }}>{{ .Title }}</a></h2>
-                        <p>{{ .Summary }}</p>
-                    </article>
+                    {{ partial "article-card.html" . }}
                 </li>
             {{ end }}
         {{ end }}

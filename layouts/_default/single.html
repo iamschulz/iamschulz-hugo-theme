@@ -3,9 +3,8 @@
         <img src="{{ .Params.banner }}" alt="{{ .Title }}">
     {{ end }}
 
+    <h2><a href={{ .Permalink }}>{{ .Title }}</a></h2>
+    <p>({{ .Date.Format "02.01.2006" }})
+
     {{ .Content }}
-    
-    <aside>
-        <p>{{ .Date.Format "2. Jan, 2006" }}</p>
-    </aside>
 {{end}}
