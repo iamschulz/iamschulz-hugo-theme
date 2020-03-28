@@ -4,7 +4,7 @@
         {{ $paginator := .Paginate .Data.Pages }}
         {{ range $paginator.Pages }}
             <li>
-                <article>
+                <article aria-label="{{ .Title }}">
                     <h2><a href={{ .Permalink }}>{{ .Title }}</a></h2>
                     <p>{{ .Summary }}</p>
                 </article>

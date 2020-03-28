@@ -4,7 +4,7 @@
         {{ range $paginator.Pages }}
             {{ if eq .Type "post"}}
                 <li>
-                    <article>
+                    <article aria-label="{{ .Title }}">
                         <h2><a href={{ .Permalink }}>{{ .Title }}</a></h2>
                         <p>{{ .Summary }}</p>
                     </article>
@@ -12,18 +12,24 @@
             {{ end }}
         {{ end }}
     </ul>
+
     {{ partial "pagination.html" . }}
 
     todo:
     <ul>
+        <li>import vontent from old page</li>
         <li>include basic component set</li>
         <li>posts:
             <ul>
                 <li>
                     shortcodes & features
                     <ul>
-                        <li>Codepen</li>
                         <li>Dev.to</li>
+                        <li>Slider</li>
+                        <li>Modal</li>
+                        <li>Youtube</li>
+                        <li>Vimeo</li>
+                        <li>Tweet</li>
                     </ul>
                 </li> 
                 <li>image processing</li>
