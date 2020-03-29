@@ -4,10 +4,10 @@
         {{ $paginator := .Paginate .Data.Pages }}
         {{ range $paginator.Pages }}
             <li>
-                {{ partial "article-card.html" . }}
+                {{ partial "articleCard/articleCard.html" . }}
             </li>
         {{ end }}
     </ul>
 
-    {{ partial "pagination.html" . }}
+    {{ partial "pagination/pagination.html" . }}
 {{end}}

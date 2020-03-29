@@ -4,13 +4,13 @@
         {{ range $paginator.Pages }}
             {{ if eq .Type "post"}}
                 <li>
-                    {{ partial "article-card.html" . }}
+                    {{ partial "articleCard/articleCard.html" . }}
                 </li>
             {{ end }}
         {{ end }}
     </ul>
 
-    {{ partial "pagination.html" . }}
+    {{ partial "pagination/pagination.html" . }}
 
     todo:
     <ul>

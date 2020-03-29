@@ -1,0 +1,124 @@
+:root {
+    --spacing-x: 1rem;
+    --spacing-y: 1rem;
+    --content-width:  #{$lg-width};
+    --content-narrow-width:  #{$md-width};
+    --line-width: .2rem;
+
+    --z-overlay: 100;
+    --z-header: 90;
+    --z-menu: 110;
+    --z-below: -1;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    @media (prefers-reduced-motion: no-preference) {
+        scroll-behavior: smooth;
+    }
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    color: var(--font);
+
+    &[data-state-scrolling="disabled"] {
+        overflow: hidden;
+    }
+}
+
+main { 
+    max-width: var(--content-width);
+    margin: auto;
+    padding: 0 var(--spacing-x) var(--spacing-y);
+
+    > * {
+        padding: calc(2 * var(--spacing-y)) 0;
+    }
+
+    > * + * {
+        margin-top: 0;
+        padding: calc(2 * var(--spacing-y)) 0;
+        border-top: var(--line-width) dashed var(--bg-grey);
+
+        &:last-child {
+            padding-bottom: calc(2 * var(--spacing-y));
+        }
+    }
+}
+
+.narrow {
+    max-width: var(--content-narrow-width);
+}
+
+hr {
+    border-top: var(--line-width) dashed var(--bg-grey);
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    margin: calc(2 * var(--spacing-y)) 0;
+}
+
+ul, ol {
+    padding-inline-start: var(--spacing-x);
+
+    ul, ol {
+        padding-inline-start: calc(var(--spacing-x) * 2);
+    }
+}
+
+blockquote {
+    position: relative;
+    max-width: var(--content-narrow-width);
+    margin: auto;
+    padding-left: var(--spacing-x);
+    margin: var(--spacing-y) 0;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1px;
+        height: 100%;
+        border-left: var(--line-width) dashed var(--bg-grey);
+    }
+
+    > footer {
+        margin-top: calc(var(--spacing-y) / 2);
+    }
+}
+
+button {
+    background: var(--background-inverted);
+    color: var(--font-inverted);
+    border: var(--line-width) solid var(--bg-grey);
+    font-size: var(--base-font-size);
+    cursor: pointer;
+
+    &:not(:disabled):hover {
+        border-color: var(--fg-grey);
+    }
+
+    &:not(:disabled):active {
+        border-color: var(--accent);
+    }
+
+    &:disabled {
+        border-style: dashed;
+        color: var(--fg-grey);
+        cursor: not-allowed;
+    }
+}
+
+@media screen and (min-width: $lg-width) {
+    :root {
+        --z-menu: var(--z-header);
+    }
+}

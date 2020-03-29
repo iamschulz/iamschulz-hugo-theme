@@ -1,0 +1,30 @@
+:root {
+    --currentViewport: 'sm'; 
+    --currentColorScheme: 'light';
+}
+
+@media screen and (min-width: $md-width) {
+    :root {
+        --currentViewport: 'md'; 
+    }
+}
+
+@media screen and (min-width: $lg-width) {
+    :root {
+        --currentViewport: 'lg'; 
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --currentColorScheme: 'dark';
+    }
+}
+
+[data-component="viewportManager"] {
+    display: none;
+
+    &::before {
+        content: 'viewport-'var(--currentViewport)'_scheme-'var(--currentColorScheme);
+    }
+}

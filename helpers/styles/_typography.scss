@@ -1,0 +1,78 @@
+:root {
+    --base-font-size: 1rem;
+    --base-line-height: 1.5em;
+    --scroll-offset: calc(5rem + var(--spacing-y)); // derives from header height
+}
+
+@mixin link {
+    color: inherit;
+    text-decoration-thickness: 0.11em;
+
+    &:hover {
+        text-decoration-color: var(--accent);
+    }
+}
+
+@mixin inlineLink {
+    color: var(--fg-grey);
+
+    &:hover {
+        color: inherit;
+    }
+}
+
+* {
+    line-height: var(--base-line-height);
+}
+
+a[href] {
+    @include link();
+
+    article li &,
+    p &,
+    cite & {
+        @include inlineLink();
+    }
+}
+
+a[id] {
+    scroll-margin-top: var(--scroll-offset);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: var(--spacing-y);
+
+    &:first-of-type {
+        margin-top: 0;
+    }
+
+    a[id] {
+        &::after {
+            content: "#";
+            margin-left: 0.4ch;
+            color: var(--bg-grey);
+        }
+    }
+}
+
+h1 { font-size: calc(var(--base-font-size) * 2); }
+h2 { font-size: calc(var(--base-font-size) * 1.5); }
+h3 { font-size: calc(var(--base-font-size) * 1.2); }
+h4 { font-size: calc(var(--base-font-size) * 1); }
+h5 { font-size: calc(var(--base-font-size) * 0.9); }
+h6 { font-size: calc(var(--base-font-size) * 0.8); }
+
+main {
+    --base-font-size: 1.2rem;
+    font-size: var(--base-font-size);
+}
+
+@media screen and (min-width: $lg-width) {
+    :root {
+        --scroll-offset: calc(3.75rem + var(--spacing-y)); // derives from header height
+    }
+
+    main {
+        --base-font-size: 1.3rem;
+    }
+}

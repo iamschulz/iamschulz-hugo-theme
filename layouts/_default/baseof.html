@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html>
     {{- partial "head.html" . -}}
-    <body>
-        {{- partial "header.html" . -}}
+    <body data-component="index">
+        {{- partial "viewportManager/viewportManager.html" . -}}
+        {{- partial "overlay/overlay.html" . -}}
+        {{- partial "header/header.html" . -}}
+        {{- partial "mainMenu/mainMenu.html" . -}}
+
         <main id="content">
-        {{- block "main" . }}{{- end }}
+            {{- block "main" . }}{{- end }}
         </main>
-        {{- partial "footer.html" . -}}
+        
+        {{- partial "footer/footer.html" . -}}
     </body>
 </html>

@@ -1,0 +1,15 @@
+<header data-component="header" class="header">
+    <h1 class="header__title">
+        <a href="/" class="header__home-link">{{ .Site.Title }}</a>
+    </h1>
+    <button data-header-el="menuButton" class="header__menu-button" aria-expanded="false">
+        <label for="mainMenuCheck" data-header-el="menuLabel">
+            <svg class="header__menu-icon" width="28" height="22" xmlns="http://www.w3.org/2000/svg" version="1.1" fill="currentColor" stroke="0">
+                <rect x="0" y="0" width="28" height="4"/>
+                <rect x="0" y="9" width="28" height="4"/>
+                <rect x="0" y="18" width="28" height="4"/>
+            </svg>
+            <span class="header__menu-text">Menu</span>
+        </label>
+    </button>
+</header>
