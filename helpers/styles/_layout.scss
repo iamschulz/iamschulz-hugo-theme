@@ -1,10 +1,9 @@
 :root {
     --spacing-x: 1rem;
     --spacing-y: 1rem;
-    --content-width:  #{$lg-width};
-    --content-narrow-width:  #{$md-width};
-    --line-width: .2rem;
-
+    --content-width: 48rem;
+    --content-narrow-width: 70ch;
+    --border-width: 3px;
     --z-overlay: 100;
     --z-header: 90;
     --z-menu: 110;
@@ -15,8 +14,8 @@
     box-sizing: border-box;
 }
 
-html {
-    @media (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) {
+    html {
         scroll-behavior: smooth;
     }
 }
@@ -25,50 +24,40 @@ body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
-    background-color: var(--background);
-    color: var(--font);
+    background-color: var(--base-color);
+    color: var(--fg-color);
 
     &[data-state-scrolling="disabled"] {
         overflow: hidden;
     }
 }
 
-main { 
+main {
     max-width: var(--content-width);
     margin: auto;
     padding: 0 var(--spacing-x) var(--spacing-y);
-
-    > * {
-        padding: calc(2 * var(--spacing-y)) 0;
-    }
-
-    > * + * {
-        margin-top: 0;
-        padding: calc(2 * var(--spacing-y)) 0;
-        border-top: var(--line-width) dashed var(--bg-grey);
-
-        &:last-child {
-            padding-bottom: calc(2 * var(--spacing-y));
-        }
-    }
 }
 
 .narrow {
     max-width: var(--content-narrow-width);
 }
-
+.breakout {
+    position: relative;
+    left: calc(
+        (100vw - min(var(--content-width), 100vw)) / -2 - var(--spacing-x)
+    );
+    width: 100vw;
+}
 hr {
-    border-top: var(--line-width) dashed var(--bg-grey);
-    border-bottom: none;
-    border-left: none;
-    border-right: none;
+    border: none;
+    border-top: var(--border-width) dashed var(--grey);
     margin: calc(2 * var(--spacing-y)) 0;
 }
-
-ul, ol {
+ol,
+ul {
     padding-inline-start: var(--spacing-x);
 
-    ul, ol {
+    & + & {
         padding-inline-start: calc(var(--spacing-x) * 2);
     }
 }
@@ -80,14 +69,14 @@ blockquote {
     padding-left: var(--spacing-x);
     margin: var(--spacing-y) 0;
 
-    &::before {
+    &:before {
         content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 1px;
         height: 100%;
-        border-left: var(--line-width) dashed var(--bg-grey);
+        border-left: var(--border-width) dashed var(--grey);
     }
 
     > footer {
@@ -95,26 +84,53 @@ blockquote {
     }
 }
 
+pre {
+    overflow: scroll;
+}
+
 button {
-    background: var(--background-inverted);
-    color: var(--font-inverted);
-    border: var(--line-width) solid var(--bg-grey);
-    font-size: var(--base-font-size);
+    display: inline-block;
+    padding: 0.4ch 0.5em;
+    border: none;
+    background: var(--fg-color);
+    color: var(--base-color);
+    font-size: calc(var(--base-font-size) * 0.8);
+    text-decoration: none;
     cursor: pointer;
 
+    &:hover {
+        color: var(--accent-color);
+    }
+
+    * {
+        vertical-align: middle;
+    }
+
     &:not(:disabled):hover {
-        border-color: var(--fg-grey);
+        border-color: var(--grey);
     }
 
     &:not(:disabled):active {
-        border-color: var(--accent);
+        border-color: var(--accent-color);
     }
 
     &:disabled {
         border-style: dashed;
-        color: var(--fg-grey);
+        color: var(--grey);
         cursor: not-allowed;
     }
+}
+
+.is--visually-hidden {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0 !important;
+    border: 0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+    pointer-events: none;
 }
 
 @media screen and (min-width: $lg-width) {

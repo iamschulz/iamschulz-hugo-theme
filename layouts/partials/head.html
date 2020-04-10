@@ -5,7 +5,12 @@
     <meta name="description" content="">
     <meta name="theme-color" content="#1a1a1a">
 
-    <link href="{{ "/bundle/css/styles.css" | relURL }}" rel="stylesheet" type="text/css">
+    <link href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" rel="stylesheet" type="text/css">
+
+    <link rel="preload" href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" as="style">
+    <!--link rel="preload" href="http://localhost:1313/bundle/svg/sprite.61433f4b923b2b7a6c9f.svg" as="image"-->
+    <link rel="preload" href="{{- (index .Site.Data.assetManifest "index.js") | relURL -}}" as="script">
+    <!--link rel="preload" href="http://localhost:1313/fonts/share-v10-latin-700.woff2" as="font" crossorigin=""-->
 
     {{ if .RSSLink }}<link href="{{ .RSSLink }}" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" />{{ end }}
 </head>

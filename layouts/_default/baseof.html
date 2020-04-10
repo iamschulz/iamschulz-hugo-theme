@@ -2,10 +2,8 @@
 <html>
     {{- partial "head.html" . -}}
     <body data-component="index">
-        {{- partial "viewportManager/viewportManager.html" . -}}
         {{- partial "overlay/overlay.html" . -}}
         {{- partial "header/header.html" . -}}
-        {{- partial "mainMenu/mainMenu.html" . -}}
 
         <main id="content">
             {{- block "main" . }}{{- end }}

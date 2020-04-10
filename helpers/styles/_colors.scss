@@ -1,18 +1,44 @@
-:root {
-    --contrast: 90%; // 100 = full, 50 = none, 0 = inverted
-    --background-opacity: 1;
-    --font-opacity: 1;
-    --accentHue: 330;
-
-    --background: hsla(0, 0%, var(--contrast), var(--background-opacity));
-    --background-inverted: hsla(0, 0%, calc(100% - var(--contrast)), var(--background-opacity));
-    --font: hsla(0, 0%, calc(100% - var(--contrast)), var(--font-opacity));
-    --font-inverted: hsla(0, 0%, var(--contrast), var(--font-opacity));
-    --accent: hsla(var(--accentHue), 100%, 50%, 1);
-    --bg-grey: hsla(0, 0%, calc(50% + ((50% - var(--contrast) * 0.3))), var(--font-opacity));
-    --fg-grey: hsla(0, 0%, calc(50% + ((50% - var(--contrast) * 0.7))), var(--font-opacity));
+body {
+    --contrast: 95%;
+    --fg-color-contrast: 90%;
+    --hue: 190;
+    --accent-hue: 330;
+    --base-saturation: 10%;
+    --fg-color-saturation: 30%;
+    --base-color: hsl(var(--hue), var(--base-saturation), var(--contrast));
+    --fg-color: hsl(
+        var(--hue),
+        var(--fg-color-saturation),
+        calc(100% - var(--fg-color-contrast))
+    );
+    --accent-color: hsl(
+        var(--accent-hue),
+        100%,
+        calc(50% + (50% - var(--fg-color-contrast)) * -0.2)
+    );
+    --grey: hsl(
+        var(--hue),
+        10%,
+        calc(50% + (50% - var(--fg-color-contrast)) * 0.2)
+    );
 }
 
 ::selection {
-    background-color: var(--accent);
+    background-color: var(--accent-color);
+}
+
+body[data-state-color-scheme="dark"] {
+    --contrast: 8%;
+    --fg-color-contrast: 25%;
+    --base-saturation: 30%;
+    --fg-color-saturation: 7%;
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not([data-state-color-scheme="light"]) {
+        --contrast: 8%;
+        --fg-color-contrast: 25%;
+        --base-saturation: 30%;
+        --fg-color-saturation: 7%;
+    }
 }

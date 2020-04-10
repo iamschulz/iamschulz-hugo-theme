@@ -2,13 +2,10 @@
 @import '../styles/breakpoints';
 @import '../styles/layout';
 @import '../styles/colors';
-@import '../styles/darkMode';
 @import '../styles/typography';
-@import '../styles/visuallyHidden';
+@import '../styles/icons';
 
 @import '../../layouts/partials/overlay/overlay';
 @import '../../layouts/partials/header/header';
-@import '../../layouts/partials/mainMenu/mainMenu';
+@import '../../layouts/partials/footer/footer';
 @import '../../layouts/partials/colorSchemeToggle/colorSchemeToggle';
-@import '../../layouts/partials/viewportManager/viewportManager';
-@import '../../layouts/partials/loader/loader';

@@ -17,7 +17,7 @@
         height: 1rem;
         margin: 0 1ch;
         border-radius: .5rem;
-        background: radial-gradient(circle, var(--accent) 39.9%, var((--font-inverted)) 40%);
+        background: radial-gradient(circle, var(--accent-color) 39.9%, var((--fg-color)) 40%);
         background-position: -.5rem 0;
         
         @media (prefers-reduced-motion: no-preference) {
@@ -27,9 +27,5 @@
         &:checked {
             background-position: .5rem 0;
         }
-    }
-
-    &__label {
-        @include visuallyHidden;
     }
 }

@@ -1,4 +1,4 @@
-import ComponentClass from '../component';
+import ComponentClass from '../../../helpers/component';
 import Component from '../index';
 
 document.body.innerHTML = require('../../components/index/index.html');

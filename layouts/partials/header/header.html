@@ -1,15 +1,38 @@
-<header data-component="header" class="header">
+<header class="header">
     <h1 class="header__title">
-        <a href="/" class="header__home-link">{{ .Site.Title }}</a>
+        <a href="{{ .Site.BaseURL }}" class="header__title-link">{{ .Site.Title }}</a>
     </h1>
-    <button data-header-el="menuButton" class="header__menu-button" aria-expanded="false">
-        <label for="mainMenuCheck" data-header-el="menuLabel">
-            <svg class="header__menu-icon" width="28" height="22" xmlns="http://www.w3.org/2000/svg" version="1.1" fill="currentColor" stroke="0">
-                <rect x="0" y="0" width="28" height="4"/>
-                <rect x="0" y="9" width="28" height="4"/>
-                <rect x="0" y="18" width="28" height="4"/>
-            </svg>
-            <span class="header__menu-text">Menu</span>
-        </label>
-    </button>
 </header>
+<nav class="header__menu">
+    <ul class="header__menu-list">
+        {{range $key, $taxonomy := .Site.Taxonomies.categories }}
+            {{ with $.Site.GetPage (printf "/%s/%s" "categories" $key) }}
+                {{ $icon := false }}
+                {{ if eq $key "art" }}{{ $icon = "palette-solid" }}{{ end }}
+                {{ if eq $key "tech" }}{{ $icon = "code-solid" }}{{ end }}
+                {{ if eq $key "video" }}{{ $icon = "video-solid" }}{{ end }}
+
+                <li class="header__menu-item">
+                    <a href="{{ .Permalink }}" class="header__menu-link">
+                        {{ if $icon }}{{ partial "icon.html" (dict "name" $icon "ctx" $)}}{{ end }}
+                        {{ .Name }}
+                    </a>
+                </li>
+            {{ end }}
+        {{ end }}
+
+        {{range $key, $page := .Site.RegularPages }}
+            {{ $icon := false }}
+            {{ if eq (.Name | lower) "info" }}{{ $icon = "grin-tongue-wink-solid" }}{{ end }}
+
+            {{ if eq .Type "page" }}
+                <li class="header__menu-item">
+                    <a href="{{ .Permalink }}" class="header__menu-link">
+                        {{ if $icon }}{{ partial "icon.html" (dict "name" $icon "ctx" $)}}{{ end }}
+                        {{ .Title }}
+                    </a>
+                </li>
+            {{ end }}
+        {{ end }}
+    </ul>
+</nav>

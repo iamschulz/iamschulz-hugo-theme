@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
+const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 
 module.exports = env => {
     return {
@@ -13,11 +14,9 @@ module.exports = env => {
             index: './helpers/entry/script.js',
         },
         output: {
-            path: path.resolve(__dirname, 'static/bundle'),
-            //filename: 'js/bundle.[chunkhash].js',
-            filename: 'js/bundle.js',
-            //chunkFilename: 'js/[name].[chunkhash].js',
-            chunkFilename: 'js/[name].js',
+            path: path.resolve(__dirname, 'static'),
+            filename: 'js/bundle.[chunkhash].js',
+            chunkFilename: 'js/[name].[chunkhash].js',
         },
         module: {
             rules: [
@@ -46,8 +45,16 @@ module.exports = env => {
         plugins: [
             new CleanWebpackPlugin(),
             new MiniCssExtractPlugin({
-                filename: 'css/styles.css',
+                filename: 'css/styles.[chunkhash].css',
                 chunkFilename: 'css/[name].css',
+            }),
+            new SVGSpritemapPlugin('svg/*.svg', {
+                output: {
+                    filename: 'img/sprite.[hash].svg',
+                },
+                sprite: {
+                    prefix: false,
+                },
             }),
             new BundleAnalyzerPlugin({
                 analyzerMode: env.stats ? 'static' : 'disabled',
@@ -55,7 +62,7 @@ module.exports = env => {
                 reportFilename: 'report/index.html',
             }),
             new WebpackAssetsManifest({
-                output: 'assetManifest.json',
+                output: '../data/assetManifest.json',
             }),
             new FixStyleOnlyEntriesPlugin(),
         ],

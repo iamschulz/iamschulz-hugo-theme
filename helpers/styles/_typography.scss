@@ -1,58 +1,51 @@
+@font-face {
+    font-family: Share;
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local("Share Bold"), local("Share-Bold"),
+        url(/fonts/share-v10-latin-700.woff2) format("woff2"),
+        url(/fonts/share-v10-latin-700.woff) format("woff");
+}
 :root {
     --base-font-size: 1rem;
     --base-line-height: 1.5em;
-    --scroll-offset: calc(5rem + var(--spacing-y)); // derives from header height
-}
-
-@mixin link {
-    color: inherit;
-    text-decoration-thickness: 0.11em;
-
-    &:hover {
-        text-decoration-color: var(--accent);
-    }
-}
-
-@mixin inlineLink {
-    color: var(--fg-grey);
-
-    &:hover {
-        color: inherit;
-    }
+    --headline-font: Share, Arial, Helvetica Neue, Helvetica, sans-serif;
 }
 
 * {
     line-height: var(--base-line-height);
 }
 
-a[href] {
-    @include link();
-
-    article li &,
-    p &,
-    cite & {
-        @include inlineLink();
-    }
+main {
+    --base-font-size: 1.2rem;
+    font-size: var(--base-font-size);
 }
 
-a[id] {
-    scroll-margin-top: var(--scroll-offset);
+a {
+    color: inherit;
+    text-decoration-thickness: 0.11em;
+
+    &:hover {
+        text-decoration-color: var(--accent-color);
+    }
+
+    article li,
+    cite,
+    p {
+        color: var(--grey);
+        &:hover {
+            color: inherit;
+        }
+    }
 }
 
 h1, h2, h3, h4, h5, h6 {
-    margin-bottom: var(--spacing-y);
-
-    &:first-of-type {
-        margin-top: 0;
-    }
-
-    a[id] {
-        &::after {
-            content: "#";
-            margin-left: 0.4ch;
-            color: var(--bg-grey);
-        }
-    }
+    font-family: var(--headline-font);
+    font-weight: 400;
+    margin-block-start: var(--spacing-y);
+    margin-block-end: var(--spacing-y);
+    --base-line-height: 1.2em;
 }
 
 h1 { font-size: calc(var(--base-font-size) * 2); }
@@ -61,17 +54,16 @@ h3 { font-size: calc(var(--base-font-size) * 1.2); }
 h4 { font-size: calc(var(--base-font-size) * 1); }
 h5 { font-size: calc(var(--base-font-size) * 0.9); }
 h6 { font-size: calc(var(--base-font-size) * 0.8); }
-
-main {
-    --base-font-size: 1.2rem;
-    font-size: var(--base-font-size);
+p {
+    margin-block-start: var(--spacing-y);
+    margin-block-end: var(--spacing-y);
 }
 
-@media screen and (min-width: $lg-width) {
-    :root {
-        --scroll-offset: calc(3.75rem + var(--spacing-y)); // derives from header height
-    }
+.highlight pre {
+    padding: 2ch 1em;
+}
 
+@media screen and (min-width: 48rem) {
     main {
         --base-font-size: 1.3rem;
     }

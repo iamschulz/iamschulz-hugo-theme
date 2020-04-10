@@ -14,12 +14,9 @@ window.Modules = {
      * these imports are deferred and bundled into the main chunk
      * code that's supposed to run on every page load goes here
      */
-    index: () => import(/* webpackMode: 'eager' */ '../index'),
+    index: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/index/index'),
     colorSchemeToggle: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/colorSchemeToggle/colorSchemeToggle'),
-    header: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/header/header'),
-    mainMenu: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/mainMenu/mainMenu'),
     overlay: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/overlay/overlay'),
-    viewportManager: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/viewportManager/viewportManager'),
 
     /**
      * add module functionality:

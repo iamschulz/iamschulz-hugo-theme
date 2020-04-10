@@ -1,4 +1,5 @@
 node_modules
-static/bundle/
+static/
+data/assetManifest.json
 *.log
 coverage

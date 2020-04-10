@@ -1,4 +1,4 @@
-import Component from './component';
+import Component from '../../../helpers/component';
 
 export default class index extends Component {
     init() {

@@ -1,0 +1,14 @@
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--content-width);
+    padding: var(--spacing-y) var(--spacing-x);
+    margin: calc(var(--spacing-y) * 5) auto 0;
+    color: var(--grey);
+}
+
+.footer__list {
+    list-style: none;
+    padding-inline-start: 0;
+}
