@@ -1,0 +1,9 @@
+<ul class="article-list">
+    {{ range .Pages }}
+        {{ if eq .Type "post"}}
+            <li class="article-list__entry">
+                {{ partial "articleCard/articleCard.html" . }}
+            </li>
+        {{ end }}
+    {{ end }}
+</ul>

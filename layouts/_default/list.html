@@ -1,13 +1,5 @@
 {{define "main"}}
-    <h1>{{ .Title }}</h1>
-    <ul>
-        {{ $paginator := .Paginate .Data.Pages }}
-        {{ range $paginator.Pages }}
-            <li>
-                {{ partial "articleCard/articleCard.html" . }}
-            </li>
-        {{ end }}
-    </ul>
-
+    {{ $paginator := .Paginate .Data.Pages }}
+    {{ partial "articleList/articleList.html" $paginator }}
     {{ partial "pagination/pagination.html" . }}
 {{end}}

@@ -63,7 +63,7 @@ p {
     padding: 2ch 1em;
 }
 
-@media screen and (min-width: 48rem) {
+@media screen and (min-width: $lg-width) {
     main {
         --base-font-size: 1.3rem;
     }

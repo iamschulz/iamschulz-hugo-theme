@@ -1,37 +1,23 @@
 {{ define "main" }}
-    <ul class="all-posts">
-        {{ $paginator := .Paginate .Site.RegularPages }}
-        {{ range $paginator.Pages }}
-            {{ if eq .Type "post"}}
-                <li>
-                    {{ partial "articleCard/articleCard.html" . }}
-                </li>
-            {{ end }}
-        {{ end }}
-    </ul>
-
-    {{ partial "pagination/pagination.html" . }}
-
     todo:
     <ul>
-        <li>include basic component set</li>
-        <li>posts:
-            <ul>
-                <li>
-                    shortcodes & features
-                    <ul>
-                        <li>Dev.to</li>
-                        <li>Slider</li>
-                        <li>Modal</li>
-                    </ul>
-                </li> 
-                <li>image processing</li>
+        <li>Lazy Loading</li>
+        <li>Search</li>
+        <li>Translate</li>
+        <li>Index Eyecandy</li>
+        <li>posts:<ul>
+                <li>Social Media Integration</li>
             </ul>
         </li>
-        <li>infrastructure
-            <ul>
+        <li>infrastructure<ul>
+                <li>write script to integrate theme build and publish</li>
                 <li>trigger pull (main repo) on push (content repo master)</li>
             </ul>
         </li>
     </ul>
+    <hr>
+
+    {{ $paginator := .Paginate .Site.RegularPages }}
+    {{ partial "articleList/articleList.html" $paginator }}
+    {{ partial "pagination/pagination.html" . }}
 {{ end }}
