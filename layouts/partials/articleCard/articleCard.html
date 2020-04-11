@@ -1,10 +1,37 @@
-<article aria-label="{{ .Title }}">
-    <a href={{ .Permalink }}>
-        {{ if .Params.banner }}
-            <img src="{{ .Params.banner }}" alt="{{ .Title }}">
-        {{ end }}
-        <h2>{{ .Title }}</h2>
+<article class="article__card" aria-label="{{ .Title }}">
+    {{ if .Params.banner }}
+        <img class="article-card__banner" src="{{ .Params.banner }}" alt="{{ .Title }}">
+    {{ end }}
+
+    <aside class="article-card__meta">
+        <p class="article-card__date">{{ .Date.Format "02.01.2006" }}</p>
+        <ul class="article-card__categories">
+            {{ range $key := .Params.categories }}
+                {{ with $.Site.GetPage (printf "/%s/%s" "categories" $key) }}
+                    {{ $icon := false }}
+                    {{ if eq (.Name | lower) "art" }}{{ $icon = "palette-solid" }}{{ end }}
+                    {{ if eq (.Name | lower) "tech" }}{{ $icon = "code-solid" }}{{ end }}
+                    {{ if eq (.Name | lower) "video" }}{{ $icon = "video-solid" }}{{ end }}
+
+                    <li>
+                        <a class="article-card__category-link" href="{{ .Permalink }}">
+                            {{ if $icon }}{{ partial "icon.html" (dict "name" $icon "ctx" $)}}{{ end }}
+                            {{ .Name }}
+                        </a>
+                    </li>
+                {{ end }}
+            {{ end }}
+        </ul>
+    </aside>
+
+    <h1 class="article-card__title">
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+    </h1>
+
+    <div class="article-card__content">{{ .Summary }}</div>
+    
+    <a href="{{ .Permalink }}" class="article-card__more">
+        read on
+        {{ partial "icon.html" (dict "name" "chevron-right-solid" "ctx" $)}}
     </a>
-    <p>({{ .Date.Format "02.01.2006" }})</p>
-    <p>{{ .Summary }}</p>
 </article>

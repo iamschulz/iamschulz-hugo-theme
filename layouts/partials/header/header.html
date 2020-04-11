@@ -9,9 +9,9 @@
             {{ with $.Site.GetPage (printf "/%s/%s" "categories" $key) }}
 
                 {{ $icon := false }}
-                {{ if eq $key "art" }}{{ $icon = "palette-solid" }}{{ end }}
-                {{ if eq $key "tech" }}{{ $icon = "code-solid" }}{{ end }}
-                {{ if eq $key "video" }}{{ $icon = "video-solid" }}{{ end }}
+                {{ if eq (.Name | lower) "art" }}{{ $icon = "palette-solid" }}{{ end }}
+                {{ if eq (.Name | lower) "tech" }}{{ $icon = "code-solid" }}{{ end }}
+                {{ if eq (.Name | lower) "video" }}{{ $icon = "video-solid" }}{{ end }}
 
                 {{ $isActive := false }}
                 {{ if eq ($.Page.Name | lower) $key }}
