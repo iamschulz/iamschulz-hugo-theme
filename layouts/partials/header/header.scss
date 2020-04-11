@@ -18,12 +18,12 @@
         margin-bottom: 0;
 
         &-link {
-            :after {
+            &::after {
                 content: "_";
                 animation: blink 1s steps(1) infinite alternate;
             }
 
-            &:hover:after {
+            &:hover::after {
                 animation-duration: 0.25s;
             }
         }   
@@ -73,9 +73,11 @@
         text-decoration: none;
         text-transform: lowercase;
 
-        &.is--active .icon,
-        &.is--active:after {
-            color: var(--accent-color);
+        &:hover,
+        &.is--active {
+            .icon, &::after {
+                color: var(--accent-color);
+            }
         }
     }
 }

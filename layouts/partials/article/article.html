@@ -1,0 +1,12 @@
+<article class="article">
+    {{ if .Params.banner }}
+        <img class="article__banner" src="{{ .Params.banner }}" alt="{{ .Title }}">
+    {{ end }}
+
+    <span class="article__date">{{ .Date.Format "02.01.2006" }}</span>
+    <h2 class="article__title">{{ .Title }}</h2>
+    
+    <div class="article__content">
+        {{ .Content }}
+    </div>
+</article>

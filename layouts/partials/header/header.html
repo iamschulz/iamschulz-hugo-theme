@@ -7,13 +7,26 @@
     <ul class="header__menu-list">
         {{range $key, $taxonomy := .Site.Taxonomies.categories }}
             {{ with $.Site.GetPage (printf "/%s/%s" "categories" $key) }}
+
                 {{ $icon := false }}
                 {{ if eq $key "art" }}{{ $icon = "palette-solid" }}{{ end }}
                 {{ if eq $key "tech" }}{{ $icon = "code-solid" }}{{ end }}
                 {{ if eq $key "video" }}{{ $icon = "video-solid" }}{{ end }}
 
+                {{ $isActive := false }}
+                {{ if eq ($.Page.Name | lower) $key }}
+                    {{ $isActive = true }}
+                {{ else }}
+                    {{ range $.Page.Params.categories }}
+                        {{ if eq (. | lower) $key }}{{ $isActive = true }}{{ end }}
+                    {{ end }}
+                {{ end }}
+
                 <li class="header__menu-item">
-                    <a href="{{ .Permalink }}" class="header__menu-link">
+                    <a 
+                        href="{{ .Permalink }}" 
+                        class="header__menu-link{{ if $isActive }} is--active{{ end }}"
+                    >
                         {{ if $icon }}{{ partial "icon.html" (dict "name" $icon "ctx" $)}}{{ end }}
                         {{ .Name }}
                     </a>
@@ -22,12 +35,21 @@
         {{ end }}
 
         {{range $key, $page := .Site.RegularPages }}
-            {{ $icon := false }}
-            {{ if eq (.Name | lower) "info" }}{{ $icon = "grin-tongue-wink-solid" }}{{ end }}
-
             {{ if eq .Type "page" }}
+
+                {{ $icon := false }}
+                {{ if eq (.Name | lower) "info" }}{{ $icon = "grin-tongue-wink-solid" }}{{ end }}
+
+                {{ $isActive := false }}
+                {{ if eq $.Page.Name .Name }}
+                    {{ $isActive = true }}
+                {{ end }}
+
                 <li class="header__menu-item">
-                    <a href="{{ .Permalink }}" class="header__menu-link">
+                    <a 
+                        href="{{ .Permalink }}" 
+                        class="header__menu-link{{ if $isActive }} is--active{{ end }}"
+                    >
                         {{ if $icon }}{{ partial "icon.html" (dict "name" $icon "ctx" $)}}{{ end }}
                         {{ .Title }}
                     </a>
