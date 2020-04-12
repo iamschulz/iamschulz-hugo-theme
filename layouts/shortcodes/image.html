@@ -1,0 +1,5 @@
+{{ $src := .Params.src }}
+{{ $alt := .Params.alt }}
+{{ $zoom := .Params.zoom }}
+
+{{ partial "image/image.html" (dict "ctx" $.Page "src" $src "alt" $alt "zoom" $zoom) }}

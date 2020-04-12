@@ -1,0 +1,53 @@
+{{ $img := .ctx.Resources.GetMatch .src }}
+{{ $alt := .alt }}
+{{ $class := .class }}
+{{ $zoom := .zoom }}
+
+{{ $small := $img }}
+{{ $medium := $img }}
+{{ $large := $img }}
+
+{{/* Resizing gifs isn't supported by Hugo yet */}}
+{{ if ne $img.MediaType.SubType "gif" }}
+    {{ $smallw := default "380x" }}
+    {{ $mediumw := default "590x" }}
+    {{ $largew := default "786x" }}
+    {{ $small = $img.Resize $smallw }}
+    {{ $medium = $img.Resize $mediumw }}
+    {{ $large = $img.Resize $largew }}
+{{ end }}
+
+<span 
+    class="image {{ with $class }}{{ . }}{{ end }}" 
+    style="width:{{ $img.Width }}px; max-height:{{ $img.Height }}px;"
+>
+    <img
+        class="image__img" 
+        srcset='
+            {{ if ge $img.Width "380" }}
+                {{ with $small.RelPermalink }}{{.}} 380w {{ end }}
+            {{ end }}
+            {{ if ge $img.Width "590" }}
+                {{ with $medium.RelPermalink }},{{.}} 590w {{ end }}
+            {{ end }}
+            {{ if ge $img.Width "786" }}
+                {{ with $large.RelPermalink }},{{.}} 786w {{ end }}
+            {{ end }}
+        '
+        src="{{ $img.RelPermalink }}" 
+        width="{{ $img.Width }}" 
+        height="{{ $img.Height }}" 
+        loading="lazy"
+        alt="{{- with $alt -}}{{ . }}{{ end }}"
+    >
+
+    {{ if $zoom }}
+        <button class="image__zoom-button">
+            <span class="is--visually-hidden">Zoom</span>
+            {{ partial "icon.html" (dict "name" "search-plus-solid" "ctx" .ctx)}}
+        </button>
+        <div hidden="" data-modal-content="9586436723">
+            <img class="image__zoom-content" src="{{ $img.Permalink }}" alt="{{- with $alt -}}{{ . }}{{ end }}">
+        </div>
+    {{ end }}
+</span>

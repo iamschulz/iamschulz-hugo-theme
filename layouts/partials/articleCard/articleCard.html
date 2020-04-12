@@ -1,6 +1,8 @@
 <article class="article__card" aria-label="{{ .Title }}">
     {{ if .Params.banner }}
-        <img class="article-card__banner" src="{{ .Params.banner }}" alt="{{ .Title }}">
+        <a href="{{ .Permalink }}">
+            {{ partial "image/image.html" (dict "ctx" .Page "src" .Params.banner "class" "article-card__banner" "alt" .Title) }}
+        </a>
     {{ end }}
 
     <aside class="article-card__meta">
