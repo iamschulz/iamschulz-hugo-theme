@@ -48,7 +48,7 @@ module.exports = env => {
                 filename: 'css/styles.[chunkhash].css',
                 chunkFilename: 'css/[name].css',
             }),
-            new SVGSpritemapPlugin('svg/*.svg', {
+            new SVGSpritemapPlugin('assets/svg/*.svg', {
                 output: {
                     filename: 'img/sprite.[hash].svg',
                 },
@@ -56,6 +56,10 @@ module.exports = env => {
                     prefix: false,
                 },
             }),
+            new CopyPlugin([
+                { from: 'assets/fonts', to: 'fonts' },
+            ]),
+            new FixStyleOnlyEntriesPlugin(),
             new BundleAnalyzerPlugin({
                 analyzerMode: env.stats ? 'static' : 'disabled',
                 openAnalyzer: env.stats,
@@ -64,7 +68,6 @@ module.exports = env => {
             new WebpackAssetsManifest({
                 output: '../data/assetManifest.json',
             }),
-            new FixStyleOnlyEntriesPlugin(),
         ],
     }
 };

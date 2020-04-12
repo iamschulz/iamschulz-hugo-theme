@@ -1,7 +1,5 @@
 node_modules
-static/css
-static/js
-static/img
+static/
 data/assetManifest.json
 *.log
 coverage
