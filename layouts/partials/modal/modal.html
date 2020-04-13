@@ -1,12 +1,13 @@
-{{/* Fixme: this calls the modal component on every page. Find a way to put this in condition */}}
-<div hidden data-component="modal" class="modal" aria-hidden="true" role="dialog">
-    <section class="modal__inner">
-        <button class="modal__close" data-modal-el="closeButton" title="Close">
-            <span class="is--visually-hidden">Close</span>
-            <span class="icon">
-                {{ partial "icon.html" (dict "name" "times-solid" "ctx" $)}}
-            </span>
-        </button>
-        <div class="modal__content" data-modal-el="content"></div>
-    </section>
-</div>
+{{ if .Page.Scratch.Get "renderModal" }}
+    <div hidden data-component="modal" class="modal" aria-hidden="true" role="dialog">
+        <section class="modal__inner">
+            <button class="modal__close" data-modal-el="closeButton" title="Close">
+                <span class="is--visually-hidden">Close</span>
+                <span class="icon">
+                    {{ partial "icon.html" (dict "name" "times-solid" "ctx" $)}}
+                </span>
+            </button>
+            <div class="modal__content" data-modal-el="content"></div>
+        </section>
+    </div>
+{{ end }}
