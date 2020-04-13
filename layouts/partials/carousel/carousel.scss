@@ -21,8 +21,9 @@
         > * {
             flex: 0 0 auto;
     
+            &:not(img), 
             *:not(img) {
-                pointer-events: none;
+                pointer-events: all;
             }
         }
     }
