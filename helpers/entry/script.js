@@ -16,7 +16,6 @@ window.Modules = {
      */
     index: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/index/index'),
     colorSchemeToggle: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/colorSchemeToggle/colorSchemeToggle'),
-    overlay: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/overlay/overlay'),
 
     /**
      * add module functionality:
@@ -25,8 +24,9 @@ window.Modules = {
      */
     // devPostTeaser: () => import(/* webpackChunkName: 'devPostTeaser' */ '../../layouts/partials/devPostTeaser/devPostTeaser'),
     // carousel: () => import(/* webpackChunkName: 'carousel' */ '../../layouts/partials/carousel/carousel'),
-    // modal: () => import(/* webpackChunkName: 'modal' */ '../../layouts/partials/modal/modal'),
-    // modalTrigger: () => import(/* webpackChunkName: 'modal' */ '../../layouts/partials/modalTrigger/modalTrigger'),
+    overlay: () => import(/* webpackChunkName: 'modal' */ '../../layouts/partials/overlay/overlay'),
+    modal: () => import(/* webpackChunkName: 'modal' */ '../../layouts/partials/modal/modal'),
+    modalTrigger: () => import(/* webpackChunkName: 'modal' */ '../../layouts/partials/modalTrigger/modalTrigger'),
 };
 
 window.EventBus = new EventBus();

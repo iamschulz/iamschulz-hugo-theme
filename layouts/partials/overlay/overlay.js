@@ -20,7 +20,6 @@ export default class Overlay extends Component {
     }
 
     init() {
-        this.handleMenu();
         this.handleModal();
 
         this.boundOnClick = () => {
@@ -37,23 +36,6 @@ export default class Overlay extends Component {
         };
     }
 
-    handleMenu() {
-        this.boundOnMenuOpen = (menu) => {
-            this.assignElement(menu);
-            EventBus.publish('onOverlayOpen', this.el);
-        };
-        EventBus.subscribe('onMenuOpen', this.boundOnMenuOpen);
-
-        this.menuClosed = (menu) => {
-            if (this.assignedEl === menu) {
-                this.unassignElement();
-                EventBus.publish('onOverlayClose', this.el);
-            }
-        };
-        EventBus.subscribe('onMenuViewportLg', this.menuClosed);
-        EventBus.subscribe('onAnchorLinkClose', this.menuClosed);
-    }
-
     handleModal() {
         this.boundOnModalOpen = (modal) => {
             this.assignElement(modal);
@@ -67,7 +49,7 @@ export default class Overlay extends Component {
                 EventBus.publish('onOverlayClose', this.el);
             }
         };
-        EventBus.subscribe('onModalClose', this.menuClosed);
+        EventBus.subscribe('onModalClose', this.modalClosed);
     }
 
     // eslint-disable-next-line class-methods-use-this

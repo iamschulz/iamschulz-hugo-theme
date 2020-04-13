@@ -42,11 +42,12 @@
     >
 
     {{ if $zoom }}
-        <button class="image__zoom-button">
+        {{ $uuid := partial "randomNumber.html" . }}
+        <button class="image__zoom-button" data-component="modalTrigger" data-modal-trigger-target="{{ $uuid }}">
             <span class="is--visually-hidden">Zoom</span>
             {{ partial "icon.html" (dict "name" "search-plus-solid" "ctx" .ctx)}}
         </button>
-        <div hidden="" data-modal-content="9586436723">
+        <div hidden="" data-modal-content="{{ $uuid }}">
             <img class="image__zoom-content" src="{{ $img.Permalink }}" alt="{{- with $alt -}}{{ . }}{{ end }}">
         </div>
     {{ end }}

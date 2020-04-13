@@ -1,0 +1,11 @@
+{{ $rand := index (seq 0 9 | shuffle) 0 }}
+{{ $rand := add (mul (index (seq 0 9 | shuffle) 0) 10) $rand }}
+{{ $rand := add (mul (index (seq 0 9 | shuffle) 0) 100) $rand }}
+{{ $rand := add (mul (index (seq 0 9 | shuffle) 0) 1000) $rand }}
+{{ $rand := add (mul (index (seq 0 9 | shuffle) 0) 10000) $rand }}
+{{ $rand := add (mul (index (seq 0 9 | shuffle) 0) 100000) $rand }}
+{{ $rand := add (mul (index (seq 0 9 | shuffle) 0) 1000000) $rand }}
+{{ $rand := add (mul (index (seq 0 9 | shuffle) 0) 10000000) $rand }}
+{{ $rand := add (mul (index (seq 0 9 | shuffle) 0) 100000000) $rand }}
+{{ $rand := add (mul (index (seq 0 9 | shuffle) 0) 1000000000) $rand }}
+{{ return $rand }}
