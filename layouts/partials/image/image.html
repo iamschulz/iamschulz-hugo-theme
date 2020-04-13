@@ -43,6 +43,7 @@
 
     {{ if $zoom }}
         {{ .ctx.Page.Scratch.Set "renderModal" true }}
+        {{ .ctx.Page.Scratch.Set "renderOverlay" true }}
         {{ $uuid := partial "randomNumber.html" . }}
         <button class="image__zoom-button" data-component="modalTrigger" data-modal-trigger-target="{{ $uuid }}">
             <span class="is--visually-hidden">Zoom</span>

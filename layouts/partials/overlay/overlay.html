@@ -1,1 +1,3 @@
-<div class="overlay" data-component="overlay"></div>
+{{ if .Page.Scratch.Get "renderOverlay" }}
+    <div class="overlay" data-component="overlay"></div>
+{{ end }}

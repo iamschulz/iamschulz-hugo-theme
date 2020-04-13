@@ -3,7 +3,6 @@
     {{- partial "head.html" . -}}
     <body data-component="index">
         <script>if (window.localStorage && localStorage.colorScheme) { document.body.dataset.stateColorScheme = localStorage.colorScheme; }</script>
-        {{- partial "overlay/overlay.html" . -}}
         {{- partial "header/header.html" . -}}
 
         <main id="content">
@@ -11,6 +10,8 @@
         </main>
         
         {{- partial "footer/footer.html" . -}}
+        
+        {{- partial "overlay/overlay.html" . -}}
         {{- partial "modal/modal.html" . -}}
     </body>
 </html>
