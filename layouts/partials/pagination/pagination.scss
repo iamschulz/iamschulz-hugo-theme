@@ -1,0 +1,30 @@
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    padding-inline-start: 0;
+    border-top: var(--border-width) dashed var(--grey);
+    padding-top: var(--spacing-y);
+    list-style: none;
+
+    &__item {
+        flex: 0 0 3ch;
+        height: 3ch;
+
+        & + & {
+            margin-left: calc(var(--spacing-x) / 2);
+        }
+    }
+
+    &__link {
+        @extend .button;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        line-height: 0;
+
+        &.is--active {
+            text-decoration: underline;
+        }
+    }
+}

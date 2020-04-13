@@ -28,7 +28,7 @@
     }
 
     &__title {
-        @extend .article__banner;
+        @extend .article__title;
     }
 
     &__date {
@@ -36,7 +36,7 @@
     }
 
     &__content {
-        @extend .article__banner;
+        @extend .article__content;
     }
 
     &__category-link,

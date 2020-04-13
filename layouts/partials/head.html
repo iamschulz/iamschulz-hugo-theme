@@ -2,7 +2,6 @@
     <title>{{ if .IsHome }} {{ .Site.Title }} {{ else }} {{ .Title }} &bull; {{ .Site.Title }} {{ end }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
     <meta name="theme-color" content="#1a1a1a">
 
     <link href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" rel="stylesheet" type="text/css">
@@ -12,5 +11,5 @@
     <link rel="preload" href="{{- (index .Site.Data.assetManifest "index.js") | relURL -}}" as="script">
     <!--link rel="preload" href="http://localhost:1313/fonts/share-v10-latin-700.woff2" as="font" crossorigin=""-->
 
-    {{ if .RSSLink }}<link href="{{ .RSSLink }}" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" />{{ end }}
+    {{ with .OutputFormats.Get "RSS" }}<link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />{{ end }}
 </head>
