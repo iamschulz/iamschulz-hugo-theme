@@ -32,8 +32,10 @@
 
     <div class="article-card__content">{{ .Summary }}</div>
     
-    <a href="{{ .Permalink }}" class="article-card__more">
-        read on
-        {{ partial "icon.html" (dict "name" "chevron-right-solid" "ctx" $)}}
-    </a>
+    {{ if .Truncated }}
+        <a href="{{ .Permalink }}" class="article-card__more">
+            read on
+            {{ partial "icon.html" (dict "name" "chevron-right-solid" "ctx" $)}}
+        </a>
+    {{ end }}
 </article>

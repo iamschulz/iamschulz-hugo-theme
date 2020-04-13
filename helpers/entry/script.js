@@ -22,8 +22,7 @@ window.Modules = {
      * these imports are lazy loaded and bundled into separate chunks
      * code that's supposed to run only when it's needed goes here
      */
-    // devPostTeaser: () => import(/* webpackChunkName: 'devPostTeaser' */ '../../layouts/partials/devPostTeaser/devPostTeaser'),
-    // carousel: () => import(/* webpackChunkName: 'carousel' */ '../../layouts/partials/carousel/carousel'),
+    carousel: () => import(/* webpackChunkName: 'carousel' */ '../../layouts/partials/carousel/carousel'),
     overlay: () => import(/* webpackChunkName: 'modal' */ '../../layouts/partials/overlay/overlay'),
     modal: () => import(/* webpackChunkName: 'modal' */ '../../layouts/partials/modal/modal'),
     modalTrigger: () => import(/* webpackChunkName: 'modal' */ '../../layouts/partials/modalTrigger/modalTrigger'),

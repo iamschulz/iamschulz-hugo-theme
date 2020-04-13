@@ -5,6 +5,7 @@
     }
 
     &__title {
+        @extend h1;
         margin: 0;
     }
 
@@ -15,7 +16,9 @@
     }
 
     &__content * {
-        max-width: 100%;
+        &:not(.breakout) {
+            max-width: 100%;
+        }
 
         &:last-child {
             margin-bottom: 0;

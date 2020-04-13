@@ -41,18 +41,22 @@ main {
 .narrow {
     max-width: var(--content-narrow-width);
 }
+
 .breakout {
     position: relative;
     left: calc(
         (100vw - min(var(--content-width), 100vw)) / -2 - var(--spacing-x)
     );
     width: 100vw;
+    max-width: none;
 }
+
 hr {
     border: none;
     border-top: var(--border-width) dashed var(--grey);
     margin: calc(2 * var(--spacing-y)) 0;
 }
+
 ol,
 ul {
     padding-inline-start: var(--spacing-x);

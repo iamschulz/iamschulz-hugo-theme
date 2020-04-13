@@ -1,0 +1,39 @@
+.carousel {
+    overflow: auto;
+
+    &[data-slider-ready] {
+        overflow: hidden;
+    }
+    
+    &__grid {
+        display: flex;
+        align-items: center;
+        transform: translateX(0);
+
+        &[data-autoplay="true"] {
+            transition: transform 0.25s ease-out;
+        }
+
+        > * + * {
+            margin-left: var(--spacing-x);
+        }
+
+        > * {
+            flex: 0 0 auto;
+    
+            *:not(img) {
+                pointer-events: none;
+            }
+        }
+    }
+}
+
+@media (pointer: fine) {
+    .carousel {
+        overflow: scroll;
+    
+        &[data-slider-ready] {
+            overflow: hidden;
+        }
+    }     
+}

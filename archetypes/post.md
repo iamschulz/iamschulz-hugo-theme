@@ -3,8 +3,9 @@ title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
 canonical: ""
 language: "en"
-category: []
+categories: []
 draft: true
 banner: ""
 url: "{{ .Name }}"
 ---
+<!--more-->
