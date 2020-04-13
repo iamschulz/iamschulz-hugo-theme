@@ -6,6 +6,7 @@ import Component from '../component';
 import StateMachine from '../stateMachine';
 import EventBus from '../eventBus';
 import FocusTrap from '../focusTrap';
+import LazyLoad from 'vanilla-lazyload';
 
 // register components here
 window.Modules = {
@@ -33,3 +34,10 @@ window.StateMachine = StateMachine;
 window.FocusTrap = new FocusTrap();
 window.ComponentLoader = new ComponentLoader();
 window.ComponentLoader.updateDom();
+new LazyLoad({
+    elements_selector: ".is--lazy",
+    class_loading: ".is--loading",
+    class_loaded: ".is--loaded",
+    class_error: ".is--error",
+    use_native: true,
+});

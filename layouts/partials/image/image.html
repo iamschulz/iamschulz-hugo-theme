@@ -22,8 +22,8 @@
     style="width:{{ $img.Width }}px; max-height:{{ $img.Height }}px;"
 >
     <img
-        class="image__img" 
-        srcset='
+        class="image__img is--lazy" 
+        data-srcset='
             {{ if ge $img.Width "380" }}
                 {{ with $small.RelPermalink }}{{.}} 380w {{ end }}
             {{ end }}
@@ -34,12 +34,32 @@
                 {{ with $large.RelPermalink }},{{.}} 786w {{ end }}
             {{ end }}
         '
-        src="{{ $img.RelPermalink }}" 
+        data-src="{{ $img.RelPermalink }}" 
+        src=""
         width="{{ $img.Width }}" 
         height="{{ $img.Height }}" 
-        loading="lazy"
         alt="{{- with $alt -}}{{ . }}{{ end }}"
     >
+    <noscript>
+        <img
+            class="image__img" 
+            srcset='
+                {{ if ge $img.Width "380" }}
+                    {{ with $small.RelPermalink }}{{.}} 380w {{ end }}
+                {{ end }}
+                {{ if ge $img.Width "590" }}
+                    {{ with $medium.RelPermalink }},{{.}} 590w {{ end }}
+                {{ end }}
+                {{ if ge $img.Width "786" }}
+                    {{ with $large.RelPermalink }},{{.}} 786w {{ end }}
+                {{ end }}
+            '
+            src="{{ $img.RelPermalink }}" 
+            width="{{ $img.Width }}" 
+            height="{{ $img.Height }}" 
+            alt="{{- with $alt -}}{{ . }}{{ end }}"
+        >
+    </noscript>
 
     {{ if $zoom }}
         {{ .ctx.Page.Scratch.Set "renderModal" true }}
