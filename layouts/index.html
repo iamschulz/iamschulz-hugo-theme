@@ -1,22 +1,4 @@
 {{ define "main" }}
-    todo:
-    <ul>
-        <li>Search</li>
-        <li>Translate</li>
-        <li>Index Eyecandy</li>
-        <li>posts:<ul>
-                <li>Youtube Nocookie-Player</li>
-                <li>Social Media Integration</li>
-            </ul>
-        </li>
-        <li>infrastructure<ul>
-                <li>write script to integrate theme build and publish</li>
-                <li>trigger pull (main repo) on push (content repo master)</li>
-            </ul>
-        </li>
-    </ul>
-    <hr>
-
     {{ $paginator := .Paginate .Site.RegularPages }}
     {{ partial "articleList/articleList.html" $paginator }}
     {{ partial "pagination/pagination.html" . }}

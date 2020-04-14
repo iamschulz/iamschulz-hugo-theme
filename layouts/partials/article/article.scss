@@ -1,12 +1,15 @@
 .article {
+    --spacing-y: 1.5rem;
+
     &__banner {
         width: 100%;
         max-width: 100%;
+        margin: 0 0 var(--spacing-y);
     }
 
     &__title {
         @extend h1;
-        margin: 0;
+        margin: 0 0 var(--spacing-y);
     }
 
     &__date {
@@ -23,10 +26,6 @@
         &:last-child {
             margin-bottom: 0;
         }
-    }
-
-    &__content > * {
-        margin-block-start: var(--spacing-y);
     }
 }
 
