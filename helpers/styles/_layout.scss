@@ -8,7 +8,7 @@
     --z-header: 90;
     --z-menu: 110;
     --z-below: -1;
-    --max-width: $max-width;
+    --max-width: #{$max-width};
 }
 
 * {
