@@ -1,3 +1,9 @@
+@mixin article__meta {
+    color: var(--grey);
+    margin-bottom: 0;
+    font-size: calc(var(--base-font-size) * 0.8);
+}
+
 .article {
     --spacing-y: 1.5rem;
 
@@ -13,9 +19,19 @@
     }
 
     &__date {
-        color: var(--grey);
-        margin-bottom: 0;
-        font-size: calc(var(--base-font-size) * 0.8);
+        @include article__meta();
+    }
+
+    &__toc {
+        ul {
+            list-style: none;
+            padding-inline-start: 0;
+            margin: 0;
+        }
+
+        li {
+            @include article__meta();
+        }
     }
 
     &__content * {
@@ -29,3 +45,21 @@
     }
 }
 
+@media (min-width: $xl-width) {
+    .article {
+        &__toc {
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: calc((#{$xl-width} - #{$lg-width}) / 2);
+            padding: var(--spacing-y) var(--spacing-x);
+            overflow: auto;
+
+            nav {
+                position: sticky;
+                top: 0;
+            }
+        }
+    }
+}

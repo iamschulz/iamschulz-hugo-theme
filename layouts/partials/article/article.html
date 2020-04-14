@@ -5,6 +5,12 @@
 
     <span class="article__date">{{ .Date.Format "02.01.2006" }}</span>
     <h2 class="article__title">{{ .Title }}</h2>
+
+    {{ if .TableOfContents }}
+        <aside class="article__toc">
+            {{ .TableOfContents }}
+        </aside>
+    {{ end }}
     
     <div class="article__content">
         {{ .Content }}

@@ -81,3 +81,16 @@
         }
     }
 }
+
+@media (min-width: $xl-width) {
+    .header {
+        &__menu {
+            margin-bottom: var(--spacing-y);
+
+            + * {
+                position: relative;
+                top: -6rem;
+            }
+        }
+    }
+}
