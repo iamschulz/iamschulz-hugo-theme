@@ -63,3 +63,11 @@
         }
     }
 }
+
+@media (min-width: $max-width) {
+    .article {
+        &__toc {
+            right: calc(100vw - var(--max-width));
+        }
+    }
+}

@@ -8,6 +8,7 @@
     --z-header: 90;
     --z-menu: 110;
     --z-below: -1;
+    --max-width: $max-width;
 }
 
 * {
@@ -26,6 +27,7 @@ body {
     padding: 0;
     background-color: var(--base-color);
     color: var(--fg-color);
+    max-width: var(--max-width);
 
     &[data-state-scrolling="disabled"] {
         overflow: hidden;
