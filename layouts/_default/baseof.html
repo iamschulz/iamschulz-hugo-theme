@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<html lang="{{ if .Page.Params.language }}{{ .Page.Params.language }}{{ else }}{{ .Site.LanguageCode }}{{ end}}">
+<html lang="{{ if .Page.Params.language }}{{ .Page.Params.language }}{{ else }}{{ .Site.LanguageCode }}{{ end }}">
     {{- partial "head.html" . -}}
     <body data-component="index">
-        <script>if (window.localStorage && localStorage.colorScheme) { document.body.dataset.stateColorScheme = localStorage.colorScheme; }</script>
+        <script>
+            if (window.localStorage && localStorage.colorScheme) { 
+                document.body.dataset.stateColorScheme = localStorage.colorScheme;
+                document.querySelector('meta[name="theme-color"]')
+                    .setAttribute = localStorage.colorScheme === 'light' ? '#f1f3f4' : '#0e181b';
+            }
+        </script>
         {{- partial "header/header.html" . -}}
 
         <main id="content">
