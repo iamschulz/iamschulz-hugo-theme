@@ -6,7 +6,7 @@
             if (window.localStorage && localStorage.colorScheme) { 
                 document.body.dataset.stateColorScheme = localStorage.colorScheme;
                 document.querySelector('meta[name="theme-color"]')
-                    .setAttribute = localStorage.colorScheme === 'light' ? '#f1f3f4' : '#0e181b';
+                    .setAttribute('content', localStorage.colorScheme === 'light' ? '#f1f3f4' : '#0e181b');
             }
         </script>
         {{- partial "header/header.html" . -}}
