@@ -11,8 +11,10 @@ export default class TableOfContents extends Component {
 
     toggleHeadline(payload) {
         const thisHeadline = Array.from(this.links).find((link) => link.hash === '#' + payload.el.id);
+        
         if (thisHeadline) {
-            thisHeadline.classList.toggle('is--active', payload.inScreen);
+            this.el.querySelectorAll('.is--active').forEach((el) => { el.classList.remove('is--active'); });
+            thisHeadline.classList.add('is--active');
         }
     }
 }

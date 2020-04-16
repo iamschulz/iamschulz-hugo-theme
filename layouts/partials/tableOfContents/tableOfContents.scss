@@ -25,6 +25,11 @@
             top: 0;
         }
 
+        li, a {
+            transition: color 1s ease-out;
+            text-decoration: none;
+        }
+
         .is--active {
             color: var(--accent-color);
         }

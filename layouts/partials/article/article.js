@@ -2,41 +2,57 @@ import Component from '../../../helpers/component';
 
 export default class Article extends Component {
     prepare() {
-        this.headlines = this.el.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        this.headlines = this.content.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        this.elements = this.content.children;
     }
 
     init() {
-        this.observeHeadlines();
+        this.assignSections();
+        this.observeElements();
     }
 
-    observeHeadlines() {
+    assignSections() {
+        let headlineIndex = 0;
+        Array.from(this.elements).forEach((el) => {
+            if (Array.from(this.headlines).indexOf(el) >= 0) {
+                headlineIndex ++;
+            }
+            el.dataset.articleSectionIndex = headlineIndex;
+        })
+    }
+
+    observeElements() {
         const callback = (entries) => {
             Object.keys(entries).forEach((index) => {
-                this.sendEvent({
-                    el: entries[index].target,
-                    inScreen: this.isInScreen(entries[index])
-                })
+
+                if (entries[index].isIntersecting) {
+                    const thisSectionIndex = entries[index].target.dataset.articleSectionIndex;
+                    const assignedHeadline = Array.from(this.headlines).filter((headline) => 
+                        headline.dataset.articleSectionIndex === thisSectionIndex)[0];
+                    
+                    this.sendEvent({
+                        headline: assignedHeadline,
+                    })
+                }
             });
         };
 
         const observer = new IntersectionObserver(callback, {
-            threshold: 0.1,
+            threshold: [0.9],
         });
 
-        Object.keys(this.headlines).forEach((index) => {
-            observer.observe(this.headlines[index]);
+        Object.keys(this.elements).forEach((index) => {
+            observer.observe(this.elements[index]);
         });
     }
 
     sendEvent(payload) {
-        EventBus.publish('onHeadlineInScreen', {
-            el: payload.el,
-            inScreen: payload.inScreen,
-        });
-    }
+        if (!payload || !payload.headline) {
+            return;
+        }
 
-    isInScreen(headlineObserver) {
-        return headlineObserver.isIntersecting === true 
-            && headlineObserver.intersectionRect.top > 0;
+        EventBus.publish('onHeadlineInScreen', {
+            el: payload.headline,
+        });
     }
 }

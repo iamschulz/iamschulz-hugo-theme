@@ -10,7 +10,7 @@
         {{ partial "tableOfContents/tableOfContents.html" . }}
     {{ end }}
     
-    <div class="article__content">
+    <div class="article__content" data-article-el="content">
         {{ .Content }}
     </div>
 </article>
