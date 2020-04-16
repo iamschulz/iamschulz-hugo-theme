@@ -1,4 +1,4 @@
-<article class="article">
+<article class="article" data-component="article">
     {{ if .Params.banner }}
         <img class="article__banner" src="{{ .Params.banner }}" alt="{{ .Title }}">
     {{ end }}
@@ -7,9 +7,7 @@
     <h2 class="article__title">{{ .Title }}</h2>
 
     {{ if .TableOfContents }}
-        <aside class="article__toc">
-            {{ .TableOfContents }}
-        </aside>
+        {{ partial "tableOfContents/tableOfContents.html" . }}
     {{ end }}
     
     <div class="article__content">

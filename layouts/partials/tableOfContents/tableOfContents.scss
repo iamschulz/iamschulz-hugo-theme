@@ -1,0 +1,38 @@
+.table-of-contents {
+    ul {
+        list-style: none;
+        padding-inline-start: 0;
+        margin: 0;
+    }
+
+    li {
+        @include article__meta();
+    }
+}
+
+@media (min-width: $xl-width) {
+    .table-of-contents {
+        position: fixed;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: calc((#{$xl-width} - #{$lg-width}) / 2);
+        padding: var(--spacing-y) var(--spacing-x);
+        overflow: auto;
+
+        nav {
+            position: sticky;
+            top: 0;
+        }
+
+        .is--active {
+            color: var(--accent-color);
+        }
+    }
+}
+
+@media (min-width: $max-width) {
+    .table-of-contents {
+        right: calc(100vw - var(--max-width));
+    }
+}

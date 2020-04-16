@@ -22,18 +22,6 @@
         @include article__meta();
     }
 
-    &__toc {
-        ul {
-            list-style: none;
-            padding-inline-start: 0;
-            margin: 0;
-        }
-
-        li {
-            @include article__meta();
-        }
-    }
-
     &__content * {
         &:not(.breakout) {
             max-width: 100%;
@@ -41,33 +29,6 @@
 
         &:last-child {
             margin-bottom: 0;
-        }
-    }
-}
-
-@media (min-width: $xl-width) {
-    .article {
-        &__toc {
-            position: fixed;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            width: calc((#{$xl-width} - #{$lg-width}) / 2);
-            padding: var(--spacing-y) var(--spacing-x);
-            overflow: auto;
-
-            nav {
-                position: sticky;
-                top: 0;
-            }
-        }
-    }
-}
-
-@media (min-width: $max-width) {
-    .article {
-        &__toc {
-            right: calc(100vw - var(--max-width));
         }
     }
 }

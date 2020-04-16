@@ -16,6 +16,8 @@ window.Modules = {
      * code that's supposed to run on every page load goes here
      */
     index: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/index/index'),
+    article: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/article/article'),
+    tableOfContents: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/tableOfContents/tableOfContents'),
     colorSchemeToggle: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/colorSchemeToggle/colorSchemeToggle'),
 
     /**
