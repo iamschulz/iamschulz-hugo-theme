@@ -123,6 +123,38 @@ pre {
     }
 }
 
+.floating-label {
+    position: relative;
+
+    span {
+        position: absolute;
+        left: 0.4ch;
+        pointer-events: none;
+        font-size: 0.9em;
+        line-height: 2em;
+        color: var(--grey);
+        transform-origin: bottom left;
+        transition: transform 0.1s ease-out;
+    }
+
+    input, textarea {
+        border: 1px solid var(--grey);
+        background: transparent;
+        font-size: 1em;
+    }
+
+    input {
+        display: flex;
+        align-items: center;
+    }
+
+    &:focus-within { // to do: empty state
+        span {
+            transform: translateY(-1.7em) scale(0.8);
+        }
+    }
+}
+
 button {
     @extend .button;
 }

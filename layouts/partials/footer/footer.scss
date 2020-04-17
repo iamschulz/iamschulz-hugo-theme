@@ -6,9 +6,22 @@
     padding: var(--spacing-y) var(--spacing-x);
     margin: calc(var(--spacing-y) * 5) auto 0;
     color: var(--grey);
-}
 
-.footer__list {
-    list-style: none;
-    padding-inline-start: 0;
+    &__list {
+        list-style: none;
+        margin-right: var(--spacing-x);
+        padding-inline-start: 0;
+    }
+
+    &__search {
+        margin-top: var(--spacing-y);
+
+        form {
+            display: flex;
+        }
+
+        input {
+            max-width: 45vw;
+        }
+    }
 }
