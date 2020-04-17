@@ -23,12 +23,22 @@
     }
 
     &__content * {
+        scroll-margin-top: 2em;
+
         &:not(.breakout) {
             max-width: 100%;
         }
 
         &:last-child {
             margin-bottom: 0;
+        }
+    }
+}
+
+@media (min-width: $xl-width) {
+    .article {
+        &__content * {
+            scroll-margin-top: calc(var(--spacing-y) / 2);
         }
     }
 }

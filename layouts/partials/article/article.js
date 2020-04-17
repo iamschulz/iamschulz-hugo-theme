@@ -38,7 +38,7 @@ export default class Article extends Component {
         };
 
         const observer = new IntersectionObserver(callback, {
-            threshold: [0.9],
+            threshold: [1],
         });
 
         Object.keys(this.elements).forEach((index) => {

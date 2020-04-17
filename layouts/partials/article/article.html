@@ -6,7 +6,7 @@
     <span class="article__date">{{ .Date.Format "02.01.2006" }}</span>
     <h2 class="article__title">{{ .Title }}</h2>
 
-    {{ if .TableOfContents }}
+    {{ if and (gt .WordCount 250 ) (.TableOfContents) }}
         {{ partial "tableOfContents/tableOfContents.html" . }}
     {{ end }}
     

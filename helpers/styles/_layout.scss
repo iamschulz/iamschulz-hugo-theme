@@ -40,10 +40,6 @@ main {
     padding: 0 var(--spacing-x) var(--spacing-y);
 }
 
-.narrow {
-    max-width: var(--content-narrow-width);
-}
-
 .breakout {
     position: relative;
     left: calc(
@@ -91,7 +87,7 @@ blockquote {
 }
 
 pre {
-    overflow: scroll;
+    overflow: auto;
 }
 
 .button {

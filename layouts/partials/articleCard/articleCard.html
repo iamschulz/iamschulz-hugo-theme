@@ -34,7 +34,9 @@
     
     {{ if .Truncated }}
         <a href="{{ .Permalink }}" class="article-card__more">
-            read on
+            <span class="is--visually-hidden">to article</span>
+            {{ partial "icon.html" (dict "name" "chevron-right-solid" "ctx" $)}}
+            {{ partial "icon.html" (dict "name" "chevron-right-solid" "ctx" $)}}
             {{ partial "icon.html" (dict "name" "chevron-right-solid" "ctx" $)}}
         </a>
     {{ end }}

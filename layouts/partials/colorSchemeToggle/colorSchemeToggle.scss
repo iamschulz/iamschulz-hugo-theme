@@ -5,10 +5,12 @@
 
     &::before {
         content: "☀️";
+        text-shadow: 0 0 1px rgba(0,0,0,0.7);
     }
 
     &::after {
         content: "🌙";
+        text-shadow: 0 0 1px rgba(0,0,0,0.7);
     }
 
     &__input {
