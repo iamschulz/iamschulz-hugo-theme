@@ -125,14 +125,15 @@ pre {
 
 .floating-label {
     position: relative;
+    color: var(--grey);
 
     span {
         position: absolute;
+        top: 0;
         left: 0.4ch;
         pointer-events: none;
         font-size: 0.9em;
         line-height: 2em;
-        color: var(--grey);
         transform-origin: bottom left;
         transition: transform 0.1s ease-out;
     }
@@ -141,16 +142,12 @@ pre {
         border: 1px solid var(--grey);
         background: transparent;
         font-size: 1em;
-    }
+        color: var(--grey);
 
-    input {
-        display: flex;
-        align-items: center;
-    }
-
-    &:focus-within { // to do: empty state
-        span {
-            transform: translateY(-1.7em) scale(0.8);
+        &:focus, &:valid {
+            + span {
+                transform: translate(-0.4ch, -1.7em) scale(0.8);
+            }
         }
     }
 }

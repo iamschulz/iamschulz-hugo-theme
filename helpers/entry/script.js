@@ -19,6 +19,7 @@ window.Modules = {
     article: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/article/article'),
     tableOfContents: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/tableOfContents/tableOfContents'),
     colorSchemeToggle: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/colorSchemeToggle/colorSchemeToggle'),
+    search: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/search/search'),
 
     /**
      * add module functionality:

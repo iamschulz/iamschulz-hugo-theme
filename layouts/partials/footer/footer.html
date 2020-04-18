@@ -4,22 +4,7 @@
         <li><a href="https://fontawesome.com/">Icons by Font Awesome</a></li>
         <li><a href="http://localhost:1313/legal">Legal</a></li>
         <li class="footer__search">
-            <form method="get" id="search" action="http://duckduckgo.com/">
-                <input type="hidden" name="sites" value="{{ .Site.BaseURL }}"/>
-                <input type="hidden" name="k8" value="#444444"/>
-                <input type="hidden" name="k9" value="#D51920"/>
-                <input type="hidden" name="kt" value="n"/>
-                {{/* to do: recognize color scheme here */}}
-                
-                <label class="floating-label" for="search">
-                    <span>Search</span>
-                    <input id="search" type="text" name="q" maxlength="255"/>
-                </label>
-                <input type="submit" value="DuckDuckGo Search" class="is--visually-hidden" />
-                <button type="submit">
-                    {{ partial "icon.html" (dict "name" "search-solid" "ctx" $)}}
-                </button>
-            </form>
+            {{- partial "search/search.html" . -}}
         </li>
     </ul>
     {{- partial "colorSchemeToggle/colorSchemeToggle.html" . -}}

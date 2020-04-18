@@ -1,0 +1,20 @@
+.search {
+    display: flex;
+
+    &__input {
+        max-width: 45vw;
+    }
+
+    &__styles {
+        display: none;
+        background-color: var(--base-color);
+
+        &::before {
+            background-color: var(--fg-color);
+        }
+
+        &::after {
+            background-color: var(--grey);
+        }
+    }
+}
