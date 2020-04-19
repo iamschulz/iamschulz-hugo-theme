@@ -1,5 +1,5 @@
-<form data-component="search" class="search" method="get" id="search" action="http://duckduckgo.com/">
-    <input type="hidden" name="sites" value="https://iamschulz.de"/>
+<form data-component="search" role="search" class="search" method="get" id="search" action="http://duckduckgo.com/">
+    <input type="hidden" name="sites" value="{{ .Site.BaseURL }}"/>
     <input data-search-el="header" type="hidden" name="kj" value="#0e181b"/>
     <input data-search-el="background" type="hidden" name="k7" value="#0e181b"/>
     <input data-search-el="text" type="hidden" name="k8" value="#ffffff"/>
@@ -8,11 +8,10 @@
     <input type="hidden" name="kt" value="n"/> <!--font-->
     
     <label class="search__field floating-label" for="search">
-        <input class="search__input" id="search" type="text" name="q" maxlength="255" required/>
+        <input class="search__input" id="search" spellcheck="true" type="text" name="q" maxlength="255" required/>
         <span>Search</span>
     </label>
-    <input class="is--visually-hidden" type="submit" value="DuckDuckGo Search" />
-    <button class="search__button" type="submit">
+    <button class="search__button" type="submit" aria-label="DuckDuckGo Search">
         {{ partial "icon.html" (dict "name" "search-solid" "ctx" $)}}
     </button>
 </form>

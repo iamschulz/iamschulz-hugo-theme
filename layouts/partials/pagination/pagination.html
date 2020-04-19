@@ -21,6 +21,7 @@
     {{ if $paginator.HasPrev }}
     <li class="pagination__item">
         <a href="{{ $paginator.Prev.URL }}" class="pagination__link">
+            <span class="is--visually-hidden">Next Page</span>
             {{ partial "icon.html" (dict "name" "chevron-left-solid" "ctx" $)}}
         </a>
     </li>
@@ -77,7 +78,7 @@
     {{ if eq ($.Scratch.Get "page_number_flag") true }}
     <li class="pagination__item">
         <a href="{{ .URL }}" class="pagination__link {{ if eq . $paginator }} is--active{{ end }}">
-            {{ .PageNumber }}
+            <span class="is--visually-hidden">Page </span>{{ .PageNumber }}
         </a>
     </li>
     {{ end }}
@@ -88,6 +89,7 @@
     {{ if $paginator.HasNext }}
     <li class="pagination__item">
         <a href="{{ $paginator.Next.URL }}" class="pagination__link">
+            <span class="is--visually-hidden">Previous Page</span>
             {{ partial "icon.html" (dict "name" "chevron-right-solid" "ctx" $)}}
         </a>
     </li>
