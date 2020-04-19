@@ -12,32 +12,15 @@
 }
 
 .presentation {
-    &__image {
-        width: 50vw;
-        max-width: 500px;
-        height: 50vh;
-        max-height: 500px;
-        margin: auto;
-        display: block;
-
-        svg {
-            width: 100%;
-            height: 100%;
-        }
-    
-        path {
-            transition: fill 1s ease-out;
-    
-            &:hover {
-                fill: var(--accent-color);
-                transition: none;
-            }
-        }
+    &__head {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        margin: 0 0 calc(var(--spacing-y) * 5);
     }
 
     &__greeting {
         position: absolute;
-        left: calc(50% - 8rem);
+        left: calc(50% - 10rem);
         background: var(--fg-color);
         color: var(--base-color);
         margin-top: calc(var(--spacing-y) * 2);
@@ -58,22 +41,58 @@
         }
     }
 
-    &__divider {
-        margin: calc(var(--spacing-y) * 5) 0;
-    } 
+    &__image {
+        position: relative;
+        width: 80%;
+        max-width: 22rem;
+        margin: auto;
+        display: block;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    
+        path {
+            transition: fill 1s ease-out;
+
+            @media (pointer: fine) {
+                &:hover {
+                    fill: var(--accent-color);
+                    transition: none;
+                }
+            }
+        }
+    }
+
+    &__list {
+        list-style: none;
+        padding: 0;
+
+        &-entry {
+            opacity: 0;
+            animation: fade-in 0.6s forwards cubic-bezier(0.680, -0.550, 0.585, 1.650);
+
+            &:nth-child(1) { animation-delay: 0.8s; }
+            &:nth-child(2) { animation-delay: 1.0s; }
+            &:nth-child(3) { animation-delay: 1.2s; }
+            &:nth-child(4) { animation-delay: 1.4s; }
+        }
+    }
 }
 
 @media (min-width: $lg-width) {
     .presentation {
+        &__head {
+            margin-top: calc(var(--spacing-y) * 5);
+        }
+
         &__greeting {
-            left: calc(50% - 10rem);
+            left: calc(50% - 11rem);
         }
 
         &__image {
-            width: 60vw;
-            max-width: 650px;
-            height: 60vh;
-            max-height: 650px;
+            max-width: 40rem;
         }
     }
 }

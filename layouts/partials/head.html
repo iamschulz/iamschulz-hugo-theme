@@ -14,9 +14,13 @@
 
     <link href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" rel="stylesheet" type="text/css">
     <link rel="preload" href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" as="style">
-    {{ if .IsHome }} <link rel="preload" href="{{- (index .Site.Data.assetManifest "presentation.css") | relURL -}}" as="style"> {{ end }}
     <link rel="preload" href="{{- (index .Site.Data.assetManifest "index.js") | relURL -}}" as="script">
     <link rel="preload" href="/fonts/share-v10-latin-700.woff2" as="font" crossorigin>
+
+    {{ if .IsHome }}
+        <link href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" rel="stylesheet" type="text/css">
+        <link rel="preload" href="{{- (index .Site.Data.assetManifest "presentation.css") | relURL -}}" as="style">
+    {{ end }}
 
     <link 
         rel="canonical" 
