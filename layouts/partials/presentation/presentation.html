@@ -1,0 +1,17 @@
+<div data-component="presentation">
+    <h2 class="presentation__greeting">Hi</h2>
+    <figure class="presentation__image">
+        {{ partial "presentation/presentationImage.svg" . }}
+    </figure>
+
+    <ul>
+        <li>I code websites.</li>
+        <li>I make videos.</li>
+        <li>I do artsy stuff.</li>
+        <li>I blog sometimes.</li>
+    </ul>
+    <hr class="presentation__divider">
+    <h2>Here are my latest articles</h2>
+    {{ $paginator := .Paginate .Site.RegularPages 3 }}
+    {{ partial "articleList/articleList.html" $paginator }}
+</div>

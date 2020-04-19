@@ -1,5 +1,5 @@
 import ComponentClass from '../../../helpers/component';
-import Component from '../index';
+import Component from '../body';
 
 document.body.innerHTML = require('../../components/index/index.html');
 jest.mock('../../helpers/component');

@@ -1,0 +1,79 @@
+@import '../../../helpers/styles/breakpoints';
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(var(--spacing-y));
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.presentation {
+    &__image {
+        width: 50vw;
+        max-width: 500px;
+        height: 50vh;
+        max-height: 500px;
+        margin: auto;
+        display: block;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    
+        path {
+            transition: fill 1s ease-out;
+    
+            &:hover {
+                fill: var(--accent-color);
+                transition: none;
+            }
+        }
+    }
+
+    &__greeting {
+        position: absolute;
+        left: calc(50% - 8rem);
+        background: var(--fg-color);
+        color: var(--base-color);
+        margin-top: calc(var(--spacing-y) * 2);
+        padding: 0.4ch 1ch;
+        opacity: 0;
+        animation: fade-in 0.6s forwards cubic-bezier(0.680, -0.550, 0.585, 1.650) 0.4s;
+
+        &::after {
+            content: "";
+            position: absolute;
+            right: -0.4rem;
+            top: calc(50% - 0.4rem);
+            display: block;
+            width: 0.8rem;
+            height: 0.8rem;
+            background: var(--fg-color);
+            transform: rotate(45deg);
+        }
+    }
+
+    &__divider {
+        margin: calc(var(--spacing-y) * 5) 0;
+    } 
+}
+
+@media (min-width: $lg-width) {
+    .presentation {
+        &__greeting {
+            left: calc(50% - 10rem);
+        }
+
+        &__image {
+            width: 60vw;
+            max-width: 650px;
+            height: 60vh;
+            max-height: 650px;
+        }
+    }
+}

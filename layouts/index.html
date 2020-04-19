@@ -1,5 +1,3 @@
 {{ define "main" }}
-    {{ $paginator := .Paginate .Site.RegularPages }}
-    {{ partial "articleList/articleList.html" $paginator }}
-    {{ partial "pagination/pagination.html" . }}
+    {{ partial "presentation/presentation.html" . }}
 {{ end }}

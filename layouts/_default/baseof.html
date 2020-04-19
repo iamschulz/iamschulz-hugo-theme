@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ if .Page.Params.language }}{{ .Page.Params.language }}{{ else }}{{ .Site.LanguageCode }}{{ end }}">
     {{- partial "head.html" . -}}
-    <body data-component="index">
+    <body data-component="body">
         <script>
             if (window.localStorage && localStorage.colorScheme) { 
                 document.body.dataset.stateColorScheme = localStorage.colorScheme;

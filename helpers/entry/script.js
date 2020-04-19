@@ -15,7 +15,7 @@ window.Modules = {
      * these imports are deferred and bundled into the main chunk
      * code that's supposed to run on every page load goes here
      */
-    index: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/index/index'),
+    body: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/body/body'),
     article: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/article/article'),
     tableOfContents: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/tableOfContents/tableOfContents'),
     colorSchemeToggle: () => import(/* webpackMode: 'eager' */ '../../layouts/partials/colorSchemeToggle/colorSchemeToggle'),
@@ -26,6 +26,7 @@ window.Modules = {
      * these imports are lazy loaded and bundled into separate chunks
      * code that's supposed to run only when it's needed goes here
      */
+    presentation: () => import(/* webpackChunkName: 'presentation' */ '../../layouts/partials/presentation/presentation'),
     carousel: () => import(/* webpackChunkName: 'carousel' */ '../../layouts/partials/carousel/carousel'),
     overlay: () => import(/* webpackChunkName: 'modal' */ '../../layouts/partials/overlay/overlay'),
     modal: () => import(/* webpackChunkName: 'modal' */ '../../layouts/partials/modal/modal'),
