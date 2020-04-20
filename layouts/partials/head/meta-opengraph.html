@@ -1,0 +1,12 @@
+<meta name="og:url" content="{{ if .Page.Params.canonical }}{{ .Page.Params.canonical }}{{ else }}{{ .Page.Permalink }}{{ end}}">
+<meta name="og:title" content="{{ if .IsHome }} {{ .Site.Title }} {{ else }} {{ .Title }} &bull; {{ .Site.Title }} {{ end }}">
+<meta name="og:site_name" content="i am schulz">
+<meta name="og:type" content="blog">
+<meta name="twitter:description" content="
+    {{ if and (.IsPage) (gt (.Page.Summary | truncate 120 | countwords) 0) }}
+        {{ .Page.Summary | truncate 120 }}
+    {{ else }}
+        {{ $.Site.Params.description }}
+    {{ end }}
+">
+<meta name="og:image" content="{{- (index .Site.Data.assetManifest "favicon.svg") | relURL -}}">

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ if .Page.Params.language }}{{ .Page.Params.language }}{{ else }}{{ .Site.LanguageCode }}{{ end }}">
-    {{- partial "head.html" . -}}
+    {{- partial "head/head.html" . -}}
     <body data-component="body">
         <script>
             if (window.localStorage && localStorage.colorScheme) { 

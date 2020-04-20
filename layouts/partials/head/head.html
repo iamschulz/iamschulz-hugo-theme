@@ -10,6 +10,10 @@
             {{ $.Site.Params.description }}
         {{ end }}
     ">
+
+    {{ partial "head/meta-twitter.html" . }}
+    {{ partial "head/meta-opengraph.html" . }}
+
     <meta name="robots" content="noindex">
 
     <link rel="icon" href="{{- (index .Site.Data.assetManifest "favicon.svg") | relURL -}}">
