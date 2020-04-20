@@ -41,11 +41,14 @@ module.exports = env => {
                         },
                     ],
                 }, {
-                    test: /favicon\.svg$/,
-                    loader: 'url-loader',
+                    test: /\.svg$/,
+                    loader: 'file-loader',
+                    include: [
+                        path.resolve(__dirname, 'assets/svg/public')
+                    ],
                     query: { 
                         limit: 1,
-                        name: '[name].[ext]',
+                        name: '[name].[hash].[ext]',
                     },
                 },
             ],
@@ -54,9 +57,9 @@ module.exports = env => {
             new CleanWebpackPlugin(),
             new MiniCssExtractPlugin({
                 filename: 'css/styles.[chunkhash].css',
-                chunkFilename: 'css/[name].css',
+                chunkFilename: 'css/[name].[chunkhash].css',
             }),
-            new SVGSpritemapPlugin('assets/svg/*.svg', {
+            new SVGSpritemapPlugin('assets/svg/sprite/*.svg', {
                 output: {
                     filename: 'img/sprite.[hash].svg',
                 },
