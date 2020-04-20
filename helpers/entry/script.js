@@ -8,6 +8,8 @@ import EventBus from '../eventBus';
 import FocusTrap from '../focusTrap';
 import LazyLoad from 'vanilla-lazyload';
 
+require("../../assets/favicon.svg");
+
 // register components here
 window.Modules = {
     /**

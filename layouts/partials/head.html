@@ -12,6 +12,7 @@
     ">
     <meta name="robots" content="noindex">
 
+    <link rel="icon" href="{{- (index .Site.Data.assetManifest "favicon.svg") | relURL -}}">
     <link href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" rel="stylesheet" type="text/css">
     <link rel="preload" href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" as="style">
     <link rel="preload" href="{{- (index .Site.Data.assetManifest "index.js") | relURL -}}" as="script">

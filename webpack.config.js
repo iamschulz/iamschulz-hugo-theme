@@ -40,6 +40,13 @@ module.exports = env => {
                             options: { sourceMap: (env.mode === 'development') },
                         },
                     ],
+                }, {
+                    test: /favicon\.svg$/,
+                    loader: 'url-loader',
+                    query: { 
+                        limit: 1,
+                        name: '[name].[ext]',
+                    },
                 },
             ],
         },
