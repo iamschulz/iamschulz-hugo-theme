@@ -28,6 +28,10 @@ a {
 
     &:hover {
         text-decoration-color: var(--accent-color);
+        
+        .icon {
+            color: var(--accent-color);
+        }
     }
 
     article li,

@@ -79,6 +79,15 @@
             &:nth-child(4) { animation-delay: 1.4s; }
         }
     }
+
+    &__networks {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(1.4em, 1fr));
+        font-size: 2.8em;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
 }
 
 @media (min-width: $lg-width) {

@@ -41,9 +41,18 @@
         font-family: var(--headline-font);
 
         &-list {
+            display: grid;
+            grid-template-columns: repeat(10, auto);
+            grid-gap: calc(var(--spacing-x) / 2);
             padding-inline-start: 0;
             margin: 0;
             list-style: none;
+        }
+
+        &-item {
+            &[data-item-name="Art"] { order: 3; }
+            &[data-item-name="Tech"] { order: 1; }
+            &[data-item-name="Video"] { order: 2; }
         }
 
         &-link {
@@ -62,10 +71,6 @@
         font-weight: 700;
         background-color: var(--fg-color);
         padding: 1px 5px;
-
-        & + & {
-            margin-left: calc(var(--spacing-x) / 2);
-        }
     }
 
     &__menu-link,

@@ -12,8 +12,54 @@
             <li class="presentation__list-entry">I blog sometimes.</li>
         </ul>
     </div>
-    <h2>Here's my latest article:</h2>
-    <hr class="presentation__divider">
-    {{ partial "articleCard/articleCard.html" (index .Site.RegularPages 1) }}
 
+    <hr class="presentation__divider">
+    <h2>Find me here:</h2>
+    <ul class="presentation__networks">
+        <li>
+            <a class="presentation__networks-link" href="https://twitter.com/IamSchulz">
+                {{ partial "icon.html" (dict "name" "twitter-brands" "ctx" $)}} 
+                <span class="is--visually-hidden">Twitter</span>
+            </a>
+        </li>
+        <li>
+            <a class="presentation__networks-link" href="https://dev.to/iamschulz">
+                {{ partial "icon.html" (dict "name" "dev-brands" "ctx" $)}} 
+                <span class="is--visually-hidden">DEV</span>
+            </a>
+        </li>
+        <li>
+            <a class="presentation__networks-link" href="https://www.linkedin.com/in/iamschulz/">
+                {{ partial "icon.html" (dict "name" "linkedin-brands" "ctx" $)}} 
+                <span class="is--visually-hidden">LinkedIn</span>
+            </a>
+        </li>
+        <li>
+            <a class="presentation__networks-link" href="https://www.xing.com/profile/Daniel_Schulz221/">
+                {{ partial "icon.html" (dict "name" "xing-brands" "ctx" $)}} 
+                <span class="is--visually-hidden">Xing</span>
+            </a>
+        </li>
+        <li>
+            <a class="presentation__networks-link" href="https://github.com/iamschulz">
+                {{ partial "icon.html" (dict "name" "github-brands" "ctx" $)}} 
+                <span class="is--visually-hidden">GitHub</span>
+            </a>
+        </li>
+        <li>
+            <a class="presentation__networks-link" href="https://codepen.io/iamschulz">
+                {{ partial "icon.html" (dict "name" "codepen-brands" "ctx" $)}} 
+                <span class="is--visually-hidden">CodePen</span>
+            </a>
+        </li>
+    </ul>
+
+    <p>
+        Or send me a <a class="button" href="mailto:hallo@iamschulz.de">{{ partial "icon.html" (dict "name" "envelope-open-solid" "ctx" $)}}&nbsp;mail</a>
+        <a href="http://pool.sks-keyservers.net/pks/lookup?search=0xD2EE2C51FDBD4D09&op=vindex" title="PGP-Key">{{ partial "icon.html" (dict "name" "key-solid" "ctx" $)}}</a>
+    </p>
+    
+    <hr class="presentation__divider">
+    <h2>Here's my latest article:</h2>
+    {{ partial "articleCard/articleCard.html" (index .Site.RegularPages 0) }}
 </div>

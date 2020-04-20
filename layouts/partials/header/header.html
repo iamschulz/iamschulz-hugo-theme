@@ -22,7 +22,7 @@
                     {{ end }}
                 {{ end }}
 
-                <li class="header__menu-item">
+                <li class="header__menu-item" data-item-name="{{ .Name }}">
                     <a 
                         href="{{ .Permalink }}" 
                         class="header__menu-link{{ if $isActive }} is--active{{ end }}"

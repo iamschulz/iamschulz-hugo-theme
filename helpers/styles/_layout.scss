@@ -52,7 +52,7 @@ main {
 hr {
     border: none;
     border-top: var(--border-width) dashed var(--grey);
-    margin: calc(2 * var(--spacing-y)) 0;
+    margin: calc(5 * var(--spacing-y)) 0;
 }
 
 ol,
@@ -123,6 +123,10 @@ pre {
     }
 }
 
+button {
+    @extend .button;
+}
+
 .floating-label {
     position: relative;
     color: var(--grey);
@@ -150,10 +154,6 @@ pre {
             }
         }
     }
-}
-
-button {
-    @extend .button;
 }
 
 .is--visually-hidden {
