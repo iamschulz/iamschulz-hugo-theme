@@ -8,6 +8,6 @@
         {{ $.Site.Params.description }}
     {{ end }}
 ">
-<meta name="twitter:image" content="{{- (index .Site.Data.assetManifest "logo.svg") -}}">
+<meta name="twitter:image" content="{{- (index .Site.Data.assetManifest "logo.svg") | absURL -}}">
 <meta name="twitter:site" content="@iamschulz">
 <meta name="twitter:creator" content="@iamschulz">
