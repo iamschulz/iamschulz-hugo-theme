@@ -34,9 +34,9 @@ a {
         }
     }
 
-    article li,
-    cite,
-    p {
+    article li &,
+    cite &,
+    p & {
         color: var(--grey);
         &:hover {
             color: inherit;

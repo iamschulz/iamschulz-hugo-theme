@@ -8,6 +8,11 @@
     li {
         @include article__meta();
     }
+
+    a {
+        display: inline-block;
+        padding: 0.2em 0;
+    }
 }
 
 @media (min-width: $xl-width) {
