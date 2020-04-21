@@ -1,0 +1,39 @@
+.youtube-player {
+    position: relative;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 0;
+        padding-top: 56.2%;
+        background: #000;
+    }
+
+    &__replacer,
+    &__iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__thumbnail {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    &__icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        display: grid;
+        place-items: center;
+        font-size: 6em;
+        color: #fff;
+    }
+} 
