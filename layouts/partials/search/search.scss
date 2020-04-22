@@ -17,4 +17,12 @@
             background-color: var(--grey);
         }
     }
+
+    &__button {
+        background-color: var(--grey);
+
+        .icon {
+            font-size: 1.8em;
+        }
+    }
 }
