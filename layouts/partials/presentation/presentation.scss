@@ -14,6 +14,8 @@
 .presentation {
     &__head {
         display: grid;
+        place-items: center;
+        min-height: calc(100vh - 17rem);
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         margin: 0 0 calc(var(--spacing-y) * 5);
     }
@@ -77,6 +79,11 @@
             &:nth-child(2) { animation-delay: 1.0s; }
             &:nth-child(3) { animation-delay: 1.2s; }
             &:nth-child(4) { animation-delay: 1.4s; }
+        }
+
+        &-sub {
+            color: var(--grey);
+            font-size: calc(var(--base-font-size) * 0.8);
         }
     }
 
