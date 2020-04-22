@@ -1,4 +1,5 @@
-.youtube-player {
+.youtube-player,
+.codepen-embed {
     position: relative;
 
     &::before {
@@ -35,5 +36,7 @@
         place-items: center;
         font-size: 6em;
         color: #fff;
+        box-shadow: 0 0 160px 200px rgba(0,0,0,0.1);
+        background: rgba(0,0,0,0.1);
     }
 } 

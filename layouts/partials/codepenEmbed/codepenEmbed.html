@@ -1,0 +1,39 @@
+{{ $id := .id }}
+{{ $height := .height }}
+{{ $tab := .tab }}
+{{ $uuid := partial "randomNumber.html" . }}
+
+<div class="codepen-embed">
+    <a
+        data-component="replaceIframe" 
+        data-replace-iframe-trigger-target="{{ $uuid }}" 
+        href="https://codepen.io/iamschulz/pen/{{ $id }}" 
+        class="codepen-embed__replacer"
+    >
+        <img 
+            class="codepen-embed__thumbnail is--lazy" 
+            data-srcset="
+                https://codepen.io/user/pen/{{ $id }}/image/small.png 360w,
+                https://codepen.io/user/pen/{{ $id }}/image/large.png 1280w
+            "
+            data-src="https://codepen.io/user/pen/{{ $id }}/image/large.png" 
+            alt="CodePen (ID: {{ $id }})"
+        >
+        <span class="codepen-embed__icon">
+            {{ partial "icon.html" (dict "name" "codepen-brands" "ctx" .ctx) }}
+        </span>
+    </a>
+    <iframe 
+        data-iframe-replace-id="{{ $uuid }}"
+        class="codepen-embed__iframe"
+        height="{{ $height }}" 
+        style="width: 100%;" 
+        hidden
+        scrolling="no" 
+        src=""
+        data-src="https://codepen.io/user/embed/{{ $id }}?height=265&theme-id=dark&default-tab={{ $tab }}" 
+        frameborder="no" 
+        allowtransparency="true" 
+        allowfullscreen="true" 
+    ></iframe>
+</div>

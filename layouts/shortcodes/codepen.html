@@ -1,13 +1,6 @@
 {{/* DEFAULTS */}}
+{{ $id := .Get "id" }}
 {{ $height  := 500 }}
 {{ $tab     := "result" }}{{/* html|css|js|result */}}
 
-<script
-    data-slug-hash="{{ .Get "id" }}"
-    data-height="{{ or (.Get "height") $height }}"
-    data-default-tab="{{ or (.Get "tab") $tab }}"
-    data-theme-id="dark"
-    class='codepen'
-    async
-    src="//codepen.io/assets/embed/ei.js"
-></script>
+{{partial "codepenEmbed/codepenEmbed.html" (dict "ctx" $.Page "id" $id "height" $height "tab" $tab) }}

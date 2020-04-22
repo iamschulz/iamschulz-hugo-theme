@@ -1,5 +1,5 @@
 import Component from '../../../helpers/component';
-import '../youtubePlayer/youtubePlayer.scss';
+import './replaceIframe.scss';
 
 export default class ReplaceIframe extends Component {
     init() {
