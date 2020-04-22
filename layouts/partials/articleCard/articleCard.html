@@ -1,4 +1,4 @@
-<article class="article__card" aria-label="{{ .Title }}">
+<article lang="{{ .Params.language }}" class="article__card" aria-label="{{ .Title }}">
     {{ if .Params.banner }}
         <a href="{{ .Permalink }}">
             {{ partial "image/image.html" (dict "ctx" .Page "src" .Params.banner "class" "article-card__banner" "alt" .Title) }}
