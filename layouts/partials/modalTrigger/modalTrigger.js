@@ -15,6 +15,6 @@ export default class ModalTrigger extends Component {
     }
 
     getModalContent() {
-        return document.querySelector(`[data-modal-content=\"${this.modalId}\"]`).innerHTML;
+        return document.querySelector(`[data-modal-content="${this.modalId}"]`).innerHTML;
     }
 }

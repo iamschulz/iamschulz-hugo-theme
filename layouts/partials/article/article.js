@@ -14,25 +14,26 @@ export default class Article extends Component {
     assignSections() {
         let headlineIndex = 0;
         Array.from(this.elements).forEach((el) => {
-            if (Array.from(this.headlines).indexOf(el) >= 0) {
-                headlineIndex ++;
+            const element = el;
+            if (Array.from(this.headlines).indexOf(element) >= 0) {
+                headlineIndex++;
             }
-            el.dataset.articleSectionIndex = headlineIndex;
-        })
+            element.dataset.articleSectionIndex = headlineIndex;
+        });
     }
 
     observeElements() {
         const callback = (entries) => {
             Object.keys(entries).forEach((index) => {
-
                 if (entries[index].isIntersecting) {
                     const thisSectionIndex = entries[index].target.dataset.articleSectionIndex;
-                    const assignedHeadline = Array.from(this.headlines).filter((headline) => 
-                        headline.dataset.articleSectionIndex === thisSectionIndex)[0];
-                    
+                    const assignedHeadline = Array.from(this.headlines).filter(
+                        (headline) => headline.dataset.articleSectionIndex === thisSectionIndex
+                    )[0];
+
                     this.sendEvent({
                         headline: assignedHeadline,
-                    })
+                    });
                 }
             });
         };

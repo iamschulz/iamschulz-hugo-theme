@@ -25,7 +25,7 @@ export default class ColorSchemeToggle extends Component {
         const colorScheme = this.colorSchemeToggle.checked ? 'Dark' : 'Light';
         window.localStorage.colorScheme = colorScheme.toLowerCase();
         document.querySelector('meta[name="theme-color"]')
-                .setAttribute('content', colorScheme === 'Light' ? '#f1f3f4' : '#0e181b');
+            .setAttribute('content', colorScheme === 'Light' ? '#f1f3f4' : '#0e181b');
         EventBus.publish(`onColorScheme${colorScheme}`);
     }
 

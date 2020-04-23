@@ -1,15 +1,15 @@
 import './style.scss';
 
+import LazyLoad from 'vanilla-lazyload';
 import ComponentLoader from '../componentLoader';
 // eslint-disable-next-line no-unused-vars
 import Component from '../component';
 import StateMachine from '../stateMachine';
 import EventBus from '../eventBus';
 import FocusTrap from '../focusTrap';
-import LazyLoad from 'vanilla-lazyload';
 
-require("../../assets/svg/public/favicon.svg");
-require("../../assets/svg/public/logo.svg");
+require('../../assets/svg/public/favicon.svg');
+require('../../assets/svg/public/logo.svg');
 
 // register components here
 window.Modules = {
@@ -43,9 +43,9 @@ window.FocusTrap = new FocusTrap();
 window.ComponentLoader = new ComponentLoader();
 window.ComponentLoader.updateDom();
 new LazyLoad({
-    elements_selector: ".is--lazy",
-    class_loading: ".is--loading",
-    class_loaded: ".is--loaded",
-    class_error: ".is--error",
+    elements_selector: '.is--lazy',
+    class_loading: '.is--loading',
+    class_loaded: '.is--loaded',
+    class_error: '.is--error',
     use_native: true,
 });

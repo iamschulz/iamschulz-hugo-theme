@@ -2,15 +2,15 @@ import Component from '../../../helpers/component';
 
 export default class Search extends Component {
     init() {
-        EventBus.subscribe('onColorSchemeDark', () => { this.setDDGTheme() });
-        EventBus.subscribe('onColorSchemeLight', () => { this.setDDGTheme() });
+        EventBus.subscribe('onColorSchemeDark', () => { this.setDDGTheme(); });
+        EventBus.subscribe('onColorSchemeLight', () => { this.setDDGTheme(); });
     }
 
     rgbToHex(r, g, b) {
-        return '#' + [r, g, b].map(x => {
-            const hex = parseInt(x).toString(16)
-            return hex.length === 1 ? '0' + hex : hex
-        }).join('');
+        return `#${[r, g, b].map((x) => {
+            const hex = parseInt(x, 10).toString(16);
+            return hex.length === 1 ? `0${hex}` : hex;
+        }).join('')}`;
     }
 
     setDDGTheme() {

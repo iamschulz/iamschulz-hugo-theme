@@ -23,9 +23,9 @@ export default class Modal extends Component {
         EventBus.subscribe('onOverlayClose', this.boundOnModalClose);
         this.closeButton.addEventListener('click', this.boundOnModalClose);
 
-        this.boundOnModalOpen = payload => {
+        this.boundOnModalOpen = (payload) => {
             if (!payload || !payload.content) { return; }
-    
+
             this.modalContent = payload.content;
             EventBus.publish('onModalOpen', this.el);
         };
