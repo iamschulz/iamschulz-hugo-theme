@@ -16,15 +16,15 @@
 
     <meta name="robots" content="noindex">
 
-    <link rel="icon" href="{{- (index .Site.Data.assetManifest "favicon.svg") -}}">
-    <link href="{{- (index .Site.Data.assetManifest "index.css") -}}" rel="stylesheet" type="text/css">
-    <link rel="preload" href="{{- (index .Site.Data.assetManifest "index.css") -}}" as="style">
-    <link rel="preload" href="{{- (index .Site.Data.assetManifest "index.js") -}}" as="script">
+    <link rel="icon" href="{{- (index .Site.Data.assetManifest "favicon.svg") | relURL -}}">
+    <link href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" rel="stylesheet" type="text/css">
+    <link rel="preload" href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" as="style">
+    <link rel="preload" href="{{- (index .Site.Data.assetManifest "index.js") | relURL -}}" as="script">
     <link rel="preload" href="/fonts/share-v10-latin-700.woff2" as="font" crossorigin>
 
     {{ if .IsHome }}
-        <link href="{{- (index .Site.Data.assetManifest "index.css") -}}" rel="stylesheet" type="text/css">
-        <link rel="preload" href="{{- (index .Site.Data.assetManifest "presentation.css") -}}" as="style">
+        <link href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" rel="stylesheet" type="text/css">
+        <link rel="preload" href="{{- (index .Site.Data.assetManifest "presentation.css") | relURL -}}" as="style">
     {{ end }}
 
     <link 
