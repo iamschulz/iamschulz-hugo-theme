@@ -1,4 +1,4 @@
-<article lang="{{ .Params.language }}" class="article__card" aria-label="{{ .Title }}">
+<article {{ if .Params.lang }}lang="{{ .Params.language }}"{{ end }} class="article__card" aria-label="{{ .Title }}">
     {{ if .Params.banner }}
         <a href="{{ .Permalink }}">
             {{ partial "image/image.html" (dict "ctx" .Page "src" .Params.banner "class" "article-card__banner" "alt" .Title) }}
@@ -7,6 +7,11 @@
 
     <aside class="article-card__meta">
         <p class="article-card__date">{{ .Date.Format "02.01.2006" }}</p>
+        {{ if .Params.language }}
+            <p class="article-card__language article-card__language-{{ .Params.language }}">
+                <span class="is--visually-hidden">{{ .Params.language }}</span>
+            </p>
+        {{ end }}
         <ul class="article-card__categories">
             {{ range $key := .Params.categories }}
                 {{ with $.Site.GetPage (printf "/%s/%s" "categories" $key) }}

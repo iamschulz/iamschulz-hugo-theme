@@ -41,7 +41,8 @@
     }
 
     &__category-link,
-    &__date {
+    &__date,
+    &__language {
         display: inline-block;
         margin: 0;
         text-transform: lowercase;
@@ -50,7 +51,21 @@
             margin-right: 0.5ch;
         }
     }
-    
+
+    &__language {
+        &::before {
+            content: "";
+            position: relative;
+            left: 0.4ch;
+            top: 0.15em;
+            display: inline-block;
+            filter: grayscale(80%);
+            transform: scale(1.5);
+        }
+
+        &-de::before { content: "🇩🇪"; }
+        &-en::before { content: "🇬🇧"; }
+    }
     
     &__more {
         @extend .button;
