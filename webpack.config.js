@@ -69,6 +69,7 @@ module.exports = env => {
             }),
             new CopyPlugin([
                 { from: 'assets/fonts', to: 'fonts' },
+                { from: 'assets/img', to: 'img' },
             ]),
             new FixStyleOnlyEntriesPlugin(),
             new BundleAnalyzerPlugin({

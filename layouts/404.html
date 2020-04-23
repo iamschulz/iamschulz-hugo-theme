@@ -1,3 +1,11 @@
 {{ define "main" }}
-    <h1>Uh Oh, 404</h1>
+    <div class="e404">
+        <h1>Uh Oh, 404</h1>
+        
+        <img class="e404__img is--lazy" data-src="/img/404-1.gif">
+
+        <script>
+            document.querySelector('.e404__img').dataset.src = '/img/404-'+ Math.floor(Math.random() * 10 + 1) + '.gif';
+        </script>
+    </div>
 {{ end }}
