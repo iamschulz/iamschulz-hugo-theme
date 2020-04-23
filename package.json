@@ -46,7 +46,7 @@
     "prod": "webpack --env.mode=production --watch & webpack-dev-server --env.mode=production --open-page './index.html'",
     "build": "webpack --env.mode=production --config webpack.config.js",
     "stats": "webpack --env.mode=production --env.stats --config webpack.config.js",
-    "lint": "eslint -c .eslintrc.js src",
+    "lint": "eslint -c .eslintrc.js .",
     "lint-fix": "eslint -c .eslintrc.js src --fix",
     "test": "jest --coverage"
   },
