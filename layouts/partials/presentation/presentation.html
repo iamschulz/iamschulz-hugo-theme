@@ -60,5 +60,10 @@
     
     <hr class="presentation__divider">
     <h2>Here's my latest article:</h2>
-    {{ partial "articleCard/articleCard.html" (index .Site.RegularPages 0) }}
+    {{ $latestArticle := (index .Site.RegularPages 0) }}
+    {{ partial "articleCard/articleCard.html" $latestArticle }}
+    {{ if in $latestArticle.RawContent "zoom=true" }}
+        {{ $.Page.Scratch.Set "renderModal" true }}
+        {{ $.Page.Scratch.Set "renderOverlay" true }}
+    {{ end }}
 </div>

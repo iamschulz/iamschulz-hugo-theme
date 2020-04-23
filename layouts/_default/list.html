@@ -1,5 +1,5 @@
 {{define "main"}}
     {{ $paginator := .Paginate .Data.Pages }}
-    {{ partial "articleList/articleList.html" $paginator }}
+    {{ partial "articleList/articleList.html" (dict "paginator" $paginator "root" $) }}
     {{ partial "pagination/pagination.html" . }}
 {{end}}

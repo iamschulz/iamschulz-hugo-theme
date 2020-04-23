@@ -1,9 +1,14 @@
 <ul class="article-list">
-    {{ range .Pages }}
+    {{ range .paginator.Pages }}
         {{ if eq .Type "post"}}
             <li class="article-list__entry">
                 {{ partial "articleCard/articleCard.html" . }}
             </li>
+
+            {{ if in .RawContent "zoom=true" }}
+                {{ $.root.Page.Scratch.Set "renderModal" true }}
+                {{ $.root.Page.Scratch.Set "renderOverlay" true }}
+            {{ end }}
         {{ end }}
     {{ end }}
 </ul>
