@@ -1,6 +1,6 @@
 <header class="header">
     <h1 class="header__title">
-        <a href="{{ .Site.BaseURL }}" class="header__title-link">{{ .Site.Title }}</a>
+        <a href="{{ .Site.BaseURL | absURL }}" class="header__title-link">{{ .Site.Title }}</a>
     </h1>
 </header>
 <nav class="header__menu">
