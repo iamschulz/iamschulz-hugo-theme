@@ -1,4 +1,12 @@
-<meta name="twitter:card" content="summary">
+{{ if .Page.Params.banner }}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ .Page.Params.banner | absURL }}">
+    <meta name="twitter:image:alt" content="cover image">
+{{ else }}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="{{ "img/profile-large.png" | absURL }}">
+    <meta name="twitter:image:alt" content="iamschulz logo">
+{{ end }}
 <meta name="twitter:url" content="{{ if .Page.Params.canonical }}{{ .Page.Params.canonical }}{{ else }}{{ .Page.Permalink }}{{ end}}">
 <meta name="twitter:title" content="{{ if .IsHome }} {{ .Site.Title }} {{ else }} {{ .Title }} &bull; {{ .Site.Title }} {{ end }}">
 <meta name="twitter:description" content="
@@ -8,6 +16,5 @@
         {{ $.Site.Params.description }}
     {{ end }}
 ">
-<meta name="twitter:image" content="{{ "img/profile-large.png" | absURL }}">
 <meta name="twitter:site" content="@iamschulz">
 <meta name="twitter:creator" content="@iamschulz">
