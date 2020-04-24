@@ -8,8 +8,8 @@
     <aside class="article-card__meta">
         <p class="article-card__date">{{ .Date.Format "02.01.2006" }}</p>
         {{ if .Params.language }}
-            <p class="article-card__language article-card__language-{{ .Params.language }}">
-                <span class="is--visually-hidden">{{ .Params.language }}</span>
+            <p class="article-card__language">
+                {{ .Params.language }}
             </p>
         {{ end }}
         <ul class="article-card__categories">

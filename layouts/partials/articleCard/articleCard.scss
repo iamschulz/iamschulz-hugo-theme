@@ -13,7 +13,8 @@
         &__meta {
             display: grid;
             grid-auto-flow: column;
-            place-content: flex-start;
+            align-items: center;
+            justify-content: flex-start;
             grid-gap: var(--spacing-x);
         }
 
@@ -53,18 +54,16 @@
     }
 
     &__language {
-        &::before {
-            content: "";
-            position: relative;
-            left: 0.4ch;
-            top: 0.15em;
-            display: inline-block;
-            filter: grayscale(80%);
-            transform: scale(1.5);
-        }
-
-        &-de::before { content: "🇩🇪"; }
-        &-en::before { content: "🇬🇧"; }
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 1.4em;
+        margin-top: 2px;
+        padding: 0 0.4ch;
+        font-size: 0.8em;
+        text-transform: uppercase;
+        color: var(--base-color);
+        background-color: var(--grey);
     }
     
     &__more {
