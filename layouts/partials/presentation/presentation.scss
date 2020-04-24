@@ -58,7 +58,9 @@
                 background: radial-gradient(circle, var(--grey) 60%, transparent 60.1%);
             }
             @media (prefers-color-scheme: dark) {
-                background: radial-gradient(circle, var(--grey) 60%, transparent 60.1%);
+                body:not([data-state-color-scheme="light"]) {
+                    background: radial-gradient(circle, var(--grey) 60%, transparent 60.1%);
+                }
             }
         }
     
