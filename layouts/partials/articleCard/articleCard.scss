@@ -1,8 +1,12 @@
 .article-card {
     &__banner {
         @extend .article__banner;
-        width: 100%;
         border: var(--border-width) solid var(--fg-color);
+
+        img {
+            max-height: none;
+            width: 100%;
+        }
 
         &:hover {
             border-color: var(--accent-color);
