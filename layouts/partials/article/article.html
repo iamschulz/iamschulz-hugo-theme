@@ -1,6 +1,9 @@
 <article class="article" data-component="article">
     {{ if .Params.banner }}
-        <img class="article__banner" src="{{ .Params.banner }}" alt="{{ .Title }}">
+        <img 
+            class="article__banner" 
+            src="{{ .Params.banner }}" 
+            alt="{{ if .Params.banner_alt }}{{ .Params.banner_alt }}{{ else }}{{ .Title }}{{ end }}">
     {{ end }}
 
     <span class="article__date">{{ .Date.Format "02.01.2006" }}</span>

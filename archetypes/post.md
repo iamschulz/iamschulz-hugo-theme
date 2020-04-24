@@ -6,6 +6,7 @@ language: "en"
 categories: []
 draft: true
 banner: ""
+banner_alt: ""
 url: "{{ .Name }}"
 ---
 <!--more-->

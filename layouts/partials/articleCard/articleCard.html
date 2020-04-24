@@ -1,7 +1,11 @@
 <article {{ if .Params.lang }}lang="{{ .Params.language }}"{{ end }} class="article__card" aria-label="{{ .Title }}">
     {{ if .Params.banner }}
         <a href="{{ .Permalink }}">
-            {{ partial "image/image.html" (dict "ctx" .Page "src" .Params.banner "class" "article-card__banner" "alt" .Title) }}
+            {{ $bannerAlt := .Title }}
+            {{ if .Params.banner_alt }}
+                {{ $bannerAlt = .Params.banner_alt }}
+            {{ end }} 
+            {{ partial "image/image.html" (dict "ctx" .Page "src" .Params.banner "class" "article-card__banner" "alt" $bannerAlt) }}
         </a>
     {{ end }}
 
