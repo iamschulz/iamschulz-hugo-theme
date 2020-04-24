@@ -19,12 +19,12 @@
         }
 
         > * {
-            flex: 0 0 auto;
-    
-            &:not(img), 
-            *:not(img) {
-                pointer-events: all;
-            }
+            flex: 0 0 85%;
+        }
+
+        img {
+            pointer-events: none;
+            user-select: none;
         }
     }
 }

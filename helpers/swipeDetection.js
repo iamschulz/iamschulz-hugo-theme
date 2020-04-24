@@ -62,8 +62,8 @@ export default class SwipeDetection {
 
     removeStopListener() {
         if (this.boundStopTrackSwipe) {
-            this.el.removeEventListener('mouseup', this.boundStopTrackSwipe);
             window.removeEventListener('mouseout', this.boundStopTrackSwipe);
+            document.body.removeEventListener('mouseup', this.boundStopTrackSwipe);
             this.el.removeEventListener('mouseout', this.boundStopTrackSwipe);
             this.el.removeEventListener('touchend', this.boundStopTrackSwipe);
             this.el.removeEventListener('touchcancel', this.boundStopTrackSwipe);
@@ -85,8 +85,8 @@ export default class SwipeDetection {
         };
 
         this.boundStopTrackSwipe = (event) => this.stopTrackSwipe(event);
-        this.el.addEventListener('mouseup', this.boundStopTrackSwipe, { passive: true });
         window.addEventListener('mouseout', this.boundStopTrackSwipe, { passive: true });
+        document.body.addEventListener('mouseup', this.boundStopTrackSwipe, { passive: true });
         this.el.addEventListener('mouseout', this.boundStopTrackSwipe, { passive: true });
         this.el.addEventListener('touchend', this.boundStopTrackSwipe, { passive: true });
         this.el.addEventListener('touchcancel', this.boundStopTrackSwipe, { passive: true });
