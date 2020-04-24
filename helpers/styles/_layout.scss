@@ -168,6 +168,12 @@ button {
     pointer-events: none;
 }
 
+.e404 {
+    &__img {
+        max-width: 100%;
+    }
+}
+
 @media screen and (min-width: $lg-width) {
     :root {
         --z-menu: var(--z-header);
