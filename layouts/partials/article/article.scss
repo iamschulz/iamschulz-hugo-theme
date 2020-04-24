@@ -22,6 +22,10 @@
 
     &__date {
         @include article__meta();
+
+        &:first-child {
+            margin-top: -0.2em;
+        }
     }
 
     &__content * {
