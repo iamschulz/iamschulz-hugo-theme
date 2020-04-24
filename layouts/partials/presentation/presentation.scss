@@ -55,7 +55,10 @@
             height: 100%;
 
             body[data-state-color-scheme="dark"] & {
-                background: radial-gradient(circle, var(--grey) 70%, transparent 70.1%);
+                background: radial-gradient(circle, var(--grey) 60%, transparent 60.1%);
+            }
+            @media (prefers-color-scheme: dark) {
+                background: radial-gradient(circle, var(--grey) 60%, transparent 60.1%);
             }
         }
     
