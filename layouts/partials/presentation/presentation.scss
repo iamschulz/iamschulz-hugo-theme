@@ -27,8 +27,10 @@
         color: var(--base-color);
         margin-top: calc(var(--spacing-y) * 2);
         padding: 0.4ch 1ch;
-        opacity: 0;
-        animation: fade-in 0.6s forwards cubic-bezier(0.680, -0.550, 0.585, 1.650) 0.4s;
+        @media (prefers-reduced-motion: no-preference) {
+            opacity: 0;
+            animation: fade-in 0.6s forwards cubic-bezier(0.680, -0.550, 0.585, 1.650) 0.4s;
+        }
 
         &::after {
             content: "";
@@ -67,7 +69,7 @@
         path {
             transition: fill 1s ease-out;
 
-            @media (pointer: fine) {
+            @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
                 &:hover {
                     fill: var(--accent-color);
                     transition: none;
@@ -81,8 +83,10 @@
         padding: 0;
 
         &-entry {
-            opacity: 0;
-            animation: fade-in 0.6s forwards cubic-bezier(0.680, -0.550, 0.585, 1.650);
+            @media (prefers-reduced-motion: no-preference) {
+                opacity: 0;
+                animation: fade-in 0.6s forwards cubic-bezier(0.680, -0.550, 0.585, 1.650);
+            }
 
             &:nth-child(1) { animation-delay: 0.8s; }
             &:nth-child(2) { animation-delay: 1.0s; }
