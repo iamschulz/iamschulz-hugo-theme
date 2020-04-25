@@ -6,7 +6,15 @@
             alt="{{ if .Params.banner_alt }}{{ .Params.banner_alt }}{{ else }}{{ .Title }}{{ end }}">
     {{ end }}
 
-    <span class="article__date">{{ .Date.Format "02.01.2006" }}</span>
+    <aside class="article__meta">
+        <p class="article__date">{{ .Date.Format "02.01.2006" }}</p>
+        {{ if .Params.language }}
+            <p class="article__language">
+                {{ .Params.language }}
+            </p>
+        {{ end }}
+    </aside>
+    
     <h2 class="article__title">{{ .Title }}</h2>
 
     {{ if and (gt .WordCount 250 ) (.TableOfContents) }}
