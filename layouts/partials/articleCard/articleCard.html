@@ -24,7 +24,7 @@
                     {{ if eq (.Name | lower) "tech" }}{{ $icon = "code-solid" }}{{ end }}
                     {{ if eq (.Name | lower) "video" }}{{ $icon = "video-solid" }}{{ end }}
 
-                    <li>
+                    <li class="article-card__category-entry">
                         <a class="article-card__category-link" href="{{ .Permalink }}">
                             {{ if $icon }}{{ partial "icon.html" (dict "name" $icon "ctx" $)}}{{ end }}
                             {{ .Name }}

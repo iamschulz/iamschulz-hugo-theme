@@ -52,16 +52,22 @@
         background-color: var(--grey);
     }
 
-    &__content * {
-        --spacing-y: 1.5rem;
-        scroll-margin-top: 2em;
-
-        &:not(.breakout) {
-            max-width: 100%;
+    &__content {
+        > * {
+            margin-bottom: var(--spacing-y);
         }
 
-        &:last-child {
-            margin-bottom: 0;
+        * {
+            --spacing-y: 1.5rem;
+            scroll-margin-top: 2em;
+    
+            &:not(.breakout) {
+                max-width: 100%;
+            }
+    
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
     }
 }

@@ -62,10 +62,7 @@ h3 { font-size: calc(var(--base-font-size) * 1.2); }
 h4 { font-size: calc(var(--base-font-size) * 1); }
 h5 { font-size: calc(var(--base-font-size) * 0.9); }
 h6 { font-size: calc(var(--base-font-size) * 0.8); }
-p {
-    margin-top: var(--spacing-y);
-    margin-bottom: var(--spacing-y);
-}
+p { margin: 0; }
 
 .highlight pre {
     padding: 2ch 1em;

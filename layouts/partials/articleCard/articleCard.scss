@@ -30,9 +30,16 @@
     }
 
     &__categories {
+        display: flex;
         margin: 0;
         list-style: none;
         padding-inline-start: 0;
+    }
+
+    &__category-entry {
+        &:not(:last-child) {
+            margin-right: var(--spacing-x);
+        }
     }
 
     &__category-link {

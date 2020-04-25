@@ -22,6 +22,14 @@
         overflow: hidden;
     }
 
+    &__replacer {
+        border: var(--border-width) solid var(--fg-color);
+
+        &:hover {
+            border-color: var(--accent-color);
+        }
+    }
+
     &__thumbnail {
         width: 100%;
         height: 100%;
