@@ -35,7 +35,7 @@
         {{ end }}
 
         {{range $key, $page := .Site.RegularPages }}
-            {{ if eq .Type "page" }}
+            {{ if and (eq .Type "page") (ne .Params.hidden true) }}
 
                 {{ $icon := false }}
                 {{ if eq (.Name | lower) "info" }}{{ $icon = "grin-tongue-wink-solid" }}{{ end }}

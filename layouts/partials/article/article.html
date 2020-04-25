@@ -6,14 +6,16 @@
             alt="{{ if .Params.banner_alt }}{{ .Params.banner_alt }}{{ else }}{{ .Title }}{{ end }}">
     {{ end }}
 
-    <aside class="article__meta">
-        <p class="article__date">{{ .Date.Format "02.01.2006" }}</p>
-        {{ if .Params.language }}
-            <p class="article__language">
-                {{ .Params.language }}
-            </p>
-        {{ end }}
-    </aside>
+    {{ if eq .Page.Type "post" }}
+        <aside class="article__meta">
+            <p class="article__date">{{ .Date.Format "02.01.2006" }}</p>
+            {{ if .Params.language }}
+                <p class="article__language">
+                    {{ .Params.language }}
+                </p>
+            {{ end }}
+        </aside>
+    {{ end }}
     
     <h2 class="article__title">{{ .Title }}</h2>
 
