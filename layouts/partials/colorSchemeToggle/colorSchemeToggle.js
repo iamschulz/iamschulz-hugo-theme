@@ -1,4 +1,5 @@
 import Component from '../../../helpers/component';
+import body from '../body/body';
 
 export default class ColorSchemeToggle extends Component {
     prepare() {
@@ -30,11 +31,17 @@ export default class ColorSchemeToggle extends Component {
     }
 
     applyInitialState() {
+        document.body.style.transition = 'none';
+        
         if (window.localStorage.colorScheme === 'dark' || window.localStorage.colorScheme === 'light') {
             this.colorSchemeToggle.checked = window.localStorage.colorScheme === 'dark';
             this.onToggle();
         } else {
             this.colorSchemeToggle.checked = window.matchMedia('(prefers-color-scheme:dark)').matches;
         }
+
+        window.setTimeout(() => {
+            document.body.removeAttribute('style');
+        }, 0);
     }
 }
