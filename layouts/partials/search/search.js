@@ -2,6 +2,7 @@ import Component from '../../../helpers/component';
 
 export default class Search extends Component {
     init() {
+        this.setDDGTheme();
         EventBus.subscribe('onColorSchemeDark', () => { this.setDDGTheme(); });
         EventBus.subscribe('onColorSchemeLight', () => { this.setDDGTheme(); });
     }
