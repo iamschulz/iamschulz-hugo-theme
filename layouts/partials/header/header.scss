@@ -25,7 +25,7 @@
                 width: 1ch;
                 height: var(--border-width);
                 display: inline-block;
-                background: var(--fg-color);
+                background: currentColor;
                 animation: blink 1s steps(1) infinite alternate;
             }
 
