@@ -11,7 +11,6 @@
     margin-top: var(--spacing-y);
     padding: 0 var(--spacing-x);
     display: flex;
-    justify-content: flex-end;
     margin-bottom: calc(var(--spacing-y) / 2);
     z-index: var(--z-header);
 
@@ -22,6 +21,7 @@
             &::after {
                 content: "_";
                 animation: blink 1s steps(1) infinite alternate;
+                speak: none;
             }
 
             &:hover::after {
@@ -35,7 +35,6 @@
         top: var(--spacing-y);
         left: var(--spacing-x);
         display: inline-flex;
-        justify-content: flex-end;
         width: 100%;
         margin-bottom: calc(var(--spacing-y) * 5);
         padding: 0 var(--spacing-x);
@@ -49,12 +48,6 @@
             padding-inline-start: 0;
             margin: 0;
             list-style: none;
-        }
-
-        &-item {
-            &[data-item-name="Art"] { order: 3; }
-            &[data-item-name="Tech"] { order: 1; }
-            &[data-item-name="Video"] { order: 2; }
         }
 
         &-link {
@@ -85,16 +78,6 @@
             .icon, &::after {
                 color: var(--accent-color);
             }
-        }
-    }
-}
-
-@media (min-width: $lg-width) {
-    .header {
-        justify-content: flex-start;
-
-        &__menu {
-            justify-content: flex-start;
         }
     }
 }
