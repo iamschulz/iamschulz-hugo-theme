@@ -49,6 +49,24 @@
         box-shadow: 0 0 160px 200px rgba(0,0,0,0.1);
         background: rgba(0,0,0,0.1);
     }
+
+    &__legal {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: var(--border-width);
+        padding: calc(var(--spacing-y) / 2) var(--spacing-x);
+        font-size: 0.6em;
+        text-align: center;
+        background: linear-gradient(0, var(--base-color) -200%, transparent 700%);
+        color: var(--fg-color);
+        pointer-events: none;
+
+        a {
+            pointer-events: all;
+        }
+    }
 } 
 
 .youtube-player {

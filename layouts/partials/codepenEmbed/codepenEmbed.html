@@ -22,6 +22,10 @@
             {{ partial "icon.html" (dict "name" "codepen-brands" "ctx" .ctx) }}
         </span>
     </a>
+    <span class="codepen-embed__legal">
+        Activating this Feature allows CodePen to place cookies and communicate with CodePen's servers.<br>
+        <a href="{{ "/legal" | relURL }}">(more info)</a>
+    </span>
     <iframe 
         data-iframe-replace-id="{{ $uuid }}"
         class="codepen-embed__iframe"

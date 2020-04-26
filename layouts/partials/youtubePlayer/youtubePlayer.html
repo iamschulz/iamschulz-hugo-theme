@@ -20,6 +20,10 @@
             {{ partial "icon.html" (dict "name" "youtube-brands" "ctx" .ctx) }}
         </span>
     </a>
+    <span class="youtube-player__legal">
+        Activating this video allows YouTube to place cookies and communicate with Google's servers.<br>
+        <a href="{{ "/legal" | relURL }}">(more info)</a>
+    </span>
     <iframe 
         data-iframe-replace-id="{{ $uuid }}"
         class="youtube-player__iframe"
