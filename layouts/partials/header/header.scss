@@ -9,13 +9,14 @@
 
 .header {
     margin-top: var(--spacing-y);
-    margin-left: var(--spacing-x);
-    display: block;
+    padding: 0 var(--spacing-x);
+    display: flex;
+    justify-content: flex-end;
     margin-bottom: calc(var(--spacing-y) / 2);
     z-index: var(--z-header);
 
     &__title {
-        margin-bottom: 0;
+        margin: 0;
 
         &-link {
             &::after {
@@ -33,16 +34,17 @@
         position: sticky;
         top: var(--spacing-y);
         left: var(--spacing-x);
-        display: inline-block;
-        width: auto;
-        margin-left: var(--spacing-x);
+        display: inline-flex;
+        justify-content: flex-end;
+        width: 100%;
         margin-bottom: calc(var(--spacing-y) * 5);
+        padding: 0 var(--spacing-x);
         z-index: var(--z-header);
         font-family: var(--headline-font);
 
         &-list {
             display: grid;
-            grid-template-columns: repeat(10, auto);
+            grid-template-columns: repeat(3, auto);
             grid-gap: calc(var(--spacing-x) / 2);
             padding-inline-start: 0;
             margin: 0;
@@ -83,6 +85,16 @@
             .icon, &::after {
                 color: var(--accent-color);
             }
+        }
+    }
+}
+
+@media (min-width: $lg-width) {
+    .header {
+        justify-content: flex-start;
+
+        &__menu {
+            justify-content: flex-start;
         }
     }
 }
