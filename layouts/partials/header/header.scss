@@ -19,9 +19,14 @@
 
         &-link {
             &::after {
-                content: "_";
+                content: "";
+                position: relative;
+                top: 0.1em;
+                width: 1ch;
+                height: var(--border-width);
+                display: inline-block;
+                background: var(--fg-color);
                 animation: blink 1s steps(1) infinite alternate;
-                speak: none;
             }
 
             &:hover::after {
@@ -75,8 +80,12 @@
 
         &:hover,
         &.is--active {
-            .icon, &::after {
+            .icon {
                 color: var(--accent-color);
+            }
+
+            &::after {
+                background-color: var(--accent-color);
             }
         }
     }
