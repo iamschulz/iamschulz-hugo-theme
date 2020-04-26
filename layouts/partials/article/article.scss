@@ -8,7 +8,7 @@
     word-break: break-word;
 
     &__banner {
-        display: flex;
+        display: grid;
         place-content: center;
         width: 100%;
         max-width: 100%;

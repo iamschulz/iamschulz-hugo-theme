@@ -1,4 +1,6 @@
 .table-of-contents {
+    margin-bottom: var(--spacing-y);
+
     ul {
         list-style: none;
         padding-inline-start: 0;
@@ -12,6 +14,10 @@
     a {
         display: inline-block;
         padding: 0.2em 0;
+
+        &:hover {
+            color: var(--fg-color);
+        }
     }
 }
 

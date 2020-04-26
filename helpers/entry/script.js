@@ -44,8 +44,8 @@ window.ComponentLoader = new ComponentLoader();
 window.ComponentLoader.updateDom();
 new LazyLoad({
     elements_selector: '.is--lazy',
-    class_loading: '.is--loading',
-    class_loaded: '.is--loaded',
-    class_error: '.is--error',
+    class_loading: 'is--loading',
+    class_loaded: 'is--loaded',
+    class_error: 'is--error',
     use_native: true,
 });

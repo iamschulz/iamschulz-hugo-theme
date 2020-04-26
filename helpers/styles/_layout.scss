@@ -160,6 +160,13 @@ button {
     }
 }
 
+.is--lazy {
+    &:not(.is--loaded) {
+        background: var(--grey);
+        color: var(--base-color);
+    }
+}
+
 .is--visually-hidden {
     position: absolute !important;
     clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
