@@ -1,12 +1,23 @@
-<meta name="og:url" content="{{ if .Page.Params.canonical }}{{ .Page.Params.canonical }}{{ else }}{{ .Page.Permalink }}{{ end}}">
-<meta name="og:title" content="{{ if .IsHome }} {{ .Site.Title }} {{ else }} {{ .Title }} &bull; {{ .Site.Title }} {{ end }}">
-<meta name="og:site_name" content="i am schulz">
-<meta name="og:type" content="blog">
-<meta name="twitter:description" content="
+<meta property="og:url" content="{{ if .Page.Params.canonical }}{{ .Page.Params.canonical }}{{ else }}{{ .Page.Permalink }}{{ end}}">
+<meta property="og:title" content="{{ if .IsHome }} {{ .Site.Title }} {{ else }} {{ .Title }} &bull; {{ .Site.Title }} {{ end }}">
+<meta property="og:site_name" content="i am schulz">
+<meta property="og:type" content="website">
+<meta property="og:description" content="
     {{ if and (.IsPage) (gt (.Page.Summary | truncate 120 | countwords) 0) }}
         {{ .Page.Summary | truncate 120 }}
     {{ else }}
         {{ $.Site.Params.description }}
     {{ end }}
 ">
-<meta name="og:image" content="{{ "img/profile-large.png" | absURL }}">
+
+{{ if .Page.Params.banner }}
+    {{ $bannerAlt := .Page.Title }}
+    {{ if .Page.Params.banner_alt }}
+        {{ $bannerAlt = .Page.Params.banner_alt }}
+    {{ end }} 
+    <meta property="og:image" content="{{ .Page.Permalink }}{{ .Page.Params.banner }}">
+    <meta property="og:image:alt" content="{{ $bannerAlt }}">
+{{ else }}
+    <meta property="og:image" content="{{ "img/profile-large.png" | absURL }}">
+    <meta property="og:image:alt" content="iamschulz logo">
+{{ end }}
