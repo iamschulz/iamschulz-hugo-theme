@@ -1,4 +1,4 @@
-<article class="article" data-component="article">
+<article {{ if .Params.lang }}lang="{{ .Params.language }}"{{ end }} class="article" data-component="article">
     {{ if .Params.banner }}
         <img 
             class="article__banner" 
