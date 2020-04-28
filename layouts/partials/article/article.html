@@ -8,7 +8,7 @@
 
     {{ if eq .Page.Type "post" }}
         <aside class="article__meta">
-            <p class="article__date">{{ .Date.Format "02.01.2006" }}</p>
+            <time class="article__date">{{ .Date.Format "02.01.2006" }}</time>
             {{ if .Params.language }}
                 <p class="article__language">
                     {{ .Params.language }}

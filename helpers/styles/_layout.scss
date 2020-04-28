@@ -94,6 +94,10 @@ pre {
     overflow: auto;
 }
 
+time {
+    word-break: keep-all;
+}
+
 .button {
     display: inline-block;
     padding: 0.4ch 0.5em;
