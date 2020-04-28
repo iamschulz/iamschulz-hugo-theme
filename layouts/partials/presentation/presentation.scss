@@ -103,9 +103,9 @@
     &__networks {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(1.4em, 1fr));
-        font-size: 2.8em;
+        font-size: 3em;
         padding: 0;
-        margin: 0;
+        margin: 0 0 var(--spacing-y);
         list-style: none;
     }
 }

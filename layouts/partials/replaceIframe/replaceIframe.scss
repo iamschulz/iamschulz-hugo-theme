@@ -42,8 +42,9 @@
         left: 0;
         bottom: 0;
         right: 0;
-        display: grid;
-        place-items: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: 6em;
         color: #fff;
         box-shadow: 0 0 160px 200px rgba(0,0,0,0.1);

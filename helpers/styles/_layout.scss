@@ -100,6 +100,7 @@ time {
 
 .button {
     display: inline-block;
+    margin: 0;
     padding: 0.4ch 0.5em;
     border: none;
     background: var(--fg-color);
@@ -151,7 +152,10 @@ button {
     }
 
     input, textarea {
+        -webkit-appearance: none;
+        margin: 0;
         border: 1px solid var(--grey);
+        border-radius: 0;
         background: transparent;
         font-size: 1em;
         color: var(--grey);
@@ -161,6 +165,10 @@ button {
                 transform: translate(-0.4ch, -1.7em) scale(0.8);
             }
         }
+    }
+
+    input {
+        height: 100%;
     }
 }
 
