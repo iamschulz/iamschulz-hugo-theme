@@ -1,7 +1,5 @@
 import Component from '../../../helpers/component';
 
-// https://iamschulz.de/api-proxy:1337?query=https%3A%2F%2Fapi.giphy.com%2Fv1%2Fgifs%2Frandom%3Ftag%3D404%26rating%3DPG-13import Component from '../../../helpers/component';
-
 export default class Giphy extends Component {
     prepare() {
         this.apiProxyUrl = this.el.dataset.giphyApiProxy;
@@ -9,8 +7,7 @@ export default class Giphy extends Component {
     }
 
     init() {
-        if (!this.apiUrl || !this.keyword) { return; }
-
+        if (!this.apiProxyUrl || !this.keyword) { return; }
         this.getGiphyImage();
     }
 
