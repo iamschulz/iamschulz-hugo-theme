@@ -35,6 +35,7 @@ window.Modules = {
     modal: () => import(/* webpackChunkName: 'modal' */ '../../layouts/partials/modal/modal'),
     modalTrigger: () => import(/* webpackChunkName: 'modal' */ '../../layouts/partials/modalTrigger/modalTrigger'),
     replaceIframe: () => import(/* webpackChunkName: 'embed' */ '../../layouts/partials/replaceIframe/replaceIframe'),
+    giphy: () => import(/* webpackChunkName: 'giphy' */ '../../layouts/partials/giphy/giphy'),
 };
 
 window.EventBus = new EventBus();
