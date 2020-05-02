@@ -13,7 +13,7 @@
 
     {{ partial "head/meta-twitter.html" . }}
     {{ partial "head/meta-opengraph.html" . }}
-    <link href="mailto:{{ .Site.Params.indiewebMail }}" rel="me">
+    {{ partial "head/meta-webmentions.html" . }}
 
     <meta name="robots" content="noindex">
 
