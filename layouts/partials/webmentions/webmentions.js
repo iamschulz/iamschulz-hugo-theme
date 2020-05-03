@@ -3,16 +3,18 @@ import Component from '../../../helpers/component';
 export default class Webmentions extends Component {
     prepare() {
         this.apiProxyUrl = this.el.dataset.webmentionsApiProxy;
+        this.webmentionsUrl = this.el.dataset.webmentionsUrl;
     }
 
     init() {
-        if (!this.apiProxyUrl) { return; }
+        if (!this.apiProxyUrl || !this.webmentionsUrl) { return; }
         this.replyListHTML = "";
         this.getWebmentions();
     }
 
     getWebmentions() {
-        const webmentionsFetchUrl = 'https://webmention.io/api/mentions.jf2?domain=next.iamschulz.de';
+        const targetUrl = window.location.href.replace("http://localhost:1313", "https://next.iamschulz.de");
+        const webmentionsFetchUrl = `https://webmention.io/api/mentions.jf2?domain=${this.webmentionsUrl}&target=${targetUrl}`;
         const apiFetchUrl = `${this.apiProxyUrl}${encodeURIComponent(webmentionsFetchUrl)}&time=${Date.now()}`;
 
         fetch(apiFetchUrl)

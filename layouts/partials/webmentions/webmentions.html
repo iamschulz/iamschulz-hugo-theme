@@ -1,12 +1,17 @@
-<aside class="webmentions" data-component="webmentions" data-webmentions-api-proxy="{{ $.Site.Params.apiProxy }}">
+<aside 
+    class="webmentions" 
+    data-component="webmentions" 
+    data-webmentions-url="{{ $.Site.Params.webmentionURL }}"
+    data-webmentions-api-proxy="{{ $.Site.Params.apiProxy }}"
+>
     <span class="loader" data-webmentions-el="loader"><span class="is--visually-hidden">Loading</span></span>
     <ul data-webmentions-el="replies">
         <li hidden class="webmentions__reply" data-webmentions-el="prototype">
             <a data-webmentions-el="link" href="">
                 <img data-webmentions-el="avatar" src="">
                 <span data-webmentions-el="name"></span>
-                <time data-webmentions-el="date"></time>
             </a>
+            <time data-webmentions-el="date"></time>
             <div data-webmentions-el="content"></div>
         </li>
     </ul>
