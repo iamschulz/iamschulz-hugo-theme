@@ -1,14 +1,15 @@
-<article {{ if .Params.lang }}lang="{{ .Params.language }}"{{ end }} class="article" data-component="article">
+<article {{ if .Params.lang }}lang="{{ .Params.language }}"{{ end }} class="article h-card" data-component="article">
+    <a hidden href="{{ .Permalink }}" class="u-url"></a>
     {{ if .Params.banner }}
         <img 
-            class="article__banner" 
+            class="article__banner u-photo" 
             src="{{ .Params.banner }}" 
             alt="{{ if .Params.banner_alt }}{{ .Params.banner_alt }}{{ else }}{{ .Title }}{{ end }}">
     {{ end }}
 
     {{ if eq .Page.Type "post" }}
         <aside class="article__meta">
-            <time class="article__date">{{ .Date.Format "02.01.2006" }}</time>
+            <time class="article__date dt-published">{{ .Date.Format "02.01.2006" }}</time>
             {{ if .Params.language }}
                 <p class="article__language">
                     {{ .Params.language }}
@@ -17,13 +18,13 @@
         </aside>
     {{ end }}
     
-    <h2 class="article__title">{{ .Title }}</h2>
+    <h2 class="article__title p-name">{{ .Title }}</h2>
 
     {{ if and (gt .WordCount 250 ) (.TableOfContents) }}
         {{ partial "tableOfContents/tableOfContents.html" . }}
     {{ end }}
     
-    <div class="article__content" data-article-el="content">
+    <div class="article__content e-content" data-article-el="content">
         {{ .Content }}
     </div>
 </article>
