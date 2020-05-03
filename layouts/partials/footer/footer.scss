@@ -13,6 +13,15 @@
         padding-inline-start: 0;
     }
 
+    &__entry {
+        display: inline-block;
+        margin-right: 1ch;
+
+        &--copy {
+            display: block;
+        }
+    }
+
     &__search {
         margin-top: var(--spacing-y);
     }
