@@ -13,7 +13,7 @@ export default class Webmentions extends Component {
 
     getWebmentions() {
         const webmentionsFetchUrl = 'https://webmention.io/api/mentions.jf2?domain=next.iamschulz.de';
-        const apiFetchUrl = this.apiProxyUrl + encodeURIComponent(webmentionsFetchUrl);
+        const apiFetchUrl = `${this.apiProxyUrl}${encodeURIComponent(webmentionsFetchUrl)}&time=${Date.now()}`;
 
         fetch(apiFetchUrl)
             .then(response => response.json())
