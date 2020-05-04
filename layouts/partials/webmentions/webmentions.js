@@ -38,9 +38,11 @@ export default class Webmentions extends Component {
 
         replyName.innerHTML = replyData.author.name;
         replyContent.innerHTML = replyData.content.html;
-        replyLink.href = replyData.author.url || "";
+        if (replyData.author.url) { replyLink.href = replyData.author.url; }
         replyAvatar.src = replyData.author.photo || "";
-        replyDate.innerHTML = replyData.published || "some time";
+        replyDate.innerHTML = replyData.published
+            ? new Date(replyData.published).toISOString().slice(0,10).split("-").reverse().join(".")
+            : "some time";
 
         reply.content.firstChild.removeAttribute('hidden');
         this.replyListHTML += reply.content.firstChild.outerHTML;

@@ -11,12 +11,11 @@
     }
 
     &__header {
-        display: grid;
+        display: inline-grid;
         grid-template-columns: 4rem 1fr;
         grid-template-rows: repeat(2, 1fr);
         align-items: center;
         grid-column-gap: var(--spacing-x);
-        margin-bottom: var(--spacing-y);
         text-decoration: none;
     }
 
@@ -28,7 +27,7 @@
         object-fit: cover;
         background-color: var(--grey);
 
-        a:hover > & {
+        a[href]:hover > & {
             box-shadow: 0 0 0 2px var(--accent-color);
         }
     }
@@ -38,11 +37,11 @@
         font-family: var(--headline-font);
         font-weight: 700;
 
-        a > & {
+        a[href] > & {
             text-decoration: underline;
         }
 
-        a:hover > & {
+        a[href]:hover > & {
             text-decoration-color: var(--accent-color);
         }
     }
@@ -50,5 +49,9 @@
     &__date {
         @extend .article__meta;
         grid-area: 2 / 2 / 3 / 3;
+    }
+
+    &__content {
+        margin-left: calc(4rem + var(--spacing-x));
     }
 }
