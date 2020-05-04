@@ -1,0 +1,20 @@
+.share-links {
+    margin-top: calc(var(--spacing-y) * 8);
+    border-top: var(--border-width) dashed var(--grey);
+
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(1.4em, 1fr));
+        font-size: 3rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__entry {
+        height: 1em;
+        display: flex;
+        align-items: center;
+    }
+}

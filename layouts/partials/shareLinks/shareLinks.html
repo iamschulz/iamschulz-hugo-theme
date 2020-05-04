@@ -1,0 +1,31 @@
+{{ if eq .Page.Type "post" }}
+    <aside class="share-links">
+        <h2 class="share-links__title">Share this article:</h2>
+        <ul class="share-links__list">
+            <li class="share-links__entry">
+                <a 
+                    class="share-links__link" 
+                    href="http://www.twitter.com/share?url={{ .Page.Permalink }}"
+                >
+                    {{ partial "icon.html" (dict "name" "twitter-brands" "ctx" $)}}
+                </a>
+            </li>
+            <li class="share-links__entry">
+                <a 
+                    class="share-links__link" 
+                    href="#"
+                >
+                    {{ partial "icon.html" (dict "name" "dev-brands" "ctx" $)}}
+                </a>
+            </li>
+            <li class="share-links__entry">
+                <a 
+                    class="share-links__link" 
+                    href="https://www.linkedin.com/shareArticle?mini=true&url={{ .Page.Permalink }}&title={{ .Page.Title }}&summary={{ .Page.Summary }}"
+                >
+                    {{ partial "icon.html" (dict "name" "linkedin-brands" "ctx" $)}}
+                </a>
+            </li>
+        </ul>
+    </aside>
+{{ end }}

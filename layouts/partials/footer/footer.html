@@ -2,7 +2,7 @@
     <ul class="footer__list">
         <li class="footer__entry footer__entry--copy"><a href="{{ .Site.BaseURL }}">© 2020 by me</a></li>
         <li class="footer__entry"><a href="https://fontawesome.com/">Icons by Font Awesome</a></li>
-        {{ with .OutputFormats.Get "RSS" }}<li class="footer__entry"><a href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" />RSS</li>{{ end }}
+        <li class="footer__entry"><a href="{{ "/index.xml" | absURL }}" rel="feed" type="application/rss+xml" />RSS</li>
         <li class="footer__entry"><a href="{{ "/legal" | absURL }}">Legal</a></li>
         <li class="footer__search">
             {{- partial "search/search.html" . -}}

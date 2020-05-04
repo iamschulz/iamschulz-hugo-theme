@@ -1,19 +1,21 @@
-<aside 
-    class="webmentions" 
-    data-component="webmentions" 
-    data-webmentions-url="{{ $.Site.Params.webmentionURL }}"
-    data-webmentions-api-proxy="{{ $.Site.Params.apiProxy }}"
->
-    <span class="webmentions__loader loader" data-webmentions-el="loader"><span class="is--visually-hidden">Loading Reactions</span></span>
-    
-    <ul class="webmentions__list" data-webmentions-el="replies">
-        <li hidden class="webmentions__reply" data-webmentions-el="prototype">
-            <a class="webmentions__header" data-webmentions-el="link">
-                <img class="webmentions__avatar" data-webmentions-el="avatar" src="">
-                <span class="webmentions__name" data-webmentions-el="name"></span>
-                <time class="webmentions__date" data-webmentions-el="date"></time>
-            </a>
-            <div class="webmentions__content" data-webmentions-el="content"></div>
-        </li>
-    </ul>
-</aside>
+{{ if eq .Page.Type "post" }}
+    <aside 
+        class="webmentions" 
+        data-component="webmentions" 
+        data-webmentions-url="{{ $.Site.Params.webmentionURL }}"
+        data-webmentions-api-proxy="{{ $.Site.Params.apiProxy }}"
+    >
+        <span class="webmentions__loader loader" data-webmentions-el="loader"><span class="is--visually-hidden">Loading Reactions</span></span>
+        
+        <ul class="webmentions__list" data-webmentions-el="replies">
+            <li hidden class="webmentions__reply" data-webmentions-el="prototype">
+                <a class="webmentions__header" data-webmentions-el="link">
+                    <img class="webmentions__avatar" data-webmentions-el="avatar" src="">
+                    <span class="webmentions__name" data-webmentions-el="name"></span>
+                    <time class="webmentions__date" data-webmentions-el="date"></time>
+                </a>
+                <div class="webmentions__content" data-webmentions-el="content"></div>
+            </li>
+        </ul>
+    </aside>
+{{ end }}
