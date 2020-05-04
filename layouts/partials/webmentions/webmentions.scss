@@ -1,4 +1,8 @@
 .webmentions {
+    &__loader {
+        margin-top: calc(var(--spacing-y) * 2.5);
+    }
+
     &__list {
         list-style: none;
         padding: 0;

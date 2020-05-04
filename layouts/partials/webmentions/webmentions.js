@@ -49,7 +49,7 @@ export default class Webmentions extends Component {
     }
 
     showReplies() {
-        this.loader.setAttribute('hidden', 'hidden');
+        this.loader.classList.add('is--hidden');
         this.replies.insertAdjacentHTML('beforeend', this.replyListHTML);
     }
 }
