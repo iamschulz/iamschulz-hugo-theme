@@ -1,8 +1,8 @@
-<article {{ if .Params.lang }}lang="{{ .Params.language }}"{{ end }} class="article h-card" data-component="article">
+<article {{ if .Params.lang }}lang="{{ .Params.language }}"{{ end }} class="article h-entry" data-component="article">
     <a hidden href="{{ .Permalink }}" class="u-url"></a>
     {{ if .Params.banner }}
         <img 
-            class="article__banner u-photo" 
+            class="article__banner" 
             src="{{ .Params.banner }}" 
             alt="{{ if .Params.banner_alt }}{{ .Params.banner_alt }}{{ else }}{{ .Title }}{{ end }}">
     {{ end }}
@@ -26,5 +26,12 @@
     
     <div class="article__content e-content" data-article-el="content">
         {{ .Content }}
+    </div>
+
+    <div hidden class="h-card p-author">
+        <a class="u-url" href="{{ .Site.BaseURL }}">
+            <span class="p-name">{{ .Site.Title }}</span>
+        </a>
+        <img class="u-photo" src="{{- (index .Site.Data.assetManifest "favicon.svg") | relURL -}}">
     </div>
 </article>
