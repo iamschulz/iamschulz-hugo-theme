@@ -4,6 +4,7 @@ export default class Webmentions extends Component {
     prepare() {
         this.apiProxyUrl = this.el.dataset.webmentionsApiProxy;
         this.webmentionsUrl = this.el.dataset.webmentionsUrl;
+        this.targetUrl = window.location.href.replace("http://localhost:1313", "https://next.iamschulz.de");
     }
 
     init() {
@@ -13,8 +14,8 @@ export default class Webmentions extends Component {
     }
 
     getWebmentions() {
-        const targetUrl = window.location.href.replace("http://localhost:1313", "https://next.iamschulz.de");
-        const webmentionsFetchUrl = `https://webmention.io/api/mentions.jf2?domain=${this.webmentionsUrl}&target=${targetUrl}`;
+        
+        const webmentionsFetchUrl = `https://webmention.io/api/mentions.jf2?domain=${this.webmentionsUrl}&target=${this.targetUrl}`;
         const apiFetchUrl = `${this.apiProxyUrl}${encodeURIComponent(webmentionsFetchUrl)}&time=${Date.now()}`;
 
         fetch(apiFetchUrl)
@@ -26,7 +27,7 @@ export default class Webmentions extends Component {
     }
 
     addReply(replyData) {
-        if (!replyData.content.html || !replyData.author.name) { return; }
+        if (!replyData.author || !replyData.author.name) { return; }
 
         let reply = document.createElement('template');
         reply.innerHTML = this.prototype.outerHTML;
@@ -37,12 +38,22 @@ export default class Webmentions extends Component {
         let replyContent = reply.content.firstChild.querySelector('[data-webmentions-el="content"]');
 
         replyName.innerHTML = replyData.author.name;
-        replyContent.innerHTML = replyData.content.html;
         if (replyData.author.url) { replyLink.href = replyData.author.url; }
         replyAvatar.src = replyData.author.photo || "";
-        replyDate.innerHTML = replyData.published
-            ? new Date(replyData.published).toISOString().slice(0,10).split("-").reverse().join(".")
+
+        const publishDate = replyData.published || replyData['wm-received'];
+        replyDate.innerHTML = publishDate
+            ? new Date(publishDate).toISOString().slice(0,10).split("-").reverse().join(".")
             : "some time";
+
+        if (!!replyData && replyData['like-of'] === this.targetUrl) {
+            replyContent.innerHTML = "<p>like</p>";
+        }
+        
+        if (!!replyData.content && replyData.content.html) {
+            console.log("content", replyData.content.html);
+            replyContent.innerHTML = replyData.content.html;
+        }
 
         reply.content.firstChild.removeAttribute('hidden');
         this.replyListHTML += reply.content.firstChild.outerHTML;
