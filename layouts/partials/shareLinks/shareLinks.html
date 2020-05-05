@@ -5,7 +5,7 @@
             <li class="share-links__entry">
                 <a 
                     class="share-links__link" 
-                    href="http://www.twitter.com/share?url={{ .Page.Permalink }}"
+                    href="http://www.twitter.com/share?{{ (querify "url" .Page.Permalink | safeURL ) }}"
                 >
                     {{ partial "icon.html" (dict "name" "twitter-brands" "ctx" $)}}
                 </a>
@@ -13,7 +13,7 @@
             <li class="share-links__entry">
                 <a 
                     class="share-links__link" 
-                    href="#"
+                    href="https://dev.to/new?prefill=---\n title: {{ .Page.Title }}\n published: false\n tags: \n ---\n \n \n \n [{{ .Page.Title }}]({{ .Page.Permalink | safeURL }}) (via @iamschulz) \n"
                 >
                     {{ partial "icon.html" (dict "name" "dev-brands" "ctx" $)}}
                 </a>
@@ -21,7 +21,7 @@
             <li class="share-links__entry">
                 <a 
                     class="share-links__link" 
-                    href="https://www.linkedin.com/shareArticle?mini=true&url={{ .Page.Permalink }}&title={{ .Page.Title }}&summary={{ .Page.Summary }}"
+                    href="https://www.linkedin.com/sharing/share-offsite/?{{ (querify "url" .Page.Permalink | safeURL ) }}"
                 >
                     {{ partial "icon.html" (dict "name" "linkedin-brands" "ctx" $)}}
                 </a>
