@@ -1,5 +1,11 @@
 {{ if eq .Page.Type "post" }}
-    <aside class="share-links">
+    <aside 
+        class="share-links"
+        data-component="shareLinks"
+        data-share-links-title="Basic Components"
+        data-share-links-text="Some basic components that I use from time to time. Also a bit of JS framework around them."
+        data-share-links-url="https://iamschulz.github.io/basics/"
+    >
         <h2 class="share-links__title">Share this article:</h2>
         <ul class="share-links__list">
             <li class="share-links__entry">
@@ -24,6 +30,16 @@
                     href="https://www.linkedin.com/sharing/share-offsite/?{{ (querify "url" .Page.Permalink | safeURL ) }}"
                 >
                     {{ partial "icon.html" (dict "name" "linkedin-brands" "ctx" $)}}
+                </a>
+            </li>
+            <li class="share-links__entry">
+                <a 
+                    hidden
+                    data-share-links-el="shareApiLink"
+                    class="share-links__link" 
+                    href="#"
+                >
+                    {{ partial "icon.html" (dict "name" "share-alt-solid" "ctx" $)}}
                 </a>
             </li>
         </ul>

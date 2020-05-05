@@ -28,6 +28,7 @@ window.Modules = {
      * code that's supposed to run only when it's needed goes here
      */
     article: () => import(/* webpackChunkName: 'article' */ '../../layouts/partials/article/article'),
+    shareLinks: () => import(/* webpackChunkName: 'article' */ '../../layouts/partials/shareLinks/shareLinks'),
     webmentions: () => import(/* webpackChunkName: 'article' */ '../../layouts/partials/webmentions/webmentions'),
     tableOfContents: () => import(/* webpackChunkName: 'article' */ '../../layouts/partials/tableOfContents/tableOfContents'),
     presentation: () => import(/* webpackChunkName: 'presentation' */ '../../layouts/partials/presentation/presentation'),
