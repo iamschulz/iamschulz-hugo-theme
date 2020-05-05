@@ -6,7 +6,8 @@
         data-webmentions-api-proxy="{{ $.Site.Params.apiProxy }}"
     >
         <span class="webmentions__loader loader" data-webmentions-el="loader"><span class="is--visually-hidden">Loading Reactions</span></span>
-        
+
+        <h2 hidden class="webmentions__title" data-webmentions-el="title">Reactions:</h2>
         <ul class="webmentions__list" data-webmentions-el="replies">
             <li hidden class="webmentions__reply" data-webmentions-el="prototype">
                 <a class="webmentions__header" data-webmentions-el="link">

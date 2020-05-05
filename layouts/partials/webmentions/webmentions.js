@@ -23,7 +23,8 @@ export default class Webmentions extends Component {
             .then((data) => {
                 Array.from(data.children).forEach(reply => this.addReply(reply));
                 this.showReplies();
-            });
+            })
+            .catch(() => { this.loader.classList.add('is--hidden'); });
     }
 
     addReply(replyData) {
@@ -61,6 +62,8 @@ export default class Webmentions extends Component {
 
     showReplies() {
         this.loader.classList.add('is--hidden');
+        if (this.replyListHTML.length < 1) { return; }
+        this.title.removeAttribute('hidden');
         this.replies.insertAdjacentHTML('beforeend', this.replyListHTML);
     }
 }

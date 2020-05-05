@@ -9,7 +9,7 @@
 
     {{ if eq .Page.Type "post" }}
         <aside class="article__meta">
-            <time class="article__date dt-published">{{ .Date.Format "02.01.2006" }}</time>
+            <time datetime="{{ .Date.Format "2006-01-02" }}" class="article__date dt-published">{{ .Date.Format "02.01.2006" }}</time>
             {{ if .Params.language }}
                 <p class="article__language">
                     {{ .Params.language }}
@@ -35,6 +35,6 @@
         <a class="u-url" href="{{ .Site.BaseURL }}">
             <span class="p-name">{{ .Site.Title }}</span>
         </a>
-        <img class="u-photo" src="{{- (index .Site.Data.assetManifest "favicon.svg") | relURL -}}">
+        <img class="u-photo" alt="iamschulz avatar" src="{{- (index .Site.Data.assetManifest "favicon.svg") | relURL -}}">
     </div>
 </article>

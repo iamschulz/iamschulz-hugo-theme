@@ -10,7 +10,7 @@
     {{ end }}
 
     <aside class="article-card__meta">
-        <time class="article-card__date">{{ .Date.Format "02.01.2006" }}</time>
+        <time datetime="{{ .Date.Format "2006-01-02" }}" class="article-card__date">{{ .Date.Format "02.01.2006" }}</time>
         {{ if .Params.language }}
             <p class="article-card__language">
                 {{ .Params.language }}

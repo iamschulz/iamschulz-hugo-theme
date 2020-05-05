@@ -3,22 +3,29 @@
         margin-top: calc(var(--spacing-y) * 2.5);
     }
 
+    &__title {
+        border-top: var(--border-width) dashed var(--grey);
+        padding-top: var(--spacing-y);
+    }
+
     &__list {
         list-style: none;
         padding: 0;
-        margin: calc(var(--spacing-y) * 2.5) auto 0;
+        margin: var(--spacing-y) auto 0;
     }
 
     &__reply {
-        border-top: var(--border-width) dashed var(--grey);
-        padding: calc(var(--spacing-y) * 2.5) 0;
+        border-bottom: var(--border-width) dashed var(--grey);
+        padding: var(--spacing-y) 0;
 
-        &:first-of-type {
+        // 1st of type is the prototype
+        &:nth-of-type(2) {
             padding-top: 0;
         }
 
         &:last-of-type {
             padding-bottom: 0;
+            border-bottom: 0;
         }
     }
 

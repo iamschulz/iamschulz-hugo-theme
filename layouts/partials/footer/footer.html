@@ -2,7 +2,7 @@
     <ul class="footer__list">
         <li class="footer__entry footer__entry--copy"><a href="{{ .Site.BaseURL }}">© 2020 by me</a></li>
         <li class="footer__entry"><a href="https://fontawesome.com/">Icons by Font Awesome</a></li>
-        <li class="footer__entry"><a href="{{ "/index.xml" | absURL }}" rel="feed" type="application/rss+xml" />RSS</li>
+        <li class="footer__entry"><a href="{{ "/index.xml" | absURL }}" rel="feed" type="application/rss+xml" />RSS</a></li>
         <li class="footer__entry"><a href="{{ "/legal" | absURL }}">Legal</a></li>
         <li class="footer__search">
             {{- partial "search/search.html" . -}}
@@ -11,4 +11,4 @@
     {{- partial "colorSchemeToggle/colorSchemeToggle.html" . -}}
 </footer>
 
-<script type="text/javascript" src="{{- (index .Site.Data.assetManifest "index.js") | relURL -}}" defer></script>
+<script src="{{- (index .Site.Data.assetManifest "index.js") | relURL -}}" defer></script>
