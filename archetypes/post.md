@@ -8,5 +8,6 @@ draft: true
 banner: ""
 banner_alt: ""
 url: "{{ .Name }}"
+dev_id: ""
 ---
 <!--more-->
