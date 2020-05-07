@@ -1,11 +1,5 @@
 import Component from '../../../helpers/component';
 
-/**
- * todo:
- *      - display likes
- *      - rename component
- */
-
 export default class Reactions extends Component {
     prepare() {
         this.apiProxyUrl = this.el.dataset.reactionsApiProxy;
@@ -20,7 +14,6 @@ export default class Reactions extends Component {
         this.likes = 0;
         this.fetches = [];
 
-        if (this.devId) { this.fetches.push(this.getDevLikes()); }
         if (this.devId) { this.fetches.push(this.getDevComments()); }
         if (this.reactionsUrl) { this.fetches.push(this.getWebmentions()); }
 
@@ -31,17 +24,6 @@ export default class Reactions extends Component {
                 this.showReplies();
             });
         }
-    }
-
-    getDevLikes() {
-        const devFetchUrl = `https://dev.to/api/articles/${this.devId}`;
-        const apiFetchUrl = `${this.apiProxyUrl}${encodeURIComponent(devFetchUrl)}&time=${Date.now()}`;
-
-        return fetch(apiFetchUrl)
-            .then(response => response.json())
-            .then((data) => {
-                this.likes += data.positive_reactions_count;
-            });
     }
 
     getDevComments() {
