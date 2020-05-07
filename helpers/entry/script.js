@@ -29,7 +29,7 @@ window.Modules = {
      */
     article: () => import(/* webpackChunkName: 'article' */ '../../layouts/partials/article/article'),
     shareLinks: () => import(/* webpackChunkName: 'article' */ '../../layouts/partials/shareLinks/shareLinks'),
-    webmentions: () => import(/* webpackChunkName: 'article' */ '../../layouts/partials/webmentions/webmentions'),
+    reactions: () => import(/* webpackChunkName: 'article' */ '../../layouts/partials/reactions/reactions'),
     tableOfContents: () => import(/* webpackChunkName: 'article' */ '../../layouts/partials/tableOfContents/tableOfContents'),
     presentation: () => import(/* webpackChunkName: 'presentation' */ '../../layouts/partials/presentation/presentation'),
     carousel: () => import(/* webpackChunkName: 'carousel' */ '../../layouts/partials/carousel/carousel'),

@@ -6,11 +6,11 @@ import Component from '../../../helpers/component';
  *      - rename component
  */
 
-export default class Webmentions extends Component {
+export default class Reactions extends Component {
     prepare() {
-        this.apiProxyUrl = this.el.dataset.webmentionsApiProxy;
-        this.webmentionsUrl = this.el.dataset.webmentionsUrl;
-        this.devId = this.el.dataset.webmentionsDevId;
+        this.apiProxyUrl = this.el.dataset.reactionsApiProxy;
+        this.reactionsUrl = this.el.dataset.reactionsUrl;
+        this.devId = this.el.dataset.reactionsDevId;
         this.targetUrl = window.location.href.replace("http://localhost:1313", "https://next.iamschulz.de");
     }
 
@@ -22,7 +22,7 @@ export default class Webmentions extends Component {
 
         if (this.devId) { this.fetches.push(this.getDevLikes()); }
         if (this.devId) { this.fetches.push(this.getDevComments()); }
-        if (this.webmentionsUrl) { this.fetches.push(this.getWebmentions()); }
+        if (this.reactionsUrl) { this.fetches.push(this.getWebmentions()); }
 
         if (this.fetches.length < 1) {
             this.showReplies();
@@ -132,12 +132,12 @@ export default class Webmentions extends Component {
     cloneReplyElement() {
         let el = document.createElement('template');
         el.innerHTML = this.prototype.outerHTML;
-        let link = el.content.firstChild.querySelector('[data-webmentions-el="link"]');
-        let avatar = el.content.firstChild.querySelector('[data-webmentions-el="avatar"]');
-        let name = el.content.firstChild.querySelector('[data-webmentions-el="name"]');
-        let via = el.content.firstChild.querySelector('[data-webmentions-el="via"]');
-        let date = el.content.firstChild.querySelector('[data-webmentions-el="date"]');
-        let content = el.content.firstChild.querySelector('[data-webmentions-el="content"]');
+        let link = el.content.firstChild.querySelector('[data-reactions-el="link"]');
+        let avatar = el.content.firstChild.querySelector('[data-reactions-el="avatar"]');
+        let name = el.content.firstChild.querySelector('[data-reactions-el="name"]');
+        let via = el.content.firstChild.querySelector('[data-reactions-el="via"]');
+        let date = el.content.firstChild.querySelector('[data-reactions-el="date"]');
+        let content = el.content.firstChild.querySelector('[data-reactions-el="content"]');
 
         return {
             el: el,
