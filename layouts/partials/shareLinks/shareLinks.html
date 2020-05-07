@@ -27,6 +27,14 @@
             <li class="share-links__entry">
                 <a 
                     class="share-links__link" 
+                    href="http://www.reddit.com/submit?{{ (querify "url" .Page.Permalink | safeURL ) }}&{{ (querify "title" .Page.Title ) }}"
+                >
+                    {{ partial "icon.html" (dict "name" "reddit-brands" "ctx" $)}}
+                </a>
+            </li>
+            <li class="share-links__entry">
+                <a 
+                    class="share-links__link" 
                     href="https://www.linkedin.com/sharing/share-offsite/?{{ (querify "url" .Page.Permalink | safeURL ) }}"
                 >
                     {{ partial "icon.html" (dict "name" "linkedin-brands" "ctx" $)}}
