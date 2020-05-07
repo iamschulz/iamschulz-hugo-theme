@@ -8,7 +8,10 @@
     >
         <span class="reactions__loader loader" data-reactions-el="loader"><span class="is--visually-hidden">Loading Reactions</span></span>
 
-        <h2 hidden class="reactions__title" data-reactions-el="title">Reactions:</h2>
+        <h2 class="reactions__title" data-reactions-el="likesTitle">
+            ❤️ <span data-reactions-el="likesCounter">0</span> Likes
+        </h2>
+        <h2 hidden class="reactions__title" data-reactions-el="repliesTitle">Comments:</h2>
         <ul class="reactions__list" data-reactions-el="replyList">
             <li hidden class="reactions__reply" data-reactions-el="prototype">
                 <a class="reactions__header" data-reactions-el="link">

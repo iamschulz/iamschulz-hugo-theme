@@ -14,14 +14,17 @@ export default class Reactions extends Component {
         this.likes = 0;
         this.fetches = [];
 
+        if (this.devId) { this.fetches.push(this.getDevLikes()); }
         if (this.devId) { this.fetches.push(this.getDevComments()); }
         if (this.reactionsUrl) { this.fetches.push(this.getWebmentions()); }
 
         if (this.fetches.length < 1) {
             this.showReplies();
+            this.showLikes();
         } else {
             Promise.all(this.fetches).then(() => {
                 this.showReplies();
+                this.showLikes();
             });
         }
     }
@@ -36,6 +39,17 @@ export default class Reactions extends Component {
             .then((data) => {
                 Array.from(data).forEach(reply => this.addDevReply(reply));
                 this.devCommentCounter++;
+            });
+    }
+
+    getDevLikes() {
+        const devFetchUrl = `https://dev.to/api/articles/${this.devId}`;
+        const apiFetchUrl = `${this.apiProxyUrl}${encodeURIComponent(devFetchUrl)}&time=${Date.now()}`;
+
+        return fetch(apiFetchUrl)
+            .then(response => response.json())
+            .then((data) => {
+                this.likes += data.positive_reactions_count;
             });
     }
 
@@ -146,7 +160,14 @@ export default class Reactions extends Component {
             replyListHTML += reply[1];
         })
 
-        this.title.removeAttribute('hidden');
         this.replyList.insertAdjacentHTML('beforeend', replyListHTML);
+        this.repliesTitle.removeAttribute('hidden');
+    }
+
+    showLikes() {
+        this.loader.classList.add('is--hidden');
+        if (this.likes < 1) { return; }
+        this.likesCounter.innerHTML = this.likes;
+        this.repliesTitle.removeAttribute('hidden');
     }
 }

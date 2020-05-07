@@ -1,11 +1,9 @@
 .reactions {
+    border-top: var(--border-width) dashed var(--grey);
+    margin-top: var(--spacing-y);
+
     &__loader {
         margin-top: calc(var(--spacing-y) * 2.5);
-    }
-
-    &__title {
-        border-top: var(--border-width) dashed var(--grey);
-        padding-top: var(--spacing-y);
     }
 
     &__list {
