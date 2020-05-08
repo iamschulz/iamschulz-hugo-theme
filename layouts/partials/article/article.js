@@ -25,21 +25,26 @@ export default class Article extends Component {
     observeElements() {
         const callback = (entries) => {
             Object.keys(entries).forEach((index) => {
-                if (entries[index].isIntersecting) {
-                    const thisSectionIndex = entries[index].target.dataset.articleSectionIndex;
-                    const assignedHeadline = Array.from(this.headlines).filter(
-                        (headline) => headline.dataset.articleSectionIndex === thisSectionIndex
-                    )[0];
+                const thisSectionIndex = entries[index].target.dataset.articleSectionIndex;
+                
+                const isSectionInScreen = entries.filter(entry => (
+                    entry.target.dataset.articleSectionIndex === thisSectionIndex 
+                    && entry.isIntersecting === true
+                )).length > 0;
 
-                    this.sendEvent({
-                        headline: assignedHeadline,
-                    });
-                }
+                const assignedHeadline = Array.from(this.headlines).filter(
+                    (headline) => headline.dataset.articleSectionIndex === thisSectionIndex
+                )[0];
+
+                this.sendEvent({
+                    headline: assignedHeadline,
+                    inScreen: isSectionInScreen
+                });
             });
         };
 
         const observer = new IntersectionObserver(callback, {
-            threshold: [1],
+            threshold: [0],
         });
 
         Object.keys(this.elements).forEach((index) => {
@@ -52,8 +57,9 @@ export default class Article extends Component {
             return;
         }
 
-        EventBus.publish('onHeadlineInScreen', {
+        EventBus.publish('onHeadlineIntersection', {
             el: payload.headline,
+            inScreen: payload.inScreen
         });
     }
 }
