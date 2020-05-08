@@ -1,4 +1,6 @@
 .reactions {
+    --image-size: 4rem;
+
     border-top: var(--border-width) dashed var(--grey);
     margin-top: var(--spacing-y);
 
@@ -28,20 +30,34 @@
     }
 
     &__header {
+        position: relative;
         display: inline-flex;
         text-decoration: none;
+        min-height: var(--image-size);
+        flex-wrap: wrap;
+        align-items: center;
+        padding-left: calc(var(--image-size) + var(--spacing-x));
+    }
+
+    &__user {
+        flex: 1 0 100%;
+        pointer-events: none;
     }
 
     &__avatar {
+        position: absolute;
+        top: 0;
+        left: 0;
         display: block;
         border-radius: 50%;
-        min-width: 4rem;
-        max-width: 4rem;
-        min-height: 4rem;
-        max-height: 4rem;
+        min-width: var(--image-size);
+        max-width: var(--image-size);
+        min-height: var(--image-size);
+        max-height: var(--image-size);
         margin-right: var(--spacing-x);
         object-fit: cover;
         background-color: var(--grey);
+        pointer-events: all;
 
         a[href]:hover > & {
             box-shadow: 0 0 0 2px var(--accent-color);
@@ -49,9 +65,10 @@
     }
 
     &__name {
+        display: inline-block;
         font-family: var(--headline-font);
         font-weight: 700;
-        margin-right: 1ch;
+        pointer-events: all;
 
         a[href] & {
             text-decoration: underline;
@@ -62,12 +79,6 @@
         }
     }
 
-    &__info {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-    }
-
     &__via,
     &__date {
         @extend .article__meta;
@@ -75,6 +86,6 @@
     }
 
     &__content {
-        margin-left: calc(4rem + var(--spacing-x));
+        margin-left: calc(var(--image-size) + var(--spacing-x));
     }
 }

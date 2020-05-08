@@ -5,7 +5,7 @@ export default class Reactions extends Component {
         this.apiProxyUrl = this.el.dataset.reactionsApiProxy;
         this.reactionsUrl = this.el.dataset.reactionsUrl;
         this.devId = this.el.dataset.reactionsDevId;
-        this.targetUrl = window.location.href.replace("http://localhost:1313", "https://next.iamschulz.de");;
+        this.targetUrl = window.location.href;
     }
 
     init() {
@@ -73,6 +73,7 @@ export default class Reactions extends Component {
 
         reply.name.innerHTML = replyData.user.name;
         reply.via.innerHTML = "via DEV";
+        reply.via.href = "https://dev.to/";
 
 
         reply.link.href = `https://dev.to/${replyData.user.username}`;
@@ -105,6 +106,7 @@ export default class Reactions extends Component {
             ? "twitter" : 
             new URL(replyData['wm-source']).host;
         reply.via.innerHTML = `via ${source}`;
+        reply.via.href = replyData['wm-source'];
 
         reply.link.href = replyData.author.url || replyData['wm-source'];
         reply.avatar.src = replyData.author.photo || "";

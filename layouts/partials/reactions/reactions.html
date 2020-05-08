@@ -9,19 +9,19 @@
         <span class="reactions__loader loader" data-reactions-el="loader"><span class="is--visually-hidden">Loading Reactions</span></span>
 
         <h2 hidden class="reactions__title" data-reactions-el="likesTitle">
-            ❤️ <span data-reactions-el="likesCounter">0</span> Likes
+            ❤ <span data-reactions-el="likesCounter">0</span> Likes
         </h2>
         <h2 hidden class="reactions__title" data-reactions-el="repliesTitle">Comments:</h2>
         <ul class="reactions__list" data-reactions-el="replyList">
             <li hidden class="reactions__reply" data-reactions-el="prototype">
-                <a class="reactions__header" data-reactions-el="link">
-                    <img class="reactions__avatar" data-reactions-el="avatar" src="">
-                    <span class="reactions__info">
+                <div class="reactions__header">
+                    <a class="reactions__user" data-reactions-el="link">
+                        <img class="reactions__avatar" data-reactions-el="avatar" src="">
                         <span class="reactions__name" data-reactions-el="name"></span>
-                        <time class="reactions__date" data-reactions-el="date"></time>
-                        <span class="reactions__via" data-reactions-el="via"></span>
-                    </span>
-                </a>
+                    </a>
+                    <time class="reactions__date" data-reactions-el="date"></time>
+                    <a class="reactions__via" data-reactions-el="via"></a>
+                </div>
                 <div class="reactions__content" data-reactions-el="content"></div>
             </li>
         </ul>
