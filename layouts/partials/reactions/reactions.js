@@ -5,7 +5,7 @@ export default class Reactions extends Component {
         this.apiProxyUrl = this.el.dataset.reactionsApiProxy;
         this.reactionsUrl = this.el.dataset.reactionsUrl;
         this.devId = this.el.dataset.reactionsDevId;
-        this.targetUrl = window.location.href;
+        this.targetUrl = window.location.href.replace("http://localhost:1313", "https://next.iamschulz.de");;
     }
 
     init() {
@@ -168,6 +168,6 @@ export default class Reactions extends Component {
         this.loader.classList.add('is--hidden');
         if (this.likes < 1) { return; }
         this.likesCounter.innerHTML = this.likes;
-        this.repliesTitle.removeAttribute('hidden');
+        this.likesTitle.removeAttribute('hidden');
     }
 }

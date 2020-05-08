@@ -35,8 +35,10 @@
     &__avatar {
         display: block;
         border-radius: 50%;
-        width: 4rem;
-        height: 4rem;
+        min-width: 4rem;
+        max-width: 4rem;
+        min-height: 4rem;
+        max-height: 4rem;
         margin-right: var(--spacing-x);
         object-fit: cover;
         background-color: var(--grey);
@@ -68,7 +70,7 @@
     &__via,
     &__date {
         @extend .article__meta;
-        margin-left: 1ch;
+        margin-right: 1ch;
     }
 
     &__content {
