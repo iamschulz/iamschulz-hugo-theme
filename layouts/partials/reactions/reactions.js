@@ -73,7 +73,7 @@ export default class Reactions extends Component {
 
         reply.name.innerHTML = replyData.user.name;
         reply.via.innerHTML = "via DEV";
-        reply.via.href = "https://dev.to/";
+        reply.via.href = `https://dev.to/${replyData.user.username}/comment/${replyData.id_code}`;
 
 
         reply.link.href = `https://dev.to/${replyData.user.username}`;
