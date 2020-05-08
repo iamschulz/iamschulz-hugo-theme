@@ -5,12 +5,14 @@
 
     &::before {
         content: "☀️";
-        text-shadow: 0 0 1px rgba(0,0,0,0.7);
+        color: transparent;
+        text-shadow: 0 0 var(--fg-color);
     }
 
     &::after {
         content: "🌙";
-        text-shadow: 0 0 1px rgba(0,0,0,0.7);
+        color: transparent;
+        text-shadow: 0 0 var(--fg-color);
     }
 
     &__input {
@@ -19,8 +21,9 @@
         height: 1rem;
         margin: 0 1ch;
         border-radius: .5rem;
-        background: radial-gradient(circle, var(--accent-color) 39.9%, var((--fg-color)) 40%);
+        background: radial-gradient(circle, var(--base-color) 39.9%, var((--fg-color)) 40%);
         background-position: -.5rem 0;
+        cursor: pointer;
         
         @media (prefers-reduced-motion: no-preference) {
             transition: background-position .2s ease-out;

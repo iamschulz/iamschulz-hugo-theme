@@ -29,6 +29,11 @@
         }
     }
 
+    &__icon {
+        color: transparent;
+        text-shadow: 0 0 var(--fg-color);
+    }
+
     &__header {
         position: relative;
         display: inline-flex;
