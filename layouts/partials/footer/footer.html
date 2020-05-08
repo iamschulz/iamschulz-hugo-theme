@@ -1,9 +1,10 @@
 <footer class="footer" lang="en">
     <ul class="footer__list">
-        <li class="footer__entry footer__entry--copy"><a href="{{ .Site.BaseURL }}">© 2020 by me</a></li>
+        <li class="footer__entry footer__entry--copy"><span>© 2020 by me</span></li>
         <li class="footer__entry"><a href="https://fontawesome.com/">Icons by Font Awesome</a></li>
         <li class="footer__entry"><a href="{{ "/index.xml" | absURL }}" rel="feed" type="application/rss+xml" />RSS</a></li>
         <li class="footer__entry"><a href="{{ "/legal" | absURL }}">Legal</a></li>
+        <li class="footer__entry"><a href="https://github.com/iamschulz/iamschulz-hugo">Source Code</a></li>
         <li class="footer__search">
             {{- partial "search/search.html" . -}}
         </li>
