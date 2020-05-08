@@ -2,7 +2,7 @@ import Component from '../../../helpers/component';
 
 export default class Article extends Component {
     prepare() {
-        this.headlines = this.content.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        this.headlines = this.content.querySelectorAll('h1, h2');
         this.elements = this.content.children;
     }
 
