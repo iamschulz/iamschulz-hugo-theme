@@ -1,0 +1,3 @@
+{{ $src := string .Destination }}
+{{ $alt := .Text }}
+{{ partial "image/image.html" (dict "ctx" .Page "src" $src "alt" $alt "zoom" false) }}

@@ -7,11 +7,17 @@
 {{ $medium := $img }}
 {{ $large := $img }}
 
+{{ $skipDims := false }}
+{{ if eq $img.MediaType.SubType "svg" }}
+    {{ $skipDims = true }}
+{{ end }}
+
 {{/* Resizing gifs isn't supported by Hugo yet */}}
-{{ if ne $img.MediaType.SubType "gif" }}
+{{ if and (ne $img.MediaType.SubType "gif") (eq $skipDims false) }}
     {{ $smallw := default "380x" }}
     {{ $mediumw := default "590x" }}
     {{ $largew := default "786x" }}
+
     {{ $small = $img.Resize $smallw }}
     {{ $medium = $img.Resize $mediumw }}
     {{ $large = $img.Resize $largew }}
@@ -22,27 +28,8 @@
 >
     <img
         class="image__img is--lazy" 
-        data-srcset='
-            {{ if ge $img.Width "380" }}
-                {{ with $small.RelPermalink }}{{.}} 380w {{ end }}
-            {{ end }}
-            {{ if ge $img.Width "590" }}
-                {{ with $medium.RelPermalink }},{{.}} 590w {{ end }}
-            {{ end }}
-            {{ if ge $img.Width "786" }}
-                {{ with $large.RelPermalink }},{{.}} 786w {{ end }}
-            {{ end }}
-        '
-        data-src="{{ $img.RelPermalink }}" 
-        src=""
-        width="{{ $img.Width }}" 
-        height="{{ $img.Height }}" 
-        alt="{{- with $alt -}}{{ . }}{{ end }}"
-    >
-    <noscript>
-        <img
-            class="image__img" 
-            srcset='
+        {{ if eq $skipDims false }}
+            data-srcset='
                 {{ if ge $img.Width "380" }}
                     {{ with $small.RelPermalink }}{{.}} 380w {{ end }}
                 {{ end }}
@@ -53,9 +40,32 @@
                     {{ with $large.RelPermalink }},{{.}} 786w {{ end }}
                 {{ end }}
             '
-            src="{{ $img.RelPermalink }}" 
             width="{{ $img.Width }}" 
             height="{{ $img.Height }}" 
+        {{ end }}
+        data-src="{{ $img.RelPermalink }}" 
+        src=""
+        alt="{{- with $alt -}}{{ . }}{{ end }}"
+    >
+    <noscript>
+        <img
+            class="image__img" 
+            {{ if eq $skipDims false }}
+                srcset='
+                    {{ if ge $img.Width "380" }}
+                        {{ with $small.RelPermalink }}{{.}} 380w {{ end }}
+                    {{ end }}
+                    {{ if ge $img.Width "590" }}
+                        {{ with $medium.RelPermalink }},{{.}} 590w {{ end }}
+                    {{ end }}
+                    {{ if ge $img.Width "786" }}
+                        {{ with $large.RelPermalink }},{{.}} 786w {{ end }}
+                    {{ end }}
+                '
+                width="{{ $img.Width }}" 
+                height="{{ $img.Height }}"
+            {{ end }}
+            src="{{ $img.RelPermalink }}" 
             alt="{{- with $alt -}}{{ . }}{{ end }}"
         >
     </noscript>
