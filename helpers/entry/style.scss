@@ -1,20 +1,21 @@
+@supports (color: var(--primary)) {
+    @import '../styles/breakpoints';
+    @import '../styles/layout';
+    @import '../styles/colors';
+    @import '../styles/typography';
+    @import '../styles/icons';
 
-@import '../styles/breakpoints';
-@import '../styles/layout';
-@import '../styles/colors';
-@import '../styles/typography';
-@import '../styles/icons';
-
-@import '../../layouts/partials/overlay/overlay';
-@import '../../layouts/partials/header/header';
-@import '../../layouts/partials/footer/footer';
-@import '../../layouts/partials/search/search';
-@import '../../layouts/partials/colorSchemeToggle/colorSchemeToggle';
-@import '../../layouts/partials/image/image';
-@import '../../layouts/partials/article/article';
-@import '../../layouts/partials/shareLinks/shareLinks';
-@import '../../layouts/partials/reactions/reactions';
-@import '../../layouts/partials/articleList/articleList';
-@import '../../layouts/partials/articleCard/articleCard';
-@import '../../layouts/partials/pagination/pagination';
-@import '../../layouts/partials/tableOfContents/tableOfContents';
+    @import '../../layouts/partials/overlay/overlay';
+    @import '../../layouts/partials/header/header';
+    @import '../../layouts/partials/footer/footer';
+    @import '../../layouts/partials/search/search';
+    @import '../../layouts/partials/colorSchemeToggle/colorSchemeToggle';
+    @import '../../layouts/partials/image/image';
+    @import '../../layouts/partials/article/article';
+    @import '../../layouts/partials/shareLinks/shareLinks';
+    @import '../../layouts/partials/reactions/reactions';
+    @import '../../layouts/partials/articleList/articleList';
+    @import '../../layouts/partials/articleCard/articleCard';
+    @import '../../layouts/partials/pagination/pagination';
+    @import '../../layouts/partials/tableOfContents/tableOfContents';
+}
