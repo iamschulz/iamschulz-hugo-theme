@@ -3,7 +3,7 @@ import Component from '../../../helpers/component';
 export default class Reactions extends Component {
     prepare() {
         this.apiProxyUrl = this.el.dataset.reactionsApiProxy;
-        this.reactionsUrl = this.el.dataset.reactionsUrl;
+        this.webmentionsUrl = this.el.dataset.webmentionsUrl;
         this.devId = this.el.dataset.reactionsDevId;
         this.targetUrl = window.location.href;
     }
@@ -16,7 +16,7 @@ export default class Reactions extends Component {
 
         if (this.devId) { this.fetches.push(this.getDevLikes()); }
         if (this.devId) { this.fetches.push(this.getDevComments()); }
-        if (this.reactionsUrl) { this.fetches.push(this.getWebmentions()); }
+        if (this.webmentionsUrl) { this.fetches.push(this.getWebmentions()); }
 
         if (this.fetches.length < 1) {
             this.showReplies();
@@ -71,7 +71,7 @@ export default class Reactions extends Component {
 
         return fetch(apiFetchUrl)
             .then(response => response.json())
-            .then((data) => {
+            .then((data) => {                
                 Array.from(data.children).forEach(reply => this.addWebmentionReply(reply));
                 this.wmCommentCounter++;
             })

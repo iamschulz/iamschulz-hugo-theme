@@ -3,16 +3,18 @@
     align-items: center;
     font-size: 1rem;
 
-    &::before {
-        content: "☀️";
+    &::before, &::after {
+        height: 1.2em;
         color: transparent;
         text-shadow: 0 0 var(--fg-color);
     }
 
+    &::before {
+        content: "☀️";
+    }
+
     &::after {
         content: "🌙";
-        color: transparent;
-        text-shadow: 0 0 var(--fg-color);
     }
 
     &__input {

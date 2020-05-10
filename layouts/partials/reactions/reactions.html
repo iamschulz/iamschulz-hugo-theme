@@ -2,8 +2,8 @@
     <aside 
         class="reactions" 
         data-component="reactions" 
-        {{ with $.Site.Params.webmentionURL }}data-reactions-url="{{ . }}"{{ end }}
         {{ with $.Site.Params.apiProxy }}data-reactions-api-proxy="{{ . }}"{{ end }}
+        {{ with $.Site.Params.webmentionURL }}data-webmentions-url="{{ . }}"{{ end }}
         {{ with $.Page.Params.dev_id }}data-reactions-dev-id="{{ . }}"{{ end }}
     >
         <span class="reactions__loader loader" data-reactions-el="loader"><span class="is--visually-hidden">Loading Reactions</span></span>
