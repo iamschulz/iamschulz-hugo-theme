@@ -47,9 +47,13 @@ export default class ComponentLoader {
     registerComponent(el) {
         try {
             const componentName = el.dataset.component;
-            window.Modules[componentName]().then((Module) => {
-                this.initializeComponent(Module.default, el);
-            });
+            window.Modules[componentName]()
+                .then((Module) => {
+                    this.initializeComponent(Module.default, el);
+                })
+                .catch((error) => {
+                    console.error('Component couldn\'t be initialized', el, error);
+                });
         } catch (error) {
             console.error('Component couldn\'t be initialized', el, error);
         }

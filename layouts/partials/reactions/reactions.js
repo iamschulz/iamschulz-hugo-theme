@@ -22,14 +22,15 @@ export default class Reactions extends Component {
             this.showReplies();
             this.showLikes();
         } else {
-            Promise.all(this.fetches).then(() => {
-                this.showReplies();
-                this.showLikes();
-            })
-            .catch(() => {
-                this.showReplies();
-                this.showLikes();
-            });;
+            Promise.all(this.fetches)
+                .then(() => {
+                    this.showReplies();
+                    this.showLikes();
+                })
+                .catch(() => {
+                    this.showReplies();
+                    this.showLikes();
+                });
         }
     }
 
