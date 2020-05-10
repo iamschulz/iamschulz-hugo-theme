@@ -21,6 +21,9 @@ export default class Giphy extends Component {
             .then((data) => {
                 this.giphyImageUrl = data.data[0].images.original.url;
                 this.swapImage();
+            })
+            .catch(() => {
+                return;
             });
     }
 

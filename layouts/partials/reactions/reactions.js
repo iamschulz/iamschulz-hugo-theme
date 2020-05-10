@@ -25,7 +25,11 @@ export default class Reactions extends Component {
             Promise.all(this.fetches).then(() => {
                 this.showReplies();
                 this.showLikes();
-            });
+            })
+            .catch(() => {
+                this.showReplies();
+                this.showLikes();
+            });;
         }
     }
 
@@ -39,6 +43,9 @@ export default class Reactions extends Component {
             .then((data) => {
                 Array.from(data).forEach(reply => this.addDevReply(reply));
                 this.devCommentCounter++;
+            })
+            .catch(() => {
+                return;
             });
     }
 
@@ -50,6 +57,9 @@ export default class Reactions extends Component {
             .then(response => response.json())
             .then((data) => {
                 this.likes += data.positive_reactions_count;
+            })
+            .catch(() => {
+                return;
             });
     }
 
@@ -63,6 +73,9 @@ export default class Reactions extends Component {
             .then((data) => {
                 Array.from(data.children).forEach(reply => this.addWebmentionReply(reply));
                 this.wmCommentCounter++;
+            })
+            .catch(() => {
+                return;
             });
     }
 
