@@ -1,10 +1,10 @@
-@supports (color: var(--primary)) {
-    @import '../styles/breakpoints';
-    @import '../styles/layout';
-    @import '../styles/colors';
-    @import '../styles/typography';
-    @import '../styles/icons';
+@import '../styles/breakpoints';
+@import '../styles/layout';
+@import '../styles/colors';
+@import '../styles/typography';
+@import '../styles/icons';
 
+@supports (color: var(--primary)) {
     @import '../../layouts/partials/overlay/overlay';
     @import '../../layouts/partials/header/header';
     @import '../../layouts/partials/footer/footer';
