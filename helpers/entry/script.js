@@ -1,6 +1,6 @@
 import './style.scss';
 
-import LazyLoad from 'vanilla-lazyload';
+import LazyLoad from 'vanilla-lazyload/dist/lazyload.min.js';
 import ComponentLoader from '../componentLoader';
 // eslint-disable-next-line no-unused-vars
 import Component from '../component';
