@@ -5,11 +5,11 @@ name = "Iamschulz"
 license = "MIT"
 licenselink = "https://github.com/iamschulz/iamschulz-hugo-theme/blob/master/LICENSE"
 description = ""
-homepage = "http://iamschulz.de/"
+homepage = "http://iamschulz.com/"
 tags = []
 features = []
 min_version = "0.68"
 
 [author]
   name = "Daniel Schulz"
-  homepage = "iamschulz.de"
+  homepage = "https://iamschulz.com"
