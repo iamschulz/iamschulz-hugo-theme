@@ -40,15 +40,36 @@ window.Modules = {
     giphy: () => import(/* webpackChunkName: 'giphy' */ '../../layouts/partials/giphy/giphy'),
 };
 
-window.EventBus = new EventBus();
-window.StateMachine = StateMachine;
-window.FocusTrap = new FocusTrap();
-window.ComponentLoader = new ComponentLoader();
-window.ComponentLoader.updateDom();
-new LazyLoad({
-    elements_selector: '.is--lazy',
-    class_loading: 'is--loading',
-    class_loaded: 'is--loaded',
-    class_error: 'is--error',
-    use_native: true,
-});
+const initialize = () => {
+    window.EventBus = new EventBus();
+    window.StateMachine = StateMachine;
+    window.FocusTrap = new FocusTrap();
+    window.ComponentLoader = new ComponentLoader();
+    window.ComponentLoader.updateDom();
+    new LazyLoad({
+        elements_selector: '.is--lazy',
+        class_loading: 'is--loading',
+        class_loaded: 'is--loaded',
+        class_error: 'is--error',
+        use_native: true,
+    });
+}
+
+const loadPolyfills = (src, callback) => {
+    let js = document.createElement('script');
+    js.src = src;
+    js.onload = function() {
+        callback();
+    };
+    js.onerror = function() {
+        done(new Error('Failed to load script ' + src));
+    };
+    document.head.appendChild(js);
+}
+
+if (window.Promise && window.fetch) {
+    initialize();
+} else {
+    const polyfillUrl = 'https://polyfill.io/v3/polyfill.min.js?features=default%2Cfetch%2CgetComputedStyle%2CPromise%2Ces6%2CIntersectionObserver'
+    loadPolyfills(polyfillUrl, initialize);
+}

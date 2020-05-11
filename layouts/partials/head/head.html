@@ -31,7 +31,5 @@
         href="{{ if .Page.Params.canonical }}{{ .Page.Params.canonical }}{{ else }}{{ .Page.Permalink }}{{ end}}"
     >
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default%2Cfetch%2CgetComputedStyle%2CPromise%2Ces6%2CIntersectionObserver"></script>
-
     {{ with .OutputFormats.Get "RSS" }}<link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />{{ end }}
 </head>
