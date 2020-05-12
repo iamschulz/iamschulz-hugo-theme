@@ -36,8 +36,7 @@ export default class Reactions extends Component {
 
     getDevComments() {
         this.devCommentCounter = 0;
-        const devFetchUrl = `https://dev.to/api/comments?a_id=${this.devId}`;
-        const apiFetchUrl = `${this.apiProxyUrl}${encodeURIComponent(devFetchUrl)}&time=${Date.now()}`;
+        const apiFetchUrl = `https://dev.to/api/comments?a_id=${this.devId}`;
 
         return fetch(apiFetchUrl)
             .then(response => response.json())
@@ -51,8 +50,7 @@ export default class Reactions extends Component {
     }
 
     getDevLikes() {
-        const devFetchUrl = `https://dev.to/api/articles/${this.devId}`;
-        const apiFetchUrl = `${this.apiProxyUrl}${encodeURIComponent(devFetchUrl)}&time=${Date.now()}`;
+        const apiFetchUrl = `https://dev.to/api/articles/${this.devId}`;
 
         return fetch(apiFetchUrl)
             .then(response => response.json())
