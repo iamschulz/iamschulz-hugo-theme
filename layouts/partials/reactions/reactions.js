@@ -107,7 +107,7 @@ export default class Reactions extends Component {
         if (!replyData.author || !replyData.author.name ) { return; }
 
         if (!!replyData && replyData['like-of'] === this.targetUrl) {
-            this.likes =+ 1;
+            this.likes += 1;
             return;
         }
 
