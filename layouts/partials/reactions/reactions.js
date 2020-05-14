@@ -5,7 +5,7 @@ export default class Reactions extends Component {
         this.apiProxyUrl = this.el.dataset.reactionsApiProxy;
         this.webmentionsUrl = this.el.dataset.webmentionsUrl;
         this.devId = this.el.dataset.reactionsDevId;
-        this.targetUrl = window.location.href;
+        this.targetUrl = window.location.href.replace('http://localhost:1313', 'https://iamschulz.com');
     }
 
     init() {
@@ -95,7 +95,7 @@ export default class Reactions extends Component {
         const publishDate = replyData.published || -1;
         reply.date.remove();
 
-        reply.content.innerHTML = replyData.body_html.split('<body>')[1].split('</body>')[0];
+        reply.content.innerHTML = replyData.body_html;
 
         reply.el.content.firstChild.removeAttribute('hidden');
 
