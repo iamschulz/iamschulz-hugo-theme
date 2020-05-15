@@ -56,7 +56,18 @@ const initialize = () => {
         use_native: true,
     });
 
-    Quicklink.listen();
+    Quicklink.listen({
+        ignores: [
+            uri => uri.includes('/api-proxy'),
+            uri => uri.includes('/legal'),
+            uri => uri.includes('.zip'),
+            uri => uri.includes('.rar'),
+            uri => uri.includes('.gz'),
+            uri => uri.includes('.7z'),
+            uri => uri.includes('.xml'),
+            uri => uri.includes('#')
+        ]
+    });
 }
 
 const loadPolyfills = (src, callback) => {
