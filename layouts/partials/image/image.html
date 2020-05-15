@@ -24,7 +24,10 @@
 {{ end }}
 
 <span 
-    class="image {{ with $class }}{{ . }}{{ end }}" 
+    class="image {{ with $class }}{{ . }}{{ end }}"
+    {{ if eq $skipDims false }}
+        style="--aspect: {{ div (mul $img.Height 1.0) $img.Width }}"
+    {{ end }}
 >
     <img
         class="image__img is--lazy" 

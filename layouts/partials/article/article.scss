@@ -8,10 +8,11 @@
     word-break: break-word;
 
     &__banner {
-        display: grid;
+        display: flex;
         place-content: center;
         width: 100%;
         max-width: 100%;
+        max-height: none;
         margin: 0 0 var(--spacing-y);
     }
 

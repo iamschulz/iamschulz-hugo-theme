@@ -5,7 +5,7 @@ export default class Reactions extends Component {
         this.apiProxyUrl = this.el.dataset.reactionsApiProxy;
         this.webmentionsUrl = this.el.dataset.webmentionsUrl;
         this.devId = this.el.dataset.reactionsDevId;
-        this.targetUrl = window.location.href.replace('http://localhost:1313', 'https://iamschulz.com');
+        this.targetUrl = window.location.href;
     }
 
     init() {
