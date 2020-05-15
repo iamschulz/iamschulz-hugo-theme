@@ -1,6 +1,7 @@
 import './style.scss';
 
 import LazyLoad from 'vanilla-lazyload/dist/lazyload.min.js';
+import Quicklink from 'quicklink/dist/quicklink.umd';
 import ComponentLoader from '../componentLoader';
 // eslint-disable-next-line no-unused-vars
 import Component from '../component';
@@ -46,6 +47,7 @@ const initialize = () => {
     window.FocusTrap = new FocusTrap();
     window.ComponentLoader = new ComponentLoader();
     window.ComponentLoader.updateDom();
+
     new LazyLoad({
         elements_selector: '.is--lazy',
         class_loading: 'is--loading',
@@ -53,6 +55,8 @@ const initialize = () => {
         class_error: 'is--error',
         use_native: true,
     });
+
+    Quicklink.listen();
 }
 
 const loadPolyfills = (src, callback) => {

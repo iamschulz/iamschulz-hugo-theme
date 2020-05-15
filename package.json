@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "quicklink": "^2.0.0",
     "vanilla-lazyload": "^15.1.1",
     "webpack": "^4.41.2",
     "webpack-dev-server": "^3.9.0"

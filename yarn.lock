@@ -6553,6 +6553,14 @@ querystringify@^2.1.1:
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.1.1.tgz#60e5a5fd64a7f8bfa4d2ab2ed6fdf4c85bad154e"
   integrity sha512-w7fLxIRCRT7U8Qu53jQnJyPkYZIaR4n5151KMfcJlO/A9397Wxb1amJvROTK6TOnp7PfoAmg/qXiNHI+08jRfA==
 
+quicklink@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/quicklink/-/quicklink-2.0.0.tgz#1dddb6e89f7c48705cf1cbd18159640040e352a7"
+  integrity sha512-jdWCd4JlR0jxSgLgB0kJJjuwjUNWMKzepnuWV4jYzV1FnesWofzVhwonLBCRQ9NJWZ0jl44t8oUDepOYdquCtA==
+  dependencies:
+    route-manifest "^1.0.0"
+    throttles "^1.0.0"
+
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.1.0.tgz#df6f84372f0270dc65cdf6291349ab7a473d4f2a"
@@ -6735,6 +6743,11 @@ regexp.prototype.flags@^1.2.0:
   dependencies:
     define-properties "^1.1.3"
     es-abstract "^1.17.0-next.1"
+
+regexparam@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/regexparam/-/regexparam-1.3.0.tgz#2fe42c93e32a40eff6235d635e0ffa344b92965f"
+  integrity sha512-6IQpFBv6e5vz1QAqI+V4k8P2e/3gRrqfCJ9FI+O1FLQTO+Uz6RXZEZOPmTJ6hlGj7gkERzY5BRCv09whKP96/g==
 
 regexpp@^2.0.1:
   version "2.0.1"
@@ -6946,6 +6959,13 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
   dependencies:
     hash-base "^3.0.0"
     inherits "^2.0.1"
+
+route-manifest@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/route-manifest/-/route-manifest-1.0.0.tgz#0155513f3cd158c18827413845ab1a8ec2ad15e1"
+  integrity sha512-qn0xJr4nnF4caj0erOLLAHYiNyzqhzpUbgDQcEHrmBoG4sWCDLnIXLH7VccNSxe9cWgbP2Kw/OjME+eH3CeRSA==
+  dependencies:
+    regexparam "^1.3.0"
 
 rsvp@^4.8.4:
   version "4.8.5"
@@ -7787,6 +7807,11 @@ throat@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/throat/-/throat-4.1.0.tgz#89037cbc92c56ab18926e6ba4cbb200e15672a6a"
   integrity sha1-iQN8vJLFarGJJua6TLsgDhVnKmo=
+
+throttles@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/throttles/-/throttles-1.0.0.tgz#829debdc2059c5c7ce60f3db5aaf479e86cc7636"
+  integrity sha512-sLEyK3MZQLhU5jbxwK9n7i7VePlhP9b6sDF+tzNDGEVjFk+hcF0jGL1ErknMJF63v2cE+eTenPDnfuk/8BjFdw==
 
 through2@^2.0.0:
   version "2.0.5"
