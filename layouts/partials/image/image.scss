@@ -24,12 +24,6 @@
         height: auto;
         max-height: 100vh;
         max-width: 100%;
-        opacity: 0;
-        transition: opacity 0.2s ease-out;
-
-        &.is--loaded {
-            opacity: 1;
-        }
     }
 
     &__zoom-button {
