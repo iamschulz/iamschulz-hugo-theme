@@ -32,7 +32,6 @@ window.Modules = {
     shareLinks: () => import(/* webpackChunkName: 'article' */ '../../layouts/partials/shareLinks/shareLinks'),
     reactions: () => import(/* webpackChunkName: 'article' */ '../../layouts/partials/reactions/reactions'),
     tableOfContents: () => import(/* webpackChunkName: 'article' */ '../../layouts/partials/tableOfContents/tableOfContents'),
-    presentation: () => import(/* webpackChunkName: 'presentation' */ '../../layouts/partials/presentation/presentation'),
     carousel: () => import(/* webpackChunkName: 'carousel' */ '../../layouts/partials/carousel/carousel'),
     overlay: () => import(/* webpackChunkName: 'modal' */ '../../layouts/partials/overlay/overlay'),
     modal: () => import(/* webpackChunkName: 'modal' */ '../../layouts/partials/modal/modal'),
@@ -40,6 +39,10 @@ window.Modules = {
     replaceIframe: () => import(/* webpackChunkName: 'embed' */ '../../layouts/partials/replaceIframe/replaceIframe'),
     giphy: () => import(/* webpackChunkName: 'giphy' */ '../../layouts/partials/giphy/giphy'),
 };
+
+window.ManualLoad = {
+    presentation: () => import(/* webpackChunkName: 'presentation' */ '../../layouts/partials/presentation/presentation.scss'),
+}
 
 const initialize = () => {
     window.EventBus = new EventBus();
