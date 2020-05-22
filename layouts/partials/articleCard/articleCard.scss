@@ -3,12 +3,6 @@
         @extend .article__banner;
         border: var(--border-width) solid var(--fg-color);
 
-        img {
-            max-height: none;
-            width: 100%;
-            height: auto;
-        }
-
         &:hover {
             border-color: var(--accent-color);
         }
