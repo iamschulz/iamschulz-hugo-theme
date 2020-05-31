@@ -3,13 +3,11 @@ import Component from '../../../helpers/component';
 import SwipeDetection from '../../../helpers/swipeDetection';
 
 export default class Carousel extends Component {
-    prepare() {
+    init() {
         this.items = this.grid.children;
         this.currentPosition = 0; // px
         this.boundaryItems = [];
-    }
 
-    init() {
         new SwipeDetection(this.el).init();
 
         this.el.setAttribute('data-slider-ready', true);
@@ -133,5 +131,11 @@ export default class Carousel extends Component {
                 ? visibleItems[visibleItems.length - 1].dataset.carouselIndex
                 : lastItem,
         ];
+    }
+
+    destroy() {
+        this.el.removeEventListener('swipe', this.boundOnSwipe);
+        this.el.removeEventListener('swipestop', this.boundOnSwipeStop);
+        this.el.removeEventListener('keyup', this.boundHandleKeys);
     }
 }

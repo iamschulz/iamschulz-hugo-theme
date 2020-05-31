@@ -2,7 +2,7 @@ import Component from '../../../helpers/component';
 import body from '../body/body';
 
 export default class ColorSchemeToggle extends Component {
-    prepare() {
+    init() {
         this.StateMachine = new StateMachine(this, {
             colorScheme: {
                 value: window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light',
@@ -14,9 +14,7 @@ export default class ColorSchemeToggle extends Component {
                 },
             },
         });
-    }
 
-    init() {
         this.boundOnToggle = () => { this.onToggle(); };
         this.colorSchemeToggle.addEventListener('change', this.boundOnToggle);
         this.applyInitialState();
@@ -43,5 +41,9 @@ export default class ColorSchemeToggle extends Component {
         window.setTimeout(() => {
             document.body.removeAttribute('style');
         }, 0);
+    }
+
+    destroy() {
+        this.colorSchemeToggle.removeEventListener('change', this.boundOnToggle);
     }
 }

@@ -6,7 +6,6 @@ export default class Component {
 
     startComponent() {
         this.assignComponentElements();
-        if (this.prepare) { this.prepare(); }
         if (this.init) { this.init(); }
         if (EventBus) { this.publishReady(); }
     }

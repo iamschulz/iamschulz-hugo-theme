@@ -1,13 +1,11 @@
 import Component from '../../../helpers/component';
 
 export default class shareLinks extends Component {
-    prepare() {
+    init() {
         this.title = this.el.dataset.shareLinksTitle || '';
         this.text = this.el.dataset.shareLinksText || '';
         this.url = this.el.dataset.shareLinksUrl;
-    }
 
-    init() {
         if (!this.url || !navigator.share) { return; }
 
         this.shareApiLink.removeAttribute('hidden');
@@ -25,5 +23,10 @@ export default class shareLinks extends Component {
                 url: this.url,
             });
         }
+    }
+
+    destroy() {
+        this.shareApiLink.addAttribute('hidden', 'hidden');
+        this.shareApiLink.removeEventListener('click', this.boundOnClick);
     }
 }

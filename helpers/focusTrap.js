@@ -29,4 +29,8 @@ export default class FocusTrap {
         this.firstFocusableEl = null;
         document.removeEventListener('focusout', this.boundOnFocusOut);
     }
+
+    destroy() {
+        document.removeEventListener('focusout', this.boundOnFocusOut);
+    }
 }

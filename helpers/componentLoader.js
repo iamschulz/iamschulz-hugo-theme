@@ -13,9 +13,6 @@
  * js:
  *    import Component from '../../helpers/component';
  *    export default class FooBar extends Component {
- *        prepare() {
- *            // prepare component
- *        }
  *        init() {
  *            // the component wrapper is this.el
  *            // registered DOM elements are assigned like this.loremIpsum

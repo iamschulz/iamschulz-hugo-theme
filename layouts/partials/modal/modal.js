@@ -2,7 +2,7 @@ import './modal.scss';
 import Component from '../../../helpers/component';
 
 export default class Modal extends Component {
-    prepare() {
+    init() {
         this.StateMachine = new StateMachine(this, {
             toggle: {
                 value: 'closed',
@@ -16,9 +16,7 @@ export default class Modal extends Component {
                 },
             },
         });
-    }
 
-    init() {
         this.boundOnModalClose = () => { EventBus.publish('onModalClose', this.el); };
         EventBus.subscribe('onOverlayClose', this.boundOnModalClose);
         this.closeButton.addEventListener('click', this.boundOnModalClose);
@@ -42,5 +40,9 @@ export default class Modal extends Component {
     closeModal() {
         this.el.setAttribute('aria-hidden', true);
         FocusTrap.Element = null;
+    }
+
+    destroy() {
+        this.closeButton.removeEventListener('click', this.boundOnModalClose);
     }
 }
