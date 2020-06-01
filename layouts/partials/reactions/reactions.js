@@ -1,14 +1,12 @@
 import Component from '../../../helpers/component';
 
 export default class Reactions extends Component {
-    prepare() {
+    init() {
         this.apiProxyUrl = this.el.dataset.reactionsApiProxy;
         this.webmentionsUrl = this.el.dataset.webmentionsUrl;
         this.devId = this.el.dataset.reactionsDevId;
         this.targetUrl = window.location.href;
-    }
 
-    init() {
         if (!this.apiProxyUrl) { return; }
         this.replies = [];
         this.likes = 0;

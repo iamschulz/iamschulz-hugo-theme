@@ -1,12 +1,9 @@
 import Component from '../../../helpers/component';
 
 export default class Giphy extends Component {
-    prepare() {
+    init() {
         this.apiProxyUrl = this.el.dataset.giphyApiProxy;
         this.keyword = this.el.dataset.giphyKeyword;
-    }
-
-    init() {
         if (!this.apiProxyUrl || !this.keyword) { return; }
         this.getGiphyImage();
     }

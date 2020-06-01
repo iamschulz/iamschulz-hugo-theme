@@ -1,11 +1,8 @@
 import Component from '../../../helpers/component';
 
 export default class TableOfContents extends Component {
-    prepare() {
-        this.links = this.el.querySelectorAll('a');
-    }
-
     init() {
+        this.links = this.el.querySelectorAll('a');
         EventBus.subscribe('onHeadlineIntersection', (payload) => { this.toggleHeadline(payload); });
     }
 

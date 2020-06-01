@@ -1,12 +1,9 @@
 import Component from '../../../helpers/component';
 
 export default class Article extends Component {
-    prepare() {
+    init() {
         this.headlines = this.content.querySelectorAll('h1, h2');
         this.elements = this.content.children;
-    }
-
-    init() {
         this.assignSections();
         this.observeElements();
     }
