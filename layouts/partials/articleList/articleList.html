@@ -5,7 +5,7 @@
                 {{ partial "articleCard/articleCard.html" . }}
             </li>
 
-            {{ if in .RawContent "zoom=true" }}
+            {{ if in (index (first 1 (split .RawContent "<!--more-->")) 0) "zoom=true" }}
                 {{ $.root.Page.Scratch.Set "renderModal" true }}
                 {{ $.root.Page.Scratch.Set "renderOverlay" true }}
             {{ end }}
