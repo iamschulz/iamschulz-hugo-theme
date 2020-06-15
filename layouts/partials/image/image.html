@@ -24,7 +24,11 @@
 {{ end }}
 
 <span 
-    class="image {{ with $class }}{{ . }}{{ end }}"
+    class="
+        image
+        {{ if eq $skipDims true }}is--nodims{{ end }}
+        {{ with $class }}{{ . }}{{ end }}
+    "
     {{ if eq $skipDims false }}
         style="--aspect: {{ div (mul $img.Height 1.0) $img.Width }}"
     {{ end }}
