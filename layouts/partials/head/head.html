@@ -15,6 +15,7 @@
     {{ partial "head/meta-twitter.html" . }}
     {{ partial "head/meta-opengraph.html" . }}
     {{ partial "head/meta-webmentions.html" . }}
+    {{ partial "head/meta-webmonetization.html" . }}
 
     <link rel="icon" href="{{- (index .Site.Data.assetManifest "favicon.svg") | relURL -}}">
     <link href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" rel="stylesheet" type="text/css">
