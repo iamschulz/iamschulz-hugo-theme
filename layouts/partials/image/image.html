@@ -30,15 +30,19 @@
         {{ with $class }}{{ . }}{{ end }}
     "
     {{ if eq $skipDims false }}
-        style="--aspect: {{ div (mul $img.Height 1.0) $img.Width }}"
+        style="
+            --aspect: {{ div (mul $img.Height 1.0) $img.Width }};
+            --width: {{ $img.Width }};
+            "
     {{ end }}
 >
     <img
         class="image__img is--lazy" 
         {{ if eq $skipDims false }}
             data-srcset='
+                {{ $img.RelPermalink }} {{ $img.Width }}w
                 {{ if ge $img.Width "380" }}
-                    {{ with $small.RelPermalink }}{{.}} 380w {{ end }}
+                    {{ with $small.RelPermalink }},{{.}} 380w {{ end }}
                 {{ end }}
                 {{ if ge $img.Width "590" }}
                     {{ with $medium.RelPermalink }},{{.}} 590w {{ end }}

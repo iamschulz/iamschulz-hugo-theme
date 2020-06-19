@@ -4,7 +4,7 @@
     overflow: hidden;
 
     &:not(.is--nodims) {
-        width: auto;
+        width: calc(var(--width) * 1rem / 16);
         max-height: 100vh;
         max-width: 100%;
 

@@ -3,6 +3,10 @@
         @extend .article__banner;
         border: var(--border-width) solid var(--fg-color);
 
+        &:not(.is--nodims) .image__img {
+            object-fit: cover;
+        }
+
         &:hover {
             border-color: var(--accent-color);
         }
