@@ -13,7 +13,7 @@
 
             <li class="header__menu-item">
                 <a class="header__menu-link {{ if $active }}is--active{{ end }}" href="{{ .URL }}">
-                    {{ if .Pre }}{{ partial "icon.html" (dict "name" .Pre "ctx" $)}}{{ end }}
+                    {{ if .Pre }}{{ partial "icon.html" .Pre }}{{ end }}
                     {{ .Name }}
                 </a>
             </li>

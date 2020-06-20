@@ -14,7 +14,7 @@
                     href="http://www.twitter.com/share?{{ (querify "url" .Page.Permalink | safeURL ) }}"
                     aria-label="Twitter"
                 >
-                    {{ partial "icon.html" (dict "name" "twitter-brands" "ctx" $)}}
+                    {{ partial "icon.html" "twitter-brands" }}
                 </a>
             </li>
             <li class="share-links__entry">
@@ -23,7 +23,7 @@
                     href="https://dev.to/new?prefill=---\n title: {{ .Page.Title }}\n published: false\n tags: \n ---\n \n \n \n [{{ .Page.Title }}]({{ .Page.Permalink | safeURL }}) (via @iamschulz) \n"
                     aria-label="DEV Community"
                 >
-                    {{ partial "icon.html" (dict "name" "dev-brands" "ctx" $)}}
+                    {{ partial "icon.html" "dev-brands" }}
                 </a>
             </li>
             <li class="share-links__entry">
@@ -32,7 +32,7 @@
                     href="http://www.reddit.com/submit?{{ (querify "url" .Page.Permalink | safeURL ) }}&{{ (querify "title" .Page.Title ) }}"
                     aria-label="Reddit"
                 >
-                    {{ partial "icon.html" (dict "name" "reddit-brands" "ctx" $)}}
+                    {{ partial "icon.html" "reddit-brands" }}
                 </a>
             </li>
             <li class="share-links__entry">
@@ -41,7 +41,7 @@
                     href="https://www.linkedin.com/sharing/share-offsite/?{{ (querify "url" .Page.Permalink | safeURL ) }}"
                     aria-label="LinkedIn"
                 >
-                    {{ partial "icon.html" (dict "name" "linkedin-brands" "ctx" $)}}
+                    {{ partial "icon.html" "linkedin-brands" }}
                 </a>
             </li>
             <li class="share-links__entry">
@@ -52,7 +52,7 @@
                     href="#"
                     aria-label="More share options"
                 >
-                    {{ partial "icon.html" (dict "name" "share-alt-solid" "ctx" $)}}
+                    {{ partial "icon.html" "share-alt-solid" }}
                 </a>
             </li>
         </ul>

@@ -5,7 +5,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
-const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 
 module.exports = env => {
     return {
@@ -58,14 +57,6 @@ module.exports = env => {
             new MiniCssExtractPlugin({
                 filename: 'css/styles.[chunkhash].css',
                 chunkFilename: 'css/[name].[chunkhash].css',
-            }),
-            new SVGSpritemapPlugin('assets/svg/sprite/*.svg', {
-                output: {
-                    filename: 'img/sprite.[hash].svg',
-                },
-                sprite: {
-                    prefix: false,
-                },
             }),
             new CopyPlugin([
                 { from: 'assets/fonts', to: 'fonts' },

@@ -16,23 +16,6 @@
                 {{ .Params.language }}
             </p>
         {{ end }}
-        <ul class="article-card__categories">
-            {{ range $key := .Params.categories }}
-                {{ with $.Site.GetPage (printf "/%s/%s" "categories" $key) }}
-                    {{ $icon := false }}
-                    {{ if eq (.Name | lower) "art" }}{{ $icon = "palette-solid" }}{{ end }}
-                    {{ if eq (.Name | lower) "tech" }}{{ $icon = "code-solid" }}{{ end }}
-                    {{ if eq (.Name | lower) "video" }}{{ $icon = "video-solid" }}{{ end }}
-
-                    <li class="article-card__category-entry">
-                        <a class="article-card__category-link" href="{{ .Permalink }}">
-                            {{ if $icon }}{{ partial "icon.html" (dict "name" $icon "ctx" $)}}{{ end }}
-                            {{ .Name }}
-                        </a>
-                    </li>
-                {{ end }}
-            {{ end }}
-        </ul>
     </aside>
 
     <h1 class="article-card__title">
@@ -44,9 +27,9 @@
     {{ if .Truncated }}
         <a href="{{ .Permalink }}" class="article-card__more">
             <span class="is--visually-hidden">to article</span>
-            {{ partial "icon.html" (dict "name" "chevron-right-solid" "ctx" $)}}
-            {{ partial "icon.html" (dict "name" "chevron-right-solid" "ctx" $)}}
-            {{ partial "icon.html" (dict "name" "chevron-right-solid" "ctx" $)}}
+            {{ partial "icon.html" "chevron-right-solid" }}
+            {{ partial "icon.html" "chevron-right-solid" }}
+            {{ partial "icon.html" "chevron-right-solid" }}
         </a>
     {{ end }}
 </article>

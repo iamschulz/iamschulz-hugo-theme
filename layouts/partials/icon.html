@@ -1,10 +1,10 @@
 {{/* 
     Usage:
-    {{ partial "icon.html" (dict "name" "my-icon-name" "ctx" .)}}
+    {{ partial "icon.html" "my-icon-name" }}
 */}}
 
+{{ $svgURL := (print "svg/" . ".svg") }}
+
 <span class="icon">
-    <svg width="16px" height="16px" aria-hidden="true" focusable="false" role="img">
-        <use xlink:href="{{- (index .ctx.Site.Data.assetManifest "spritemap.svg") | relURL  -}}#{{- .name -}}"></use>
-    </svg>
+    {{ partial $svgURL . }}
 </span>

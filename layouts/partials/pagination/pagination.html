@@ -22,7 +22,7 @@
     <li class="pagination__item">
         <a href="{{ $paginator.Prev.URL }}" class="pagination__link">
             <span class="is--visually-hidden">Next Page</span>
-            {{ partial "icon.html" (dict "name" "chevron-left-solid" "ctx" $)}}
+            {{ partial "icon.html" "chevron-left-solid" }}
         </a>
     </li>
     {{ end }}
@@ -90,7 +90,7 @@
     <li class="pagination__item">
         <a href="{{ $paginator.Next.URL }}" class="pagination__link">
             <span class="is--visually-hidden">Previous Page</span>
-            {{ partial "icon.html" (dict "name" "chevron-right-solid" "ctx" $)}}
+            {{ partial "icon.html" "chevron-right-solid" }}
         </a>
     </li>
     {{ end }}
