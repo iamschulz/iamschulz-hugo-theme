@@ -92,6 +92,7 @@ blockquote {
 
 pre {
     overflow: auto;
+    margin: 0;
 }
 
 time {
@@ -169,6 +170,38 @@ button {
 
     input {
         height: 100%;
+    }
+}
+
+.highlight {
+    --highlight-red: rgba(80, 80, 80, 1);
+    --highlight-yellow: rgba(80, 80, 80, 1);
+    --highlight-green: rgba(80, 80, 80, 1);
+
+    &:hover {
+        --highlight-red: #F55C54;
+        --highlight-yellow: #F7BB2D;
+        --highlight-green: #26C841;
+    }
+
+    > div {
+        position: relative;
+        padding: 1rem 3px 0;
+        border-radius: 0.5rem;
+        overflow: hidden;
+
+        &::before {
+            content: "";
+            width: 3rem;
+            height: 3rem;
+            position: absolute;
+            top: 0.3rem;
+            left: 0.3rem;
+            background: 
+                radial-gradient(ellipse at center, var(--highlight-red) 0.3rem, transparent 0.3rem) -1rem -1rem, 
+                radial-gradient(ellipse at center, var(--highlight-yellow) 0.3rem, transparent 0.3rem) -0rem -1rem, 
+                radial-gradient(ellipse at center, var(--highlight-green) 0.3rem, transparent 0.3rem) 1rem -1rem;
+        }
     }
 }
 
