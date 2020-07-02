@@ -65,7 +65,7 @@ h6 { font-size: calc(var(--base-font-size) * 0.8); }
 p { margin: 0; }
 
 .highlight pre {
-    padding: 2ch 1em;
+    padding: 1em 0;
 }
 
 @media screen and (min-width: $lg-width) {
