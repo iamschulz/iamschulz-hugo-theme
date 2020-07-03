@@ -127,7 +127,7 @@
                     <source type="image/webp" srcset="{{ replace $img.RelPermalink (path.Ext $img.RelPermalink) ".webp" }}">
                 {{ end }}
                 <source srcset="{{ $img.RelPermalink }}">
-                <img class="image__zoom-content" src="{{ $img.Permalink }}" alt="{{- with $alt -}}{{ . }}{{ end }}">
+                <img class="image__zoom-content hidden is--lazy" data-src="{{ $img.Permalink }}" alt="{{- with $alt -}}{{ . }}{{ end }}">
             </picture>
         </div>
     {{ end }}
