@@ -184,10 +184,10 @@ button {
         --highlight-green: #26C841;
     }
 
-    > div {
+    > pre {
         position: relative;
-        padding: 1rem 3px 0;
         border-radius: 0.5rem;
+        padding: 1em;
         overflow-y: hidden;
 
         &::before {
@@ -201,6 +201,11 @@ button {
                 radial-gradient(ellipse at center, var(--highlight-red) 0.3rem, transparent 0.3rem) -1rem -1rem, 
                 radial-gradient(ellipse at center, var(--highlight-yellow) 0.3rem, transparent 0.3rem) -0rem -1rem, 
                 radial-gradient(ellipse at center, var(--highlight-green) 0.3rem, transparent 0.3rem) 1rem -1rem;
+        }
+
+        code {
+            display: inline-block;
+            margin: 1em 1ch 0;
         }
     }
 }
