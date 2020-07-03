@@ -2,6 +2,7 @@ import Component from '../../../helpers/component';
 
 export default class ModalTrigger extends Component {
     init() {
+        this.el.removeAttribute('hidden');
         this.modalId = this.el.dataset.modalTriggerTarget;
         if (!this.modalId) { return; }
 

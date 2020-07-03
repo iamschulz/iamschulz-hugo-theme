@@ -117,11 +117,11 @@
         {{ .ctx.Page.Scratch.Set "renderModal" true }}
         {{ .ctx.Page.Scratch.Set "renderOverlay" true }}
         {{ $uuid := partial "randomNumber.html" . }}
-        <button class="image__zoom-button" data-component="modalTrigger" data-modal-trigger-target="{{ $uuid }}">
+        <button hidden="hidden" class="image__zoom-button" data-component="modalTrigger" data-modal-trigger-target="{{ $uuid }}">
             <span class="is--visually-hidden">Zoom</span>
             {{ partial "icon.html" "search-plus-solid" }}
         </button>
-        <div hidden="" data-modal-content="{{ $uuid }}">
+        <div hidden="hidden" data-modal-content="{{ $uuid }}">
             <picture>
                 {{ if eq $hasWebp true }}
                     <source type="image/webp" srcset="{{ replace $img.RelPermalink (path.Ext $img.RelPermalink) ".webp" }}">
