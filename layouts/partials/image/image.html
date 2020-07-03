@@ -47,15 +47,15 @@
             <source 
                 type="image/webp"
                 data-srcset='
-                    {{ replace $img.RelPermalink (path.Ext $img.RelPermalink) ".webp" }} {{ $img.Width }}w
+                    {{ replace $img.Permalink (path.Ext $img.Permalink) ".webp" }} {{ $img.Width }}w
                     {{ if ge $img.Width "380" }}
-                        {{ with $small.RelPermalink }},{{ replace . (path.Ext .) ".webp" }} 380w {{ end }}
+                        {{ with $small.Permalink }},{{ replace . (path.Ext .) ".webp" }} 380w {{ end }}
                     {{ end }}
                     {{ if ge $img.Width "590" }}
-                        {{ with $medium.RelPermalink }},{{ replace . (path.Ext .) ".webp" }} 590w {{ end }}
+                        {{ with $medium.Permalink }},{{ replace . (path.Ext .) ".webp" }} 590w {{ end }}
                     {{ end }}
                     {{ if ge $img.Width "786" }}
-                        {{ with $large.RelPermalink }},{{ replace . (path.Ext .) ".webp" }} 786w {{ end }}
+                        {{ with $large.Permalink }},{{ replace . (path.Ext .) ".webp" }} 786w {{ end }}
                     {{ end }}
                 '
             >
@@ -64,15 +64,15 @@
         {{ if eq $skipDims false }}
             <source 
                 data-srcset='
-                    {{ $img.RelPermalink }} {{ $img.Width }}w
+                    {{ $img.Permalink }} {{ $img.Width }}w
                     {{ if ge $img.Width "380" }}
-                        {{ with $small.RelPermalink }},{{.}} 380w {{ end }}
+                        {{ with $small.Permalink }},{{.}} 380w {{ end }}
                     {{ end }}
                     {{ if ge $img.Width "590" }}
-                        {{ with $medium.RelPermalink }},{{.}} 590w {{ end }}
+                        {{ with $medium.Permalink }},{{.}} 590w {{ end }}
                     {{ end }}
                     {{ if ge $img.Width "786" }}
-                        {{ with $large.RelPermalink }},{{.}} 786w {{ end }}
+                        {{ with $large.Permalink }},{{.}} 786w {{ end }}
                     {{ end }}
                 '
             >
@@ -84,8 +84,8 @@
                 width="{{ $img.Width }}" 
                 height="{{ $img.Height }}" 
             {{ end }}
-
-            data-src="{{ $img.RelPermalink }}" 
+            hidden="hidden"
+            data-src="{{ $img.Permalink }}" 
             src=""
             alt="{{- with $alt -}}{{ . }}{{ end }}"
         >
@@ -96,19 +96,19 @@
             {{ if eq $skipDims false }}
                 srcset='
                     {{ if ge $img.Width "380" }}
-                        {{ with $small.RelPermalink }}{{.}} 380w {{ end }}
+                        {{ with $small.Permalink }}{{.}} 380w {{ end }}
                     {{ end }}
                     {{ if ge $img.Width "590" }}
-                        {{ with $medium.RelPermalink }},{{.}} 590w {{ end }}
+                        {{ with $medium.Permalink }},{{.}} 590w {{ end }}
                     {{ end }}
                     {{ if ge $img.Width "786" }}
-                        {{ with $large.RelPermalink }},{{.}} 786w {{ end }}
+                        {{ with $large.Permalink }},{{.}} 786w {{ end }}
                     {{ end }}
                 '
                 width="{{ $img.Width }}" 
                 height="{{ $img.Height }}"
             {{ end }}
-            src="{{ $img.RelPermalink }}" 
+            src="{{ $img.Permalink }}" 
             alt="{{- with $alt -}}{{ . }}{{ end }}"
         >
     </noscript>
@@ -124,9 +124,9 @@
         <div hidden="hidden" data-modal-content="{{ $uuid }}">
             <picture>
                 {{ if eq $hasWebp true }}
-                    <source type="image/webp" srcset="{{ replace $img.RelPermalink (path.Ext $img.RelPermalink) ".webp" }}">
+                    <source type="image/webp" srcset="{{ replace $img.Permalink (path.Ext $img.Permalink) ".webp" }}">
                 {{ end }}
-                <source srcset="{{ $img.RelPermalink }}">
+                <source srcset="{{ $img.Permalink }}">
                 <img class="image__zoom-content hidden is--lazy" data-src="{{ $img.Permalink }}" alt="{{- with $alt -}}{{ . }}{{ end }}">
             </picture>
         </div>
