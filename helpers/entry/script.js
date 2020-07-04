@@ -38,6 +38,7 @@ window.Modules = {
     modalTrigger: () => import(/* webpackChunkName: 'modal' */ '../../layouts/partials/modalTrigger/modalTrigger'),
     replaceIframe: () => import(/* webpackChunkName: 'embed' */ '../../layouts/partials/replaceIframe/replaceIframe'),
     giphy: () => import(/* webpackChunkName: 'giphy' */ '../../layouts/partials/giphy/giphy'),
+    textAdventure: () => import(/* webpackChunkName: 'textAdventure' */ '../../layouts/partials/textAdventure/textAdventure'),
 };
 
 window.ManualLoad = {
