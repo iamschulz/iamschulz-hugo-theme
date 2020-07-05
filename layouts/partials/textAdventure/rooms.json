@@ -1,11 +1,11 @@
 {
     "lobby": {
         "name": "Lobby",
-        "intro": "You enter the lobby. You hear a fireplace crackling as your eyes slowly adjust to the shimmiering light.",
+        "intro": "You enter the lobby. You hear a fireplace crackling as your eyes slowly adjust to the shimmering light.",
         "directions": {
             "north": "library",
             "east": "museum",
-            "south": "wine-cellar",
+            "south": "wineCellar",
             "west": "theater"
         },
         "objects": [
@@ -15,7 +15,7 @@
     },
     "library": {
         "name": "Library",
-        "intro": "Yout enter the library",
+        "intro": "You enter the library",
         "directions": {
             "south": "lobby"
         },
@@ -27,12 +27,12 @@
     },
     "museum": {
         "name": "Museum",
-        "intro": "Yout enter the museum",
+        "intro": "You enter the museum",
         "directions": {
             "west": "lobby"
         },
         "objects": [
-            "picture-frames",
+            "pictureFrames",
             "spiderwebs"
         ]
     }
