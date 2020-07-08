@@ -1,0 +1,25 @@
+{
+    "fireplace": {
+        "name": "fireplace",
+        "description": "[fireplace description]",
+        "interaction": "You feel a soothing warmness as you approach the fireplace."
+    },
+    "banner": {
+        "name": "banner",
+        "description": "[banner description]"
+    },
+    "table": {
+        "name": "table",
+        "description": "[table description]"
+    },
+    "cup": {
+        "name": "cup",
+        "description": "This is a cup.",
+        "interaction": "You drink from the cup."
+    },
+    "bookshelf": {
+        "name": "bookshelf",
+        "description": "[bookshelf description]",
+        "method": "listArticles"
+    }
+}

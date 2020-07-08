@@ -1,39 +1,91 @@
 {
     "lobby": {
         "name": "Lobby",
-        "intro": "You enter the lobby. You hear a fireplace crackling as your eyes slowly adjust to the shimmering light.",
+        "intro": "You hear a fireplace crackling as your eyes slowly adjust to the shimmering light.",
         "directions": {
-            "north": "library",
-            "east": "museum",
-            "south": "wineCellar",
-            "west": "theater"
+            "north": {
+                "destination": "library",
+                "transition": "You enter the library"
+            },
+            "east": {
+                "destination": "museum",
+                "transition": "You enter the museum."
+            },
+            "south": {
+                "destination": "wineCellar",
+                "transition": "You climb down the stairs into the wine cellar."
+            },
+            "west": {
+                "destination": "theater",
+                "transition": "Through the heavy curtains you enter a desolate theater."
+            }
         },
-        "objects": [
-            "fireplace",
-            "banner"
-        ]
+        "objects": {
+            "fireplace": {},
+            "banner": {},
+            "table": {
+                "cup": {}
+            }
+        }
     },
     "library": {
         "name": "Library",
-        "intro": "You enter the library",
+        "intro": "[Intro for library.]",
         "directions": {
-            "south": "lobby"
+            "south": {
+                "destination": "lobby",
+                "transition": "You enter the lobby with a distinct feeling of a deja vú."
+            }
         },
-        "objects": [
-            "bookshelf",
-            "dust",
-            "skull"
-        ]
+        "objects": {
+            "bookshelf": {},
+            "dust": {},
+            "skull": {}
+        }
     },
     "museum": {
         "name": "Museum",
-        "intro": "You enter the museum",
+        "intro": "[Intro for mueseum.]",
         "directions": {
-            "west": "lobby"
+            "west": {
+                "destination": "lobby",
+                "transition": "You enter the lobby with a distinct feeling of a deja vú."
+            }
         },
-        "objects": [
-            "pictureFrames",
-            "spiderwebs"
-        ]
+        "objects": {
+            "pictureFrames": {},
+            "spiderwebs": {
+                "spider": {},
+                "deadFly": {}
+            }
+        }
+    },
+    "wineCellar": {
+        "name": "Wine Cellar",
+        "intro": "It reeks of the nobles drops that have since turned into vinegar.",
+        "directions": {
+            "north": {
+                "destination": "lobby",
+                "transition": "You enter the lobby with a distinct feeling of a deja vú."
+            }
+        },
+        "objects": {
+        }
+    },
+    "theater": {
+        "name": "Theater",
+        "intro": "To the north are what used to be a stage and now resembles an impressive collection of holes in the floor.",
+        "directions": {
+            "east": {
+                "destination": "lobby",
+                "transition": "You enter the lobby with a distinct feeling of a deja vú."
+            },
+            "east": {
+                "destination": "wineCellar",
+                "transition": "You fall through a hole in the stagefloor and find yourself in the wine cellar."
+            }
+        },
+        "objects": {
+        }
     }
 }
