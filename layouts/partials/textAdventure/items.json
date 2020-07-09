@@ -1,24 +1,19 @@
 {
-    "fireplace": {
-        "name": "fireplace",
-        "description": "[fireplace description]",
-        "interaction": "You feel a soothing warmness as you approach the fireplace."
+    "Fireplace": {
+        "description": "You feel a soothing warmness as you approach the fireplace. A wise wizard once said: 'Three obersvations are endlessly enjoyable: Watching fire burn, watching water flow and watching others work.",
+        "interaction": "You rummage through your pockets and find some bubblegum paper. You throw it into the fire and watch it turn to ash. Rest in peace, dear bubblegum paper."
     },
-    "banner": {
-        "name": "banner",
+    "Banner": {
         "description": "[banner description]"
     },
-    "table": {
-        "name": "table",
+    "Table": {
         "description": "[table description]"
     },
-    "cup": {
-        "name": "cup",
+    "Cup": {
         "description": "This is a cup.",
         "interaction": "You drink from the cup."
     },
-    "bookshelf": {
-        "name": "bookshelf",
+    "Bookshelf": {
         "description": "[bookshelf description]",
         "method": "listArticles"
     }
