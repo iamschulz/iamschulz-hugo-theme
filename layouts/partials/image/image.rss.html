@@ -1,0 +1,81 @@
+{{ $img := .ctx.Resources.GetMatch .src }}
+
+{{ $alt := .alt }}
+
+{{ $small := $img }}
+{{ $medium := $img }}
+{{ $large := $img }}
+
+{{ $skipDims := false }}
+{{ if eq $img.MediaType.SubType "svg" }}
+    {{ $skipDims = true }}
+{{ end }}
+
+{{ $hasWebp := true }}
+{{ if eq $img.MediaType.SubType "svg" }}
+    {{ $hasWebp = false }}
+{{ end }}
+
+{{/* Resizing gifs isn't supported by Hugo yet */}}
+{{ if and (ne $img.MediaType.SubType "gif") (eq $skipDims false) }}
+    {{ $smallw := default "380x" }}
+    {{ $mediumw := default "590x" }}
+    {{ $largew := default "786x" }}
+
+    {{ $small = $img.Resize $smallw }}
+    {{ $medium = $img.Resize $mediumw }}
+    {{ $large = $img.Resize $largew }}
+{{ end }}
+
+<span 
+    class="
+        image
+        {{ if eq $skipDims true }}is--nodims{{ end }}
+    "
+>
+    <picture>
+        {{ if and (eq $skipDims false) (eq $hasWebp true) }}
+            <source 
+                type="image/webp"
+                srcset='
+                    {{ replace $img.Permalink (path.Ext $img.Permalink) ".webp" }} {{ $img.Width }}w
+                    {{ if ge $img.Width "380" }}
+                        {{ with $small.Permalink }},{{ replace . (path.Ext .) ".webp" }} 380w {{ end }}
+                    {{ end }}
+                    {{ if ge $img.Width "590" }}
+                        {{ with $medium.Permalink }},{{ replace . (path.Ext .) ".webp" }} 590w {{ end }}
+                    {{ end }}
+                    {{ if ge $img.Width "786" }}
+                        {{ with $large.Permalink }},{{ replace . (path.Ext .) ".webp" }} 786w {{ end }}
+                    {{ end }}
+                '
+            >
+        {{ end }}
+        
+        {{ if eq $skipDims false }}
+            <source 
+                srcset='
+                    {{ $img.Permalink }} {{ $img.Width }}w
+                    {{ if ge $img.Width "380" }}
+                        {{ with $small.Permalink }},{{.}} 380w {{ end }}
+                    {{ end }}
+                    {{ if ge $img.Width "590" }}
+                        {{ with $medium.Permalink }},{{.}} 590w {{ end }}
+                    {{ end }}
+                    {{ if ge $img.Width "786" }}
+                        {{ with $large.Permalink }},{{.}} 786w {{ end }}
+                    {{ end }}
+                '
+            >
+        {{ end }}
+
+        <img
+            {{ if eq $skipDims false }}
+                width="{{ $img.Width }}" 
+                height="{{ $img.Height }}" 
+            {{ end }}
+            src="{{ $img.Permalink }}" 
+            alt="{{- with $alt -}}{{ . }}{{ end }}"
+        >
+    </picture>
+</span>

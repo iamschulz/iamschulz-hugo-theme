@@ -1,0 +1,6 @@
+{{/* DEFAULTS */}}
+{{ $id := .Get "id" }}
+{{ $height  := 500 }}
+{{ $tab     := "result" }}{{/* html|css|js|result */}}
+
+{{partial "codepenEmbed/codepenEmbed.rss.html" (dict "ctx" $.Page "id" $id "height" $height "tab" $tab) }}

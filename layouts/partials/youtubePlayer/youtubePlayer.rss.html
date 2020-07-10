@@ -1,0 +1,11 @@
+{{ $id := .id }}
+
+<div class="youtube-player">
+    <iframe 
+        class="youtube-player__iframe"
+        src="https://www.youtube-nocookie.com/embed/{{ $id }}?autoplay=1&rel=0" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+</div>
