@@ -6,6 +6,7 @@
 
 @supports (color: var(--primary)) {
     @import '../../layouts/partials/overlay/overlay';
+    @import '../../layouts/partials/skiplink/skiplink';
     @import '../../layouts/partials/header/header';
     @import '../../layouts/partials/footer/footer';
     @import '../../layouts/partials/search/search';

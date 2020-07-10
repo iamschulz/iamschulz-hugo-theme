@@ -1,0 +1,9 @@
+.skiplink {
+    position: absolute;
+    top: var(--spacing-y);
+    left: 13rem;
+
+    &:not(:focus) {
+        @extend .is--visually-hidden;
+    }
+}

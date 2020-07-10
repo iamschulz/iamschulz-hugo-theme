@@ -9,6 +9,8 @@
                     .setAttribute('content', localStorage.colorScheme === 'light' ? '#f1f3f4' : '#0e181b');
             }
         </script>
+
+        {{- partial "skiplink/skiplink.html" . -}}
         {{- partial "header/header.html" . -}}
 
         <main id="content">
