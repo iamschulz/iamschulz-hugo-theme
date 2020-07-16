@@ -1,20 +1,25 @@
 {
     "Fireplace": {
+        "name": "Fireplace",
         "description": "You feel a soothing warmness as you approach the fireplace. A wise wizard once said: 'Three obersvations are endlessly enjoyable: Watching fire burn, watching water flow and watching others work.",
         "interaction": "You rummage through your pockets and find some bubblegum paper. You throw it into the fire and watch it turn to ash. Rest in peace, dear bubblegum paper."
     },
     "Banner": {
-        "description": "[banner description]"
+        "name": "Banner",
+        "description": "Some rangs dangle from the ceiling. You take a moment to recognize them as the house banner. In ancient Comic Sans letters it states \"Our name be Schulz\"."
     },
     "Table": {
-        "description": "[table description]"
+        "name": "Table",
+        "description": "Within the chaos on the large wooden table you find a perfectly fine tea mug."
     },
-    "Cup": {
-        "description": "This is a cup.",
+    "Mug": {
+        "name": "Mug",
+        "description": "This is a tea mug.",
         "interaction": "You drink from the cup."
     },
     "Bookshelf": {
-        "description": "[bookshelf description]",
+        "name": "Bookshelf",
+        "description": "The books in this shelv seem to be very boring. Mostly computer tech stuff. A stretched out yawn escapes your mouth.",
         "method": "listArticles"
     }
 }

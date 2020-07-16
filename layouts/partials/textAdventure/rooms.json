@@ -23,12 +23,12 @@
             "fireplace": {},
             "banner": {},
             "table": {
-                "cup": {}
+                "mug": {}
             }
         }
     },
     "Library": {
-        "description": "[description for library.]",
+        "description": "The air smeels of dust and paper. The room is dominated by towering bookshelves.",
         "directions": {
             "south": {
                 "destination": "Lobby",
@@ -37,12 +37,12 @@
         },
         "objects": {
             "bookshelf": {},
-            "dust": {},
-            "skull": {}
+            "bookshelves": {},
+            "dust": {}
         }
     },
     "Museum": {
-        "description": "[description for mueseum.]",
+        "description": "All kinds of curiosities are exhibited in dusty glass displays. There's a catalogue right next to the door.",
         "directions": {
             "west": {
                 "destination": "Lobby",
@@ -50,15 +50,17 @@
             }
         },
         "objects": {
-            "pictureFrames": {},
+            "curiosity": {},
+            "curiosities": {},
+            "catalogue": {},
             "spiderwebs": {
                 "spider": {},
-                "deadFly": {}
+                "dead fly": {}
             }
         }
     },
     "Wine Cellar": {
-        "description": "It reeks of the noblest drops that have since turned into vinegar.",
+        "description": "It reeks of the noblest drops that have since turned into vinegar. To the north is the staircase up into the lobby.",
         "directions": {
             "north": {
                 "destination": "Lobby",

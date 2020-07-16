@@ -12,6 +12,7 @@ class Room {
 
 class Item {
     constructor(config) {
+        this.name = config.name || "";
         this.description = config.description || "";
         this.interaction = config.interaction || "";
         this.method = config.method || "";
@@ -28,7 +29,6 @@ export default class TextAdventure extends Component {
 
     /* SETUP GAME */
     setupGlobals() {
-        window.t = this.parse.bind(this);
         window.ta = {
             help: this.help.bind(this),
             go: this.movePC.bind(this),
@@ -112,40 +112,30 @@ export default class TextAdventure extends Component {
             return;
         }
 
-        if (!this.items[thing]) {
+        const item = this.items[
+            Object.keys(this.items).filter(item => item.toLowerCase() === thing.toLowerCase())[0]
+        ];
+        const thingInRoom = Object.keys(this.rooms[this.roomsState.states.room.currentState].objects)
+            .filter(item => item.toLowerCase() === thing.toLowerCase())
+            .length > 0;
+
+        if (!item || !thingInRoom) {
             console.log(`There is no ${thing}.`);
             return;
         }
 
-        if (this.items[thing].method && this[this.items[thing].method]) {
-            this[this.items[thing].method]();
-        } else if (this.items[thing].interaction) {
-            console.log(this.items[thing].interaction);
+        if (item.method && this[item.method]) {
+            this[item.method]();
+        } else if (item.interaction) {
+            console.log(item.interaction);
         } else {
-            console.log(`You can't use ${thing} like that.`);
+            console.log(`You can't use ${item.name} like that.`);
         }
 
-        EventBus.publish(`taUse${thing[0].toUpperCase() + thing.substring(1)}`, this.el);
+        EventBus.publish(`taUse${item.name[0].toUpperCase() + item.name.substring(1)}`, this.el);
     }
 
     /* GAME LOGIC */
-    parse(input) {
-        if (input.split(' ').length < 1 || input.split(' ').length > 2) {
-            console.warn('Invalid input. Try something like t("go west") or t("use thingamagic"). Type ta for a list of valid commands.');
-            return;
-        }
-
-        const command = input.split(' ')[0];
-        const object = input.split(' ')[1];
-
-        if (!(Object.keys(ta).some((x) => x === command))) {
-            console.warn(`I don't know what ${command} means.`)
-            return;
-        }
-
-        ta[command](object);
-    }
-
     startGame() {
         console.log('You find yourself in a mansion.');
         ta.inspect('Lobby');
