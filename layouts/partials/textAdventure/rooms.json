@@ -1,5 +1,6 @@
 {
     "Lobby": {
+        "url": "/",
         "description": "You hear a fireplace crackling as your eyes slowly adjust to the shimmering light. Before you tower very large doors with embossed signs: The northern portal says \"Library\", the eastern one \"Museum\" and the western \"Theater\". Behind you, in the southern direction leads the stairway into the Wine Cellar.",
         "directions": {
             "north": {
@@ -28,6 +29,7 @@
         }
     },
     "Library": {
+        "url": "/categories/tech/",
         "description": "The air smeels of dust and paper. The room is dominated by towering bookshelves.",
         "directions": {
             "south": {
@@ -42,6 +44,7 @@
         }
     },
     "Museum": {
+        "url": "/categories/art/",
         "description": "All kinds of curiosities are exhibited in dusty glass displays. There's a catalogue right next to the door.",
         "directions": {
             "west": {
@@ -60,6 +63,7 @@
         }
     },
     "Wine Cellar": {
+        "url": "/",
         "description": "It reeks of the noblest drops that have since turned into vinegar. To the north is the staircase up into the lobby.",
         "directions": {
             "north": {
@@ -71,6 +75,7 @@
         }
     },
     "Theater": {
+        "url": "/categories/video/",
         "description": "To the north are what used to be a stage and now resembles an impressive collection of holes in the floor.",
         "directions": {
             "east": {
