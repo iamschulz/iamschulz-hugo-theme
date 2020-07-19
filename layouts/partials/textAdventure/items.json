@@ -19,7 +19,12 @@
     },
     "Bookshelf": {
         "name": "Bookshelf",
-        "description": "The books in this shelv seem to be very boring. Mostly computer tech stuff. A stretched out yawn escapes your mouth.",
-        "method": "listArticles"
+        "description": "The books in this shelf seem to be very boring. Mostly computer tech stuff. A stretched out yawn escapes your mouth.",
+        "method": "useBookshelf"
+    },
+    "Bookshelves": {
+        "name": "Bookshelf",
+        "description": "The books in this shelf seem to be very boring. Mostly computer tech stuff. A stretched out yawn escapes your mouth.",
+        "method": "useBookshelf"
     }
 }

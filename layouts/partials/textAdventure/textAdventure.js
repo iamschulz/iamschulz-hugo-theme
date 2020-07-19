@@ -105,10 +105,14 @@ export default class TextAdventure extends Component {
             this.inspect(this.getCurrentRoom().name);
             return;
         }
-        if (this.rooms[thing]) {
-            console.log(this.rooms[thing].description);
-        } else if (this.items[thing]) {
-            console.log(this.items[thing].description);
+
+        const room = Object.keys(this.rooms).filter(room => room.toLowerCase() === thing.toLowerCase())[0];
+        const item = Object.keys(this.items).filter(item => item.toLowerCase() === thing.toLowerCase())[0];
+
+        if (room) {
+            console.log(this.rooms[room].description);
+        } else if (item) {
+            console.log(this.items[item].description);
         } else {
             console.log(`There is no ${thing}.`);
         }
@@ -176,7 +180,9 @@ export default class TextAdventure extends Component {
      * Gets called from the bookshelf
      * Lists all blog articles and provides links
      */
-    listArticles() {
+    useBookshelf() {
+        const articles = document.querySelectorAll('.article-card__title > a');
+
         console.warn('Articles are not yet implemented');
     }
 
