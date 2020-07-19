@@ -4,7 +4,9 @@ import * as ITEMS from './items.json';
 
 class Room {
     constructor(config) {
+        this.name = config.name || "";
         this.description = config.description || "";
+        this.url = config.url || "";
         this.directions = config.directions || {};
         this.objects = config.objects || {};
     }
@@ -50,7 +52,9 @@ export default class TextAdventure extends Component {
 
         this.rooms = {};
         Object.keys(ROOMS.default).forEach(room => {
-            this.rooms[room] = new Room(ROOMS.default[room]);
+            const roomConfig = ROOMS.default[room];
+            roomConfig.name = room;
+            this.rooms[room] = new Room(roomConfig);
 
             roomsStateConfig.room[room] = {
                 event: `taEnter${room[0].toUpperCase() + room.substring(1)}`,
@@ -93,8 +97,6 @@ export default class TextAdventure extends Component {
             this.rooms[newRoom].description
         );
         EventBus.publish(`taEnter${newRoom[0].toUpperCase() + newRoom.substring(1)}`, this.el);
-
-        this.persistState();
     }
 
     inspect(thing) {
@@ -155,12 +157,19 @@ export default class TextAdventure extends Component {
 
     getCurrentRoom() {
         const currentRoom = this.rooms[this.roomsState.states.room.currentState]
-        currentRoom.name = this.roomsState.states.room.currentState;
         return currentRoom;
+    }
+
+    loadRoomUrl() {
+        if (window.location.pathname === this.getCurrentRoom().url) {
+            return;
+        }
+        window.location = this.getCurrentRoom().url;
     }
 
     onEnterRoom() {
         this.persistState();
+        this.loadRoomUrl();
     }
 
     /**
