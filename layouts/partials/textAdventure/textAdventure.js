@@ -97,6 +97,7 @@ export default class TextAdventure extends Component {
             this.rooms[newRoom].description
         );
         EventBus.publish(`taEnter${newRoom[0].toUpperCase() + newRoom.substring(1)}`, this.el);
+        this.loadRoomUrl();
     }
 
     inspect(thing) {
@@ -172,7 +173,6 @@ export default class TextAdventure extends Component {
 
     onEnterRoom() {
         this.persistState();
-        this.loadRoomUrl();
     }
 
     /**
