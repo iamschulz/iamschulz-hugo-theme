@@ -136,10 +136,9 @@ export default class TextAdventure extends Component {
             return;
         }
 
-        if (item.method && this[item.method]) {
-            this[item.method]();
-        } else if (item.interaction) {
-            console.log(item.interaction);
+        if (item.interaction || (item.method && this[item.method])) {
+            item.interaction && console.log(item.interaction);
+            item.method && this[item.method] && this[item.method]();
         } else {
             console.log(`You can't use ${item.name} like that.`);
         }
@@ -180,10 +179,9 @@ export default class TextAdventure extends Component {
      * Gets called from the bookshelf
      * Lists all blog articles and provides links
      */
-    useBookshelf() {
+    listArticles() {
         const articles = document.querySelectorAll('.article-card__title > a');
-
-        console.warn('Articles are not yet implemented');
+        Object.keys(articles).forEach(i => console.log(articles[i].text, " - ", articles[i].href));
     }
 
     resetGame() {
