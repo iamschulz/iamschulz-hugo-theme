@@ -1,6 +1,7 @@
 import Component from '../../../helpers/component';
 import * as ROOMS from './rooms.json';
 import * as ITEMS from './items.json';
+import * as DIRECTIONS from './directions.json';
 
 class Room {
     constructor(config) {
@@ -21,9 +22,16 @@ class Item {
     }
 }
 
+class Direction {
+    constructor(config) {
+        this.name = config.name || "";
+    }
+}
+
 export default class TextAdventure extends Component {
     init() {
         this.setupGlobals();
+        this.setupDirections();
         this.setupRooms();
         this.setupItems();
         window.setTimeout(() => {
@@ -33,13 +41,28 @@ export default class TextAdventure extends Component {
 
     /* SETUP GAME */
     setupGlobals() {
+        this.formats = {
+            default: "color: unset; font-weight: normal;",
+            directions: "color: salmon; font-weight: 900;",
+            items: "color: teal; font-weight: 900;",
+            rooms: "color: cornflowerblue; font-weight: 900;",
+            error: "color: red; font-weight: 900;"
+        };
+
         window.ta = {
             help: this.help.bind(this),
             go: this.movePC.bind(this),
             inspect: this.inspect.bind(this),
             use: this.use.bind(this),
             reset: this.resetGame.bind(this)
-        }
+        };
+    }
+
+    setupDirections() {
+        this.directions = {};
+        Object.keys(DIRECTIONS.default).forEach(direction => {
+            this.directions[direction] = new Direction(DIRECTIONS.default[direction]);
+        });
     }
 
     setupRooms() {
@@ -77,17 +100,19 @@ export default class TextAdventure extends Component {
         console.warn('help is not implemented yet');
     }
 
-    movePC(direction) {
-        const validDirections = ['north', 'east', 'south', 'west'];
+    movePC(inputDirection) {
         const room = this.getCurrentRoom();
+        const direction = Object.keys(this.directions).filter(
+            direction => direction.toLowerCase() === inputDirection.toLowerCase()
+        )[0];
 
-        if (validDirections.indexOf(direction) < 0) {
-            console.log("You may only go", validDirections);
+        if (!direction) {
+            this.log(`You may only go ${Object.keys(this.directions).join(', ')}.`);
             return;
         }
 
         if (Object.keys(room.directions).indexOf(direction) < 0) {
-            console.log(`You can't go ${direction} from here.`);
+            this.log(`You can't go ${direction} from here.`);
             return;
         }
 
@@ -115,13 +140,13 @@ export default class TextAdventure extends Component {
         } else if (item) {
             this.log(this.items[item].description);
         } else {
-            console.log(`There is no ${thing}.`);
+            console.log(`There is no %c${thing}%c.`, this.formats.items, this.formats.default);
         }
     }
 
     use(thing) {
         if (!thing) {
-            console.log('What do you want to use? Try `ta.use("Thing")`!')
+            console.log('What do you want to use? Try `ta.use("%cThing%c")`!', this.formats.items, this.formats.default);
             return;
         }
 
@@ -133,7 +158,7 @@ export default class TextAdventure extends Component {
             .length > 0;
 
         if (!item || !thingInRoom) {
-            console.log(`There is no ${thing}.`);
+            console.log(`There is no %c${thing}%c.`, this.formats.items, this.formats.default);
             return;
         }
 
@@ -141,7 +166,7 @@ export default class TextAdventure extends Component {
             item.interaction && this.log(item.interaction);
             item.method && this[item.method] && this[item.method]();
         } else {
-            console.log(`You can't use ${item.name} like that.`);
+            console.log(`You can't use %c${item.name}%c like that.`, this.formats.items, this.formats.default);
         }
 
         EventBus.publish(`taUse${item.name[0].toUpperCase() + item.name.substring(1)}`, this.el);
@@ -153,34 +178,26 @@ export default class TextAdventure extends Component {
         let styles = [];
         let triggers = [];
 
-        const formats = [
-            {
-                key: "rooms",
-                color: "cornflowerblue"
-            }, {
-                key: "items",
-                color: "forestgreen"
-            }
-        ];
+        Object.keys(this.formats).forEach(format => {
+            if (!this[format]) return;
 
-        formats.forEach(format => {
-            Object.keys(this[format.key]).forEach(trigger => {
+            Object.keys(this[format]).forEach(trigger => {
                 triggers.push({
                     word: trigger,
-                    color: format.color
-                })
-            })
+                    style: this.formats[format]
+                });
+            });
         });
 
         parsed = parsed.replace(
             new RegExp(
                 triggers.map(trigger => `(${trigger.word})`).join("|"), "gi"
             ), i => {
-                let color = triggers.filter(trigger => { 
+                let format = triggers.filter(trigger => { 
                     return trigger.word.toLowerCase() === i.toLowerCase() 
-                })[0].color;
-                styles.push(`color:${color};`);
-                styles.push("color:unset;");
+                })[0].style;
+                styles.push(format);
+                styles.push(this.formats.default);
                 return `%c${i}%c`;
             }
         );
@@ -226,6 +243,7 @@ export default class TextAdventure extends Component {
 
     resetGame() {
         this.destroy();
+        console.clear();
         this.init();
         window.setTimeout(() => {
             this.persistState();
