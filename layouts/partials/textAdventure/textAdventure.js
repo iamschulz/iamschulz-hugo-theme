@@ -111,7 +111,7 @@ export default class TextAdventure extends Component {
         const item = Object.keys(this.items).filter(item => item.toLowerCase() === thing.toLowerCase())[0];
 
         if (room) {
-            console.log(this.rooms[room].description);
+            this.log(this.rooms[room].description);
         } else if (item) {
             console.log(this.items[item].description);
         } else {
@@ -148,6 +148,30 @@ export default class TextAdventure extends Component {
     }
 
     /* GAME LOGIC */
+    log(words) {
+        const formats = [
+            {
+                key: "rooms",
+                color: "red"
+            }, {
+                key: "items",
+                color: "green"
+            }
+        ]
+
+        const regex = new RegExp(
+            Object.keys(this.rooms).map(room => `(${room})`).join("|"), "g"
+        );
+        let styles = [];
+        const parsed = words.replace(regex, i => {
+            styles.push("color: red;");
+            styles.push("color: unset;");
+            return `%c${i}%c`;
+        });
+
+        console.log(parsed, ...styles);
+    }
+
     startGame() {
         console.log(`You find yourself in a mansions ${this.getCurrentRoom().name}`);
         ta.inspect(this.getCurrentRoom().name);
