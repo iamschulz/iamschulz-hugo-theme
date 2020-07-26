@@ -23,9 +23,9 @@ class Item {
 
 export default class TextAdventure extends Component {
     init() {
+        this.setupGlobals();
         this.setupRooms();
         this.setupItems();
-        this.setupGlobals();
         window.setTimeout(() => {
             this.startGame();
         }, 0);
@@ -92,7 +92,7 @@ export default class TextAdventure extends Component {
         }
 
         const newRoom = room.directions[direction].destination;
-        console.log(
+        this.log(
             room.directions[direction].transition,
             this.rooms[newRoom].description
         );
@@ -102,7 +102,7 @@ export default class TextAdventure extends Component {
 
     inspect(thing) {
         if (!thing) {
-            console.log(`You take a look around the ${this.getCurrentRoom().name}.`);
+            this.log(`You take a look around the ${this.getCurrentRoom().name}.`);
             this.inspect(this.getCurrentRoom().name);
             return;
         }
@@ -113,7 +113,7 @@ export default class TextAdventure extends Component {
         if (room) {
             this.log(this.rooms[room].description);
         } else if (item) {
-            console.log(this.items[item].description);
+            this.log(this.items[item].description);
         } else {
             console.log(`There is no ${thing}.`);
         }
@@ -138,7 +138,7 @@ export default class TextAdventure extends Component {
         }
 
         if (item.interaction || (item.method && this[item.method])) {
-            item.interaction && console.log(item.interaction);
+            item.interaction && this.log(item.interaction);
             item.method && this[item.method] && this[item.method]();
         } else {
             console.log(`You can't use ${item.name} like that.`);
@@ -149,31 +149,47 @@ export default class TextAdventure extends Component {
 
     /* GAME LOGIC */
     log(words) {
+        let parsed = words;
+        let styles = [];
+        let triggers = [];
+
         const formats = [
             {
                 key: "rooms",
-                color: "red"
+                color: "cornflowerblue"
             }, {
                 key: "items",
-                color: "green"
+                color: "forestgreen"
             }
-        ]
+        ];
 
-        const regex = new RegExp(
-            Object.keys(this.rooms).map(room => `(${room})`).join("|"), "g"
-        );
-        let styles = [];
-        const parsed = words.replace(regex, i => {
-            styles.push("color: red;");
-            styles.push("color: unset;");
-            return `%c${i}%c`;
+        formats.forEach(format => {
+            Object.keys(this[format.key]).forEach(trigger => {
+                triggers.push({
+                    word: trigger,
+                    color: format.color
+                })
+            })
         });
+
+        parsed = parsed.replace(
+            new RegExp(
+                triggers.map(trigger => `(${trigger.word})`).join("|"), "gi"
+            ), i => {
+                let color = triggers.filter(trigger => { 
+                    return trigger.word.toLowerCase() === i.toLowerCase() 
+                })[0].color;
+                styles.push(`color:${color};`);
+                styles.push("color:unset;");
+                return `%c${i}%c`;
+            }
+        );
 
         console.log(parsed, ...styles);
     }
 
     startGame() {
-        console.log(`You find yourself in a mansions ${this.getCurrentRoom().name}`);
+        this.log(`You find yourself in the mansions ${this.getCurrentRoom().name}`);
         ta.inspect(this.getCurrentRoom().name);
     }
 
