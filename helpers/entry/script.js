@@ -8,6 +8,7 @@ import Component from '../component';
 import StateMachine from '../stateMachine';
 import EventBus from '../eventBus';
 import FocusTrap from '../focusTrap';
+import TextAdventureLoader from '../textAdventureLoader';
 
 require('../../assets/svg/public/favicon.svg');
 require('../../assets/svg/public/logo.svg');
@@ -51,6 +52,7 @@ const initialize = () => {
     window.FocusTrap = new FocusTrap();
     window.ComponentLoader = new ComponentLoader();
     window.ComponentLoader.updateDom();
+    window.TextAdventureLoader = new TextAdventureLoader();
 
     new LazyLoad({
         elements_selector: '.is--lazy',
