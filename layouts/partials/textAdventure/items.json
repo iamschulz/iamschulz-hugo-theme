@@ -28,5 +28,39 @@
         "description": "The books in this shelf seem to be very boring. Mostly computer tech stuff. A stretched out yawn escapes your mouth.",
         "interaction": "You see the following books before you:",
         "method": "listArticles"
+    },
+    "Dust": {
+        "name": "Dust",
+        "description": "You try to blow the dust cover off of a heavy book and find it's become solid over time."
+    },
+    "Curiosity": {
+        "name": "Curiosity",
+        "description": "You take a step towards a curiosity. The mars rover bleeps happily as to greet you."
+    },
+    "Curiosities": {
+        "name": "Curiosities",
+        "description": "You take a step towards a curiosity. The mars rover bleeps happily as to greet you."
+    },
+    "Catalogue": {
+        "name": "Catalogue",
+        "description": "",
+        "interaction": "You browse through the pages. There are several artworks listed:",
+        "method": "listArticles"
+    },
+    "Spiderwebs": {
+        "name": "Spiderwebs",
+        "description": ""
+    },
+    "Spiderweb": {
+        "name": "Spiderweb",
+        "description": ""
+    },
+    "Spider": {
+        "name": "Spider",
+        "description": ""
+    },
+    "Dead Fly": {
+        "name": "Dead Fly",
+        "description": ""
     }
 }

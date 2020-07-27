@@ -1,3 +1,11 @@
+/*
+To do: 
+- add content
+- do something with wine cellar
+- lazy load module
+- add read method for content
+*/
+
 import Component from '../../../helpers/component';
 import * as ROOMS from './rooms.json';
 import * as ITEMS from './items.json';

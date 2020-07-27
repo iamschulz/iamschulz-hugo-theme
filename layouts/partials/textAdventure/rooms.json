@@ -30,7 +30,7 @@
     },
     "Library": {
         "url": "/categories/tech/",
-        "description": "The air smeels of dust and paper. The room is dominated by towering bookshelves.",
+        "description": "The air smeels of dust and paper. The room is dominated by towering bookshelves. To the south is the portal back to the Lobby.",
         "directions": {
             "south": {
                 "destination": "Lobby",
@@ -45,7 +45,7 @@
     },
     "Museum": {
         "url": "/categories/art/",
-        "description": "All kinds of curiosities are exhibited in dusty glass displays. There's a catalogue right next to the door.",
+        "description": "All kinds of curiosities are exhibited in dusty glass displays. There's a catalogue right next to the door. To the west is the portal back to the Lobby.",
         "directions": {
             "west": {
                 "destination": "Lobby",
