@@ -1,13 +1,18 @@
 export default class TextAdventureLoader {
     constructor() {
-        window.ta = {
-            start: this.init
+        if (sessionStorage.ta) {
+            this.init();
+        } else {
+            window.ta = {
+                start: this.init
+            }
+            
+            console.log(
+                "Guess what:You can play this website as a text adventure!\nType '%cta.start()%c' to play.",
+                "color: lime;",
+                "color: unset;"
+            );
         }
-        console.log(
-            "Guess what:You can play this website as a text adventure!\n Type '%cta.start()%c' to play",
-            "color: lime;",
-            "color: unset;"
-        )
     }
 
     init() {
