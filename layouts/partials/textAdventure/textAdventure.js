@@ -2,7 +2,7 @@
 To do: 
 - add content
 - do something with wine cellar
-- lazy load module
+- write help methods
 - add read method for content
 */
 
@@ -125,11 +125,15 @@ export default class TextAdventure extends Component {
         }
 
         const newRoom = room.directions[direction].destination;
+        this.lastTransition = room.directions[direction].transition;
+        
         this.log(
             room.directions[direction].transition,
             this.rooms[newRoom].description
         );
+
         EventBus.publish(`taEnter${newRoom[0].toUpperCase() + newRoom.substring(1)}`, this.el);
+        this.persistState();
         this.loadRoomUrl();
     }
 
@@ -143,10 +147,13 @@ export default class TextAdventure extends Component {
         const room = Object.keys(this.rooms).filter(room => room.toLowerCase() === thing.toLowerCase())[0];
         const item = Object.keys(this.items).filter(item => item.toLowerCase() === thing.toLowerCase())[0];
 
-        if (room) {
+        if (room && room === this.getCurrentRoom().name) {
             this.log(this.rooms[room].description);
-        } else if (item) {
+        } else if (room && room !== this.getCurrentRoom().name) {
+            this.log(`You need to go into the ${room} before inspecting it.`)
+        } else if (item && this.isItemInRoom(item)) {
             this.log(this.items[item].description);
+            
         } else {
             console.log(`There is no %c${thing}%c.`, this.formats.items, this.formats.default);
         }
@@ -161,11 +168,8 @@ export default class TextAdventure extends Component {
         const item = this.items[
             Object.keys(this.items).filter(item => item.toLowerCase() === thing.toLowerCase())[0]
         ];
-        const thingInRoom = Object.keys(this.getCurrentRoom().objects)
-            .filter(item => item.toLowerCase() === thing.toLowerCase())
-            .length > 0;
 
-        if (!item || !thingInRoom) {
+        if (!item || !this.isItemInRoom(thing)) {
             console.log(`There is no %c${thing}%c.`, this.formats.items, this.formats.default);
             return;
         }
@@ -176,8 +180,6 @@ export default class TextAdventure extends Component {
         } else {
             console.log(`You can't use %c${item.name}%c like that.`, this.formats.items, this.formats.default);
         }
-
-        EventBus.publish(`taUse${item.name[0].toUpperCase() + item.name.substring(1)}`, this.el);
     }
 
     /* GAME LOGIC */
@@ -200,13 +202,13 @@ export default class TextAdventure extends Component {
         parsed = parsed.replace(
             new RegExp(
                 triggers.map(trigger => `(${trigger.word})`).join("|"), "gi"
-            ), i => {
+            ), match => {
                 let format = triggers.filter(trigger => { 
-                    return trigger.word.toLowerCase() === i.toLowerCase() 
+                    return trigger.word.toLowerCase() === match.toLowerCase() 
                 })[0].style;
                 styles.push(format);
                 styles.push(this.formats.default);
-                return `%c${i}%c`;
+                return `%c${match}%c`;
             }
         );
 
@@ -214,19 +216,34 @@ export default class TextAdventure extends Component {
     }
 
     startGame() {
-        this.log(`You find yourself in the mansions ${this.getCurrentRoom().name}`);
+        if (!sessionStorage.ta) {
+            this.log(`You find yourself in a mansions ${this.getCurrentRoom().name}`);
+        } else {
+            this.log(
+                JSON.parse(sessionStorage.ta).lastTransition
+                    ? JSON.parse(sessionStorage.ta).lastTransition 
+                    : `You find yourself in the mansions ${this.getCurrentRoom().name}`
+            );
+        }
         ta.inspect(this.getCurrentRoom().name);
     }
 
     persistState() {
         sessionStorage.ta = JSON.stringify({
-            rooms: this.getCurrentRoom().name
+            rooms: this.getCurrentRoom().name,
+            lastTransition: this.lastTransition ? this.lastTransition : ""
         });
+
     }
 
     getCurrentRoom() {
-        const currentRoom = this.rooms[this.roomsState.states.room.currentState]
-        return currentRoom;
+        return this.rooms[this.roomsState.states.room.currentState];
+    }
+
+    isItemInRoom(item) {
+        return Object.keys(this.getCurrentRoom().objects)
+            .filter(itemName => itemName.toLowerCase() === item.toLowerCase())
+            .length > 0;
     }
 
     loadRoomUrl() {
@@ -237,11 +254,10 @@ export default class TextAdventure extends Component {
     }
 
     onEnterRoom() {
-        this.persistState();
     }
 
     /**
-     * Gets called from the bookshelf
+     * Gets called from the bookshelf, art catalogue, etc.
      * Lists all blog articles and provides links
      */
     listArticles() {
