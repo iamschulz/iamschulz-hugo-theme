@@ -54,6 +54,7 @@ export default class TextAdventure extends Component {
             directions: "color: salmon; font-weight: 900;",
             items: "color: teal; font-weight: 900;",
             rooms: "color: cornflowerblue; font-weight: 900;",
+            help: "color: gold; font-weoght: 900;",
             error: "color: red; font-weight: 900;"
         };
 
@@ -115,22 +116,19 @@ export default class TextAdventure extends Component {
         )[0];
 
         if (!direction) {
-            this.log(`You may only go ${Object.keys(this.directions).join(', ')}.`);
+            this.log(`❌ You may only go ${Object.keys(this.directions).join(', ')}.`);
             return;
         }
 
         if (Object.keys(room.directions).indexOf(direction) < 0) {
-            this.log(`You can't go ${direction} from here.`);
+            this.log(`❌ You can't go ${direction} from here.`);
             return;
         }
 
         const newRoom = room.directions[direction].destination;
         this.lastTransition = room.directions[direction].transition;
         
-        this.log(
-            room.directions[direction].transition,
-            this.rooms[newRoom].description
-        );
+        this.log(`💨 ${room.directions[direction].transition} ${this.rooms[newRoom].description}`);
 
         EventBus.publish(`taEnter${newRoom[0].toUpperCase() + newRoom.substring(1)}`, this.el);
         this.persistState();
@@ -139,7 +137,7 @@ export default class TextAdventure extends Component {
 
     inspect(thing) {
         if (!thing) {
-            this.log(`You take a look around the ${this.getCurrentRoom().name}.`);
+            this.log(`👁️ You take a look around the ${this.getCurrentRoom().name}.`);
             this.inspect(this.getCurrentRoom().name);
             return;
         }
@@ -148,20 +146,20 @@ export default class TextAdventure extends Component {
         const item = Object.keys(this.items).filter(item => item.toLowerCase() === thing.toLowerCase())[0];
 
         if (room && room === this.getCurrentRoom().name) {
-            this.log(this.rooms[room].description);
+            this.log(`👁️ ${this.rooms[room].description}`);
         } else if (room && room !== this.getCurrentRoom().name) {
-            this.log(`You need to go into the ${room} before inspecting it.`)
+            this.log(`❌ You need to go into the ${room} before inspecting it.`)
         } else if (item && this.isItemInRoom(item)) {
-            this.log(this.items[item].description);
+            this.log(`👁️ ${this.items[item].description}`);
             
         } else {
-            console.log(`There is no %c${thing}%c.`, this.formats.items, this.formats.default);
+            console.log(`❌ There is no %c${thing}%c.`, this.formats.items, this.formats.default);
         }
     }
 
     use(thing) {
         if (!thing) {
-            console.log('What do you want to use? Try `ta.use("%cThing%c")`!', this.formats.items, this.formats.default);
+            console.log('💡 What do you want to use? Try `ta.use("%cThing%c")`!', this.formats.items, this.formats.default);
             return;
         }
 
@@ -170,15 +168,15 @@ export default class TextAdventure extends Component {
         ];
 
         if (!item || !this.isItemInRoom(thing)) {
-            console.log(`There is no %c${thing}%c.`, this.formats.items, this.formats.default);
+            console.log(`❌ There is no %c${thing}%c.`, this.formats.items, this.formats.default);
             return;
         }
 
         if (item.interaction || (item.method && this[item.method])) {
-            item.interaction && this.log(item.interaction);
+            item.interaction && this.log(`⚡ ${item.interaction}`);
             item.method && this[item.method] && this[item.method]();
         } else {
-            console.log(`You can't use %c${item.name}%c like that.`, this.formats.items, this.formats.default);
+            console.log(`❌ You can't use %c${item.name}%c like that.`, this.formats.items, this.formats.default);
         }
     }
 
@@ -217,12 +215,13 @@ export default class TextAdventure extends Component {
 
     startGame() {
         if (!sessionStorage.ta) {
-            this.log(`You find yourself in a mansions ${this.getCurrentRoom().name}`);
+            this.help();
+            this.log(`✨ You find yourself in a mansions ${this.getCurrentRoom().name}`);
         } else {
             this.log(
                 JSON.parse(sessionStorage.ta).lastTransition
-                    ? JSON.parse(sessionStorage.ta).lastTransition 
-                    : `You find yourself in the mansions ${this.getCurrentRoom().name}`
+                    ? `💨 ${JSON.parse(sessionStorage.ta).lastTransition}` 
+                    : `💨 $You find yourself in the mansions ${this.getCurrentRoom().name}`
             );
         }
         ta.inspect(this.getCurrentRoom().name);
@@ -260,9 +259,19 @@ export default class TextAdventure extends Component {
      * Gets called from the bookshelf, art catalogue, etc.
      * Lists all blog articles and provides links
      */
-    listArticles() {
+    listBooks() {
         const articles = document.querySelectorAll('.article-card__title > a');
-        Object.keys(articles).forEach(i => console.log(articles[i].text, " - ", articles[i].href));
+        Object.keys(articles).forEach(i => {
+            const bookItem = new Item({
+                "name": `Book ${i}`,
+                "description": articles[i].text,
+                "method": "",
+            })
+            this.getCurrentRoom().objects[`Book ${i}`] = bookItem;
+            this.items[`Book ${i}`] = bookItem;
+            this.log(`Book ${i}: ${articles[i].text}`);
+        });
+        console.log('💡 Use `ta.use("%cBook X%c")` to read!', this.formats.items, this.formats.default)
     }
 
     resetGame() {

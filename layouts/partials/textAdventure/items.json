@@ -21,13 +21,13 @@
         "name": "Bookshelf",
         "description": "The books in this shelf seem to be very boring. Mostly computer tech stuff. A stretched out yawn escapes your mouth.",
         "interaction": "You see the following books before you:",
-        "method": "listArticles"
+        "method": "listBooks"
     },
     "Bookshelves": {
         "name": "Bookshelf",
         "description": "The books in this shelf seem to be very boring. Mostly computer tech stuff. A stretched out yawn escapes your mouth.",
         "interaction": "You see the following books before you:",
-        "method": "listArticles"
+        "method": "listBooks"
     },
     "Dust": {
         "name": "Dust",
