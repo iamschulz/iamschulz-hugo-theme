@@ -1,7 +1,7 @@
 {{ if .Page.Scratch.Get "renderModal" }}
     <div hidden data-component="modal" class="modal" aria-hidden="true" role="dialog">
         <section class="modal__inner">
-            <button class="modal__close" data-modal-el="closeButton" title="Close">
+            <button class="modal__close button is--icon" data-modal-el="closeButton" title="Close">
                 <span class="is--visually-hidden">Close</span>
                 <span class="icon">
                     {{ partial "icon.html" "times-solid" }}

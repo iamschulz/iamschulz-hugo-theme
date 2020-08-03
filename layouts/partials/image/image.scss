@@ -30,9 +30,9 @@
     }
 
     &__zoom-button {
-        @extend .button;
+        @extend .button.is--icon;
         position: absolute;
-        top: var(--spacing-y);
+        top: var(--spacing-x);
         right: var(--spacing-x);
 
         &:before {
