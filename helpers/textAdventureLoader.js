@@ -8,7 +8,7 @@ export default class TextAdventureLoader {
             }
             
             console.log(
-                "Guess what:You can play this website as a text adventure!\nType '%cta.start()%c' to play.",
+                "Guess what: You can play this website as a text adventure!\nType '%cta.start()%c' to play.",
                 "color: lime;",
                 "color: unset;"
             );

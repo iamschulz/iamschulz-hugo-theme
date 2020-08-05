@@ -63,6 +63,7 @@ export default class TextAdventure extends Component {
             go: this.movePC.bind(this),
             inspect: this.inspect.bind(this),
             use: this.use.bind(this),
+            finish: this.loadRoomUrl.bind(this),
             reset: this.resetGame.bind(this)
         };
     }
@@ -173,8 +174,10 @@ export default class TextAdventure extends Component {
         }
 
         if (item.interaction || (item.method && this[item.method])) {
+            this.currentItem = item;
             item.interaction && this.log(`⚡ ${item.interaction}`);
             item.method && this[item.method] && this[item.method]();
+            this.currentItem = null;
         } else {
             console.log(`❌ You can't use %c${item.name}%c like that.`, this.formats.items, this.formats.default);
         }
@@ -217,20 +220,33 @@ export default class TextAdventure extends Component {
         if (!sessionStorage.ta) {
             this.help();
             this.log(`✨ You find yourself in a mansions ${this.getCurrentRoom().name}`);
+            ta.inspect(this.getCurrentRoom().name);
         } else {
+            const store = JSON.parse(sessionStorage.ta)
             this.log(
-                JSON.parse(sessionStorage.ta).lastTransition
-                    ? `💨 ${JSON.parse(sessionStorage.ta).lastTransition}` 
-                    : `💨 $You find yourself in the mansions ${this.getCurrentRoom().name}`
+                store.lastTransition
+                    ? `💨 ${store.lastTransition}` 
+                    : `💨 You find yourself in the mansions ${this.getCurrentRoom().name}`
             );
+
+            if (
+                store.currentItem 
+                && store.currentItem.url 
+                && store.currentItem.url === window.location.href
+            ) {
+                this.log(store.currentItem.interaction);
+                console.log('Use %cta.finish()%c to go back.', this.formats.help, this.formats.default);
+            } else {
+                ta.inspect(this.getCurrentRoom().name);
+            }
         }
-        ta.inspect(this.getCurrentRoom().name);
     }
 
     persistState() {
         sessionStorage.ta = JSON.stringify({
             rooms: this.getCurrentRoom().name,
-            lastTransition: this.lastTransition ? this.lastTransition : ""
+            currentItem: this.currentItem ? this.currentItem : "",
+            lastTransition: this.lastTransition ? this.lastTransition : "",
         });
 
     }
@@ -255,23 +271,36 @@ export default class TextAdventure extends Component {
     onEnterRoom() {
     }
 
+    listBooks() {
+        this.registerArticleItems('Book', 'You delve into');
+        console.log('💡 Use `ta.use("%cBook X%c")` to read!', this.formats.items, this.formats.default)
+    }
+
     /**
      * Gets called from the bookshelf, art catalogue, etc.
      * Lists all blog articles and provides links
      */
-    listBooks() {
+    registerArticleItems(name, transition) {
         const articles = document.querySelectorAll('.article-card__title > a');
         Object.keys(articles).forEach(i => {
-            const bookItem = new Item({
-                "name": `Book ${i}`,
+            const item = new Item({
+                "name": `${name} ${i}`,
                 "description": articles[i].text,
-                "method": "",
-            })
-            this.getCurrentRoom().objects[`Book ${i}`] = bookItem;
-            this.items[`Book ${i}`] = bookItem;
-            this.log(`Book ${i}: ${articles[i].text}`);
+                "interaction": `${transition} ${name} ${i}.`,
+                "method": "loadItemUrl",
+            });
+            item.url = articles[i].href;
+            this.getCurrentRoom().objects[`${name} ${i}`] = item;
+            this.items[`${name} ${i}`] = item;
+            this.log(`${name} ${i}: ${articles[i].text}`);
         });
-        console.log('💡 Use `ta.use("%cBook X%c")` to read!', this.formats.items, this.formats.default)
+    }
+
+    loadItemUrl() {
+        if (!(this.currentItem && this.currentItem.url)) return;
+
+        this.persistState();
+        window.location = this.currentItem.url;
     }
 
     resetGame() {
