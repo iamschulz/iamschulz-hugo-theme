@@ -43,11 +43,15 @@ export default class TextAdventure extends Component {
         this.setupRooms();
         this.setupItems();
         window.setTimeout(() => {
-            this.startGame();
+            !sessionStorage.ta ? this.startGame() : this.resumeGame();
         }, 0);
     }
 
-    /* SETUP GAME */
+    /* -------------------------------- SETUP GAME -------------------------------- */
+
+    /**
+     * sets up global functions and log formats
+     */
     setupGlobals() {
         this.formats = {
             default: "color: unset; font-weight: normal;",
@@ -68,6 +72,9 @@ export default class TextAdventure extends Component {
         };
     }
 
+    /**
+     * sets up directions for the PC to go. For now that's supposed to be north, south, east and west
+     */
     setupDirections() {
         this.directions = {};
         Object.keys(DIRECTIONS.default).forEach(direction => {
@@ -75,6 +82,9 @@ export default class TextAdventure extends Component {
         });
     }
 
+    /**
+     * sets up all the rooms the PC can visit. Registers a gloabal state for rooms
+     */
     setupRooms() {
         const startingRoom = sessionStorage.ta ? JSON.parse(sessionStorage.ta).rooms : 'Lobby';
         const roomsStateConfig = {
@@ -98,6 +108,9 @@ export default class TextAdventure extends Component {
         this.roomsState = new StateMachine(this, roomsStateConfig);
     }
 
+    /**
+     * sets up all the items the PC can use
+     */
     setupItems() {
         this.items = {};
         Object.keys(ITEMS.default).forEach(item => {
@@ -105,11 +118,20 @@ export default class TextAdventure extends Component {
         });
     }
 
-    /* ACTIONS */
+    /* -------------------------------- ACTIONS -------------------------------- */
+
+    /**
+     * displays a help text explaining how to play
+     */
     help() {
         console.warn('help is not implemented yet');
     }
 
+    /**
+     * Moves the PC to another room (if possible) and logs it. Triggers the State Machine callback.
+     * 
+     * @param {string} inputDirection - one of the directions set up before
+     */
     movePC(inputDirection) {
         const room = this.getCurrentRoom();
         const direction = Object.keys(this.directions).filter(
@@ -136,6 +158,11 @@ export default class TextAdventure extends Component {
         this.loadRoomUrl();
     }
 
+    /**
+     * lets the PC inspect the current room (without param) or an item, if available in the current room.
+     * 
+     * @param {string} thing - one of the registered items or rooms (optional)
+     */
     inspect(thing) {
         if (!thing) {
             this.log(`👁️ You take a look around the ${this.getCurrentRoom().name}.`);
@@ -158,6 +185,11 @@ export default class TextAdventure extends Component {
         }
     }
 
+    /**
+     * lets the PC use an Item. Logs out the assigned interaction string, triggers the assigned method.
+     * 
+     * @param {string} thing - one of the registered items
+     */
     use(thing) {
         if (!thing) {
             console.log('💡 What do you want to use? Try `ta.use("%cThing%c")`!', this.formats.items, this.formats.default);
@@ -183,7 +215,13 @@ export default class TextAdventure extends Component {
         }
     }
 
-    /* GAME LOGIC */
+    /* -------------------------------- GAME LOGIC -------------------------------- */
+
+    /**
+     * logs out a string. Items, Rooms, Directions get highlighted in their respective format.
+     * 
+     * @param {string} words - the output value
+     */
     log(words) {
         let parsed = words;
         let styles = [];
@@ -216,32 +254,43 @@ export default class TextAdventure extends Component {
         console.log(parsed, ...styles);
     }
 
+    /**
+     * gets called when opening the document when no session data is available
+     */
     startGame() {
-        if (!sessionStorage.ta) {
-            this.help();
-            this.log(`✨ You find yourself in a mansions ${this.getCurrentRoom().name}`);
-            ta.inspect(this.getCurrentRoom().name);
-        } else {
-            const store = JSON.parse(sessionStorage.ta)
-            this.log(
-                store.lastTransition
-                    ? `💨 ${store.lastTransition}` 
-                    : `💨 You find yourself in the mansions ${this.getCurrentRoom().name}`
-            );
+        this.help();
+        this.log(`✨ You find yourself in a mansions ${this.getCurrentRoom().name}`);
+        ta.inspect(this.getCurrentRoom().name);
+    }
 
-            if (
-                store.currentItem 
-                && store.currentItem.url 
-                && store.currentItem.url === window.location.href
-            ) {
-                this.log(store.currentItem.interaction);
-                console.log('Use %cta.finish()%c to go back.', this.formats.help, this.formats.default);
-            } else {
-                ta.inspect(this.getCurrentRoom().name);
-            }
+    /**
+     * gets called when opening the document when session data is available
+     */
+    resumeGame() {
+        if (!sessionStorage.ta) return;
+
+        const store = JSON.parse(sessionStorage.ta)
+        this.log(
+            store.lastTransition
+                ? `💨 ${store.lastTransition}`
+                : `💨 You find yourself in the mansions ${this.getCurrentRoom().name}`
+        );
+
+        if (
+            store.currentItem
+            && store.currentItem.url
+            && store.currentItem.url === window.location.href
+        ) {
+            this.log(`⚡ ${store.currentItem.interaction}`);
+            console.log('💡 Use %cta.finish()%c to go back.', this.formats.help, this.formats.default);
+        } else {
+            ta.inspect(this.getCurrentRoom().name);
         }
     }
 
+    /**
+     * writes current state to session storage. useful for navigating to another document.
+     */
     persistState() {
         sessionStorage.ta = JSON.stringify({
             rooms: this.getCurrentRoom().name,
@@ -251,16 +300,27 @@ export default class TextAdventure extends Component {
 
     }
 
+    /**
+     * returns the current room as a string.
+     */
     getCurrentRoom() {
         return this.rooms[this.roomsState.states.room.currentState];
     }
 
+    /**
+     * returns a bool whether an item is in the current room
+     * 
+     * @param {string} item 
+     */
     isItemInRoom(item) {
         return Object.keys(this.getCurrentRoom().objects)
             .filter(itemName => itemName.toLowerCase() === item.toLowerCase())
             .length > 0;
     }
 
+    /**
+     * navigates to the document assigned to the current room
+     */
     loadRoomUrl() {
         if (window.location.pathname === this.getCurrentRoom().url) {
             return;
@@ -268,9 +328,15 @@ export default class TextAdventure extends Component {
         window.location = this.getCurrentRoom().url;
     }
 
+    /**
+     * gets called upon entering a room
+     */
     onEnterRoom() {
     }
 
+    /**
+     * lists all books (for /tech)
+     */
     listBooks() {
         this.registerArticleItems('Book', 'You delve into');
         console.log('💡 Use `ta.use("%cBook X%c")` to read!', this.formats.items, this.formats.default)
@@ -278,7 +344,8 @@ export default class TextAdventure extends Component {
 
     /**
      * Gets called from the bookshelf, art catalogue, etc.
-     * Lists all blog articles and provides links
+     * Lists all blog articles for a category and provides links.
+     * blog articles will become items in the current room.
      */
     registerArticleItems(name, transition) {
         const articles = document.querySelectorAll('.article-card__title > a');
@@ -296,6 +363,9 @@ export default class TextAdventure extends Component {
         });
     }
 
+    /**
+     * navigates to the document assigned to the article item
+     */
     loadItemUrl() {
         if (!(this.currentItem && this.currentItem.url)) return;
 
@@ -303,6 +373,9 @@ export default class TextAdventure extends Component {
         window.location = this.currentItem.url;
     }
 
+    /**
+     * resets the game to the start state
+     */
     resetGame() {
         this.destroy();
         console.clear();
@@ -312,7 +385,7 @@ export default class TextAdventure extends Component {
         }, 0);
     }
 
-    /* EXIT GAME */
+    /* -------------------------------- EXIT GAME -------------------------------- */
     destroy() {
         delete window.ta;
         delete sessionStorage.ta;
