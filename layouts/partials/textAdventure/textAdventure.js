@@ -343,6 +343,22 @@ export default class TextAdventure extends Component {
     }
 
     /**
+     * lists all artworks (for /art)
+     */
+    listArt() {
+        this.registerArticleItems('Artwork', 'You take a very close look at');
+        console.log('💡 Use `ta.use("%cArtwork X%c")` to inspire yourself!', this.formats.items, this.formats.default)
+    }
+
+    /**
+     * lists all videos (for /video)
+     */
+    listVideo() {
+        this.registerArticleItems('Video', 'You start watching');
+        console.log('💡 Use `ta.use("%Video X%c")` to watch!', this.formats.items, this.formats.default)
+    }
+
+    /**
      * Gets called from the bookshelf, art catalogue, etc.
      * Lists all blog articles for a category and provides links.
      * blog articles will become items in the current room.

@@ -23,9 +23,8 @@
         "objects": {
             "fireplace": {},
             "banner": {},
-            "table": {
-                "mug": {}
-            }
+            "table": {},
+            "mug": {}
         }
     },
     "Library": {
@@ -55,16 +54,15 @@
         "objects": {
             "curiosity": {},
             "curiosities": {},
-            "catalogue": {},
-            "spiderwebs": {
-                "spider": {},
-                "dead fly": {}
-            }
+            "display case": {},
+            "spiderwebs": {},
+            "spider": {},
+            "dead fly": {}
         }
     },
     "Wine Cellar": {
-        "url": "/",
-        "description": "It reeks of the noblest drops that have since turned into vinegar. To the north is the staircase up into the lobby.",
+        "url": "/wine-cellar",
+        "description": "It reeks of the noblest drops that have since turned into vinegar. There's one bottle of wine left intact. You wouldn't dare, would you? To the north is the staircase up into the lobby.",
         "directions": {
             "north": {
                 "destination": "Lobby",
@@ -72,6 +70,7 @@
             }
         },
         "objects": {
+            "bottle": {}
         }
     },
     "Theater": {
@@ -88,6 +87,7 @@
             }
         },
         "objects": {
+            "vhs recorder": {}
         }
     }
 }
