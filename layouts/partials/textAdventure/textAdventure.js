@@ -124,7 +124,15 @@ export default class TextAdventure extends Component {
      * displays a help text explaining how to play
      */
     help() {
-        console.warn('help is not implemented yet');
+        console.log('💡 %cHey! Listen!', this.formats.help);
+        console.log('You are in Text Adventure mode. That means you can navigate this site as if it were an early computer game.');
+        console.log('It\'s written in javascript, so every command is a js command. Here is what you can do:');
+        console.log('Move around the game world by using %cta.go("%cDirection%c")%c. You can go to all four cardinal directions. Directions are marked in %csalmon%c.', this.formats.help, this.formats.directions, this.formats.help, this.formats.default, this.formats.directions, this.formats.default);
+        console.log('Inspect an item or room by using %cta.inspect("%cItem%c")%c to get more information on it. Items are marked in %cgreen%c and rooms are %cblue%c.', this.formats.help, this.formats.items, this.formats.help, this.formats.default, this.formats.items, this.formats.default, this.formats.rooms, this.formats.default);
+        console.log('Use an item by using %cta.use("%cItem%c")%c. Note that not all items are usable.', this.formats.help, this.formats.items, this.formats.help, this.formats.default);
+        console.log('Finish using an item by calling %cta.finish()%c. You don\'t need to do that for all items, though.', this.formats.help, this.formats.default);
+        console.log('%cta.reset()%c resets the game to the start. In case you\'re lost or just want to go back.', this.formats.help, this.formats.default);
+        console.log('%cta.help()%c displays this message.', this.formats.help, this.formats.default);
     }
 
     /**
@@ -259,6 +267,8 @@ export default class TextAdventure extends Component {
      */
     startGame() {
         this.help();
+        console.log('Now go and %cexplore this website%c!', this.formats.help, this.formats.default);
+        console.log(' ');
         this.log(`✨ You find yourself in a mansions ${this.getCurrentRoom().name}`);
         ta.inspect(this.getCurrentRoom().name);
     }
