@@ -15,7 +15,7 @@
     "Mug": {
         "name": "Mug",
         "description": "This is a tea mug.",
-        "interaction": "You drink from the cup."
+        "interaction": "You grab the mug as it turns to you and yells \"Gimme all your tea!\" Seems like you're getting mugged."
     },
     "Bookshelf": {
         "name": "Bookshelf",
@@ -35,36 +35,62 @@
     },
     "Curiosity": {
         "name": "Curiosity",
-        "description": "You take a step towards a curiosity. The mars rover bleeps happily as to greet you."
+        "description": "You take a step towards a curiosity. The mars rover bleeps happily as to greet you.",
+        "interaction": "You stretch out your hand and it gives you a piece of marks rock."
     },
     "Curiosities": {
         "name": "Curiosities",
-        "description": "You take a step towards a curiosity. The mars rover bleeps happily as to greet you."
+        "description": "You take a step towards a curiosity. The mars rover bleeps happily as to greet you.",
+        "interaction": "You stretch out your hand and it gives you a piece of marks rock."
     },
-    "Catalogue": {
-        "name": "Catalogue",
-        "description": "",
-        "interaction": "You browse through the pages. There are several artworks listed:",
-        "method": "listArticles"
+    "Display Case": {
+        "name": "Display Case",
+        "description": "You see some intricate, well crafted artworks and a lot of tryhard wannabe mordern art trash.",
+        "interaction": "The display case exhibits an impressive collection of art. Your gaze glides right past it and focuses on the weird junk next to the intricate pieces. Here's what you see:",
+        "method": "listArt"
     },
     "Spiderwebs": {
         "name": "Spiderwebs",
-        "description": ""
+        "description": "Spiderwebs give a room a certain flair."
     },
     "Spiderweb": {
         "name": "Spiderweb",
-        "description": ""
+        "description": "Spiderwebs give a room a certain flair."
     },
     "Spider": {
         "name": "Spider",
-        "description": ""
+        "description": "Itsy bitsy spider, eating a dead fly - ripping it apart and munching with a smile"
     },
     "Dead Fly": {
         "name": "Dead Fly",
-        "description": ""
+        "description": "It doesn't look too healthy."
     },
     "Bottle": {
         "name": "Bottle",
-        "description": ""
+        "description": "You take a sip."
+    },
+    "VHS Recorder": {
+        "name": "VHS Recorder",
+        "description": "It's been a while since you've seen one of those. A wave of nostalgia rolls over you as you remember the soothing rewind sound and analog artifacts on old tapes.",
+        "interaction": "You press the power switch and the silver screen comes to live. Let's have a movie night! There are some tapes scattered around:",
+        "method": "listVideo"
+    },
+    "Silver Screen": {
+        "name": "Silver Screen",
+        "description": "It's called a silver screen, because back in the days it used to be made of silver. Who would've thought!"
+    },
+    "Movie Posters": {
+        "name": "Movie Posters",
+        "description": "'Dogville', 'The Turin Horse', 'The Mill and the Cross'... That's a weird taste in movies."
+    },
+    "Popcorn": {
+        "name": "Popcorn",
+        "description": "Some leftover popcorn",
+        "interaction": "Eww, it's salted!"
+    },
+    "Nachos": {
+        "name": "Nachos",
+        "description": "Some leftover nachos",
+        "interaction": "They're only half as good without cheese dip."
     }
 }

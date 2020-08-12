@@ -365,7 +365,7 @@ export default class TextAdventure extends Component {
      */
     listVideo() {
         this.registerArticleItems('Video', 'You start watching');
-        console.log('💡 Use `ta.use("%Video X%c")` to watch!', this.formats.items, this.formats.default)
+        console.log('💡 Use `ta.use("%cVideo X%c")` to watch!', this.formats.items, this.formats.default)
     }
 
     /**

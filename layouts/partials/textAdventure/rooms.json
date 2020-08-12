@@ -1,7 +1,7 @@
 {
     "Lobby": {
         "url": "/",
-        "description": "You hear a fireplace crackling as your eyes slowly adjust to the shimmering light. Before you tower very large doors with embossed signs: The northern portal says \"Library\", the eastern one \"Museum\" and the western \"Theater\". Behind you, in the southern direction leads the stairway into the Wine Cellar.",
+        "description": "You hear a fireplace crackling as your eyes slowly adjust to the shimmering light. Before you tower very large doors with embossed signs: The northern portal says \"Library\", the eastern one \"Museum\" and the western \"Cinema\". Behind you, in the southern direction leads the stairway into the Wine Cellar.",
         "directions": {
             "north": {
                 "destination": "Library",
@@ -16,8 +16,8 @@
                 "transition": "You climb down the stairs into the wine cellar."
             },
             "west": {
-                "destination": "Theater",
-                "transition": "Through the heavy curtains you enter a desolate theater."
+                "destination": "Cinema",
+                "transition": "Through the heavy curtains you enter a desolate Cinema."
             }
         },
         "objects": {
@@ -44,7 +44,7 @@
     },
     "Museum": {
         "url": "/categories/art/",
-        "description": "All kinds of curiosities are exhibited in dusty glass displays. There's a catalogue right next to the door. To the west is the portal back to the Lobby.",
+        "description": "All kinds of curiosities are exhibited in dusty glass displays. One particular Display Case in the center of the room grabs your attention. It's a bit larger than the others. To the west is the portal back to the Lobby.",
         "directions": {
             "west": {
                 "destination": "Lobby",
@@ -73,21 +73,21 @@
             "bottle": {}
         }
     },
-    "Theater": {
+    "Cinema": {
         "url": "/categories/video/",
-        "description": "To the north are what used to be a stage and now resembles an impressive collection of holes in the floor.",
+        "description": "Before you stretches a big silver screen from the ceiling to the floor. It's ripped and torn in some places and it seems to be hooked up to a VHS recorder on the ground before it. The walls are plastered with movie posters and there are bits of popcorn and nachos scattered around.",
         "directions": {
             "east": {
                 "destination": "Lobby",
                 "transition": "You enter the lobby with a distinct feeling of a deja vú."
-            },
-            "north": {
-                "destination": "Wine Cellar",
-                "transition": "You fall through a hole in the stagefloor and find yourself in the wine cellar."
             }
         },
         "objects": {
-            "vhs recorder": {}
+            "vhs recorder": {},
+            "silver screen": {},
+            "movie posters": {},
+            "popcorn": {},
+            "nachos": {}
         }
     }
 }
