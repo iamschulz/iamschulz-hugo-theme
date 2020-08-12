@@ -1,0 +1,93 @@
+{
+    "Lobby": {
+        "url": "/",
+        "description": "You hear a fireplace crackling as your eyes slowly adjust to the shimmering light. The ceiling is decorated with the banner of the house, dangling over a massive dining table. Before you tower very large doors with embossed signs: The northern portal says \"Library\", the eastern one \"Museum\" and the western \"Cinema\". Behind you, in the southern direction leads the stairway into the Wine Cellar.",
+        "directions": {
+            "north": {
+                "destination": "Library",
+                "transition": "You enter the library"
+            },
+            "east": {
+                "destination": "Museum",
+                "transition": "You enter the museum."
+            },
+            "south": {
+                "destination": "Wine Cellar",
+                "transition": "You climb down the stairs into the wine cellar."
+            },
+            "west": {
+                "destination": "Cinema",
+                "transition": "Through the heavy curtains you enter a desolate Cinema."
+            }
+        },
+        "objects": {
+            "fireplace": {},
+            "banner": {},
+            "table": {},
+            "mug": {}
+        }
+    },
+    "Library": {
+        "url": "/categories/tech/",
+        "description": "The air smeels of dust and paper. The room is dominated by towering bookshelves. To the south is the portal back to the Lobby.",
+        "directions": {
+            "south": {
+                "destination": "Lobby",
+                "transition": "You enter the lobby with a distinct feeling of a deja vú."
+            }
+        },
+        "objects": {
+            "bookshelf": {},
+            "bookshelves": {},
+            "dust": {}
+        }
+    },
+    "Museum": {
+        "url": "/categories/art/",
+        "description": "All kinds of curiosities are exhibited in cracked glass displays. One particular Display Case in the center of the room grabs your attention. It's a bit larger than the others. To the west is the portal back to the Lobby.",
+        "directions": {
+            "west": {
+                "destination": "Lobby",
+                "transition": "You enter the lobby with a distinct feeling of a deja vú."
+            }
+        },
+        "objects": {
+            "curiosity": {},
+            "curiosities": {},
+            "display case": {},
+            "spiderwebs": {},
+            "spider": {},
+            "dead fly": {}
+        }
+    },
+    "Wine Cellar": {
+        "url": "/wine-cellar",
+        "description": "It reeks of the noblest drops that have since turned into vinegar. There's one bottle of wine left intact. You wouldn't dare, would you? To the north is the staircase up into the lobby.",
+        "directions": {
+            "north": {
+                "destination": "Lobby",
+                "transition": "You enter the lobby with a distinct feeling of a deja vú."
+            }
+        },
+        "objects": {
+            "bottle": {}
+        }
+    },
+    "Cinema": {
+        "url": "/categories/video/",
+        "description": "Before you stretches a big silver screen from the ceiling to the floor. It's ripped and torn in some places and it seems to be hooked up to a VHS recorder on the ground before it. The walls are plastered with movie posters and there are bits of popcorn and nachos scattered around. East of you is the portal back into the Lobby.",
+        "directions": {
+            "east": {
+                "destination": "Lobby",
+                "transition": "You enter the lobby with a distinct feeling of a deja vú."
+            }
+        },
+        "objects": {
+            "vhs recorder": {},
+            "silver screen": {},
+            "movie posters": {},
+            "popcorn": {},
+            "nachos": {}
+        }
+    }
+}

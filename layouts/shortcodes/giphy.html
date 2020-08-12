@@ -1,0 +1,4 @@
+{{/* DEFAULTS */}}
+{{ $keyword := .Get "keyword" }}
+
+{{ partial "giphy/giphy.html" (dict "ctx" . "keyword" $keyword) }}

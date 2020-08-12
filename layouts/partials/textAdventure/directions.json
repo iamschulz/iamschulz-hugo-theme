@@ -1,0 +1,14 @@
+{
+    "north": {
+        "name": "north"
+    },
+    "south": {
+        "name": "south"
+    },
+    "east": {
+        "name": "east"
+    },
+    "west": {
+        "name": "west"
+    }
+}
