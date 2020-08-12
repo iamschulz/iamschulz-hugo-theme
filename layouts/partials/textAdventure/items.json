@@ -67,7 +67,9 @@
     },
     "Bottle": {
         "name": "Bottle",
-        "description": "You take a sip."
+        "description": "2020 German red. Sun slope. Flamboyant on the tip of your tongue, rhombus-shaped in the throat. A hint of Hubba Bubba.",
+        "interaction": "You take a sip. A large one.",
+        "method": "drinkWine"
     },
     "VHS Recorder": {
         "name": "VHS Recorder",

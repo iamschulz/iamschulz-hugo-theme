@@ -7,6 +7,7 @@ To do:
 */
 
 import Component from '../../../helpers/component';
+import './textAdventure.scss';
 import * as ROOMS from './rooms.json';
 import * as ITEMS from './items.json';
 import * as DIRECTIONS from './directions.json';
@@ -397,6 +398,14 @@ export default class TextAdventure extends Component {
 
         this.persistState();
         window.location = this.currentItem.url;
+    }
+
+    /**
+     * It is what it is.
+     */
+    drinkWine() {
+        document.body.classList.add('is--drunk');
+        this.log('👁️ Well... maaaaybe too large. You feel a bit dizzy.')
     }
 
     /**
