@@ -62,6 +62,7 @@ const initialize = () => {
         use_native: true,
     });
 
+    /*
     Quicklink.listen({
         ignores: [
             uri => uri.includes('/api-proxy'),
@@ -74,6 +75,7 @@ const initialize = () => {
             uri => uri.includes('#')
         ]
     });
+    */
 }
 
 const loadPolyfills = (src, callback) => {
