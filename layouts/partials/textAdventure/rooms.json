@@ -1,7 +1,7 @@
 {
     "Lobby": {
         "url": "/",
-        "description": "You hear a fireplace crackling as your eyes slowly adjust to the shimmering light. Before you tower very large doors with embossed signs: The northern portal says \"Library\", the eastern one \"Museum\" and the western \"Cinema\". Behind you, in the southern direction leads the stairway into the Wine Cellar.",
+        "description": "You hear a fireplace crackling as your eyes slowly adjust to the shimmering light. The ceiling is decorated with the banner of the house, dangling over a massive dining table. Before you tower very large doors with embossed signs: The northern portal says \"Library\", the eastern one \"Museum\" and the western \"Cinema\". Behind you, in the southern direction leads the stairway into the Wine Cellar.",
         "directions": {
             "north": {
                 "destination": "Library",
@@ -44,7 +44,7 @@
     },
     "Museum": {
         "url": "/categories/art/",
-        "description": "All kinds of curiosities are exhibited in dusty glass displays. One particular Display Case in the center of the room grabs your attention. It's a bit larger than the others. To the west is the portal back to the Lobby.",
+        "description": "All kinds of curiosities are exhibited in cracked glass displays. One particular Display Case in the center of the room grabs your attention. It's a bit larger than the others. To the west is the portal back to the Lobby.",
         "directions": {
             "west": {
                 "destination": "Lobby",
@@ -75,7 +75,7 @@
     },
     "Cinema": {
         "url": "/categories/video/",
-        "description": "Before you stretches a big silver screen from the ceiling to the floor. It's ripped and torn in some places and it seems to be hooked up to a VHS recorder on the ground before it. The walls are plastered with movie posters and there are bits of popcorn and nachos scattered around.",
+        "description": "Before you stretches a big silver screen from the ceiling to the floor. It's ripped and torn in some places and it seems to be hooked up to a VHS recorder on the ground before it. The walls are plastered with movie posters and there are bits of popcorn and nachos scattered around. East of you is the portal back into the Lobby.",
         "directions": {
             "east": {
                 "destination": "Lobby",

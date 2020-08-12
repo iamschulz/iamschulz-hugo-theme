@@ -36,16 +36,16 @@
     "Curiosity": {
         "name": "Curiosity",
         "description": "You take a step towards a curiosity. The mars rover bleeps happily as to greet you.",
-        "interaction": "You stretch out your hand and it gives you a piece of marks rock."
+        "interaction": "You stretch out your hand and it gives you a piece of mars rock."
     },
     "Curiosities": {
         "name": "Curiosities",
         "description": "You take a step towards a curiosity. The mars rover bleeps happily as to greet you.",
-        "interaction": "You stretch out your hand and it gives you a piece of marks rock."
+        "interaction": "You stretch out your hand and it gives you a piece of mars rock."
     },
     "Display Case": {
         "name": "Display Case",
-        "description": "You see some intricate, well crafted artworks and a lot of tryhard wannabe mordern art trash.",
+        "description": "You see some intricate, well crafted artworks between a lot of tryhard wannabe mordern art trash.",
         "interaction": "The display case exhibits an impressive collection of art. Your gaze glides right past it and focuses on the weird junk next to the intricate pieces. Here's what you see:",
         "method": "listArt"
     },
