@@ -1,3 +1,8 @@
+{{ $cssFile := (index .Site.Data.assetManifest "presentation.css") | relURL }}
+<style>
+    {{ readFile (print "/themes/iamschulz-hugo-theme/static" $cssFile) | safeCSS }}
+</style>
+
 <div class="presentation">
     <div class="presentation__head">
         <div class="presentation__image">
