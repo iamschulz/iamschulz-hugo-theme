@@ -64,15 +64,17 @@ const initialize = () => {
 
     Quicklink.listen({
         ignores: [
-            uri => uri.includes('/api-proxy'),
-            uri => uri.includes('/legal'),
-            uri => uri.includes('.zip'),
-            uri => uri.includes('.rar'),
-            uri => uri.includes('.gz'),
-            uri => uri.includes('.7z'),
-            uri => uri.includes('.xml'),
-            uri => uri.includes('#')
-        ]
+            (uri) => uri === window.location.href,
+            (uri) => uri === "https://iamschulz.com/",
+            (uri) => uri.includes("/api-proxy"),
+            (uri) => uri.includes("/legal"),
+            (uri) => uri.includes(".zip"),
+            (uri) => uri.includes(".rar"),
+            (uri) => uri.includes(".gz"),
+            (uri) => uri.includes(".7z"),
+            (uri) => uri.includes(".xml"),
+            (uri) => uri.includes("#"),
+        ],
     });
 }
 
