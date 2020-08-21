@@ -94,14 +94,13 @@ table {
                 border-left: var(--border-width) dashed var(--td-border-color);
             }
         }
-        
+
         &:hover {
             color: var(--base-color);
             --td-border-color: var(--base-color);
             background: var(--grey);
         }
     }
-
 }
 
 blockquote {
