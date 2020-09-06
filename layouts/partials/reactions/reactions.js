@@ -109,7 +109,7 @@ export default class Reactions extends Component {
             return;
         }
 
-        if (!!replyData.content && replyData.content.html) { return; }
+        if (!replyData.content || !replyData.content.html) { return; }
 
         let reply = this.cloneReplyElement();
 
