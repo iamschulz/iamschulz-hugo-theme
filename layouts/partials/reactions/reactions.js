@@ -109,6 +109,8 @@ export default class Reactions extends Component {
             return;
         }
 
+        if (!!replyData.content && replyData.content.html) { return; }
+
         let reply = this.cloneReplyElement();
 
         reply.name.innerHTML = replyData.author.name;
@@ -126,9 +128,7 @@ export default class Reactions extends Component {
             ? new Date(publishDate).toISOString().slice(0,10).split("-").reverse().join(".")
             : "some time";
         
-        if (!!replyData.content && replyData.content.html) {
-            reply.content.innerHTML = replyData.content.html;
-        }
+        reply.content.innerHTML = replyData.content.html;
 
         reply.el.content.firstChild.removeAttribute('hidden');
 
