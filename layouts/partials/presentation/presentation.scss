@@ -132,6 +132,11 @@
 			height: auto;
 			width: auto;
 			margin: 0 0.4ch;
+
+			svg {
+				max-width: 6em;
+				max-height: 3em;
+			}
 		}
 	}
 }
