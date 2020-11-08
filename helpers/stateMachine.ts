@@ -19,25 +19,35 @@
  * stateName.stateValue.off points to a method that is called upon stateValue deactivation
  */
 
-import State from './state';
+import State from "./state";
+import ComponentType from "./types/component";
+//import StatesType from "./types/states";
 
 export default class StateMachine {
-    constructor(component, states) {
-        if (!component || !states) {
-            console.error('State Machine called incorrectly');
-            return;
-        }
+	component: ComponentType;
+	states: any;
+	statesObj: any;
 
-        this.component = component;
-        this.statesObj = states;
-        this.states = {};
+	constructor(component, states) {
+		if (!component || !states) {
+			console.error("State Machine called incorrectly");
+			return;
+		}
 
-        this.registerStates();
-    }
+		this.component = component;
+		this.statesObj = states;
+		this.states = {};
 
-    registerStates() {
-        Object.keys(this.statesObj).forEach((name) => {
-            this.states[name] = new State(name, this.component, this.statesObj[name]);
-        });
-    }
+		this.registerStates();
+	}
+
+	registerStates() {
+		Object.keys(this.statesObj).forEach((name) => {
+			this.states[name] = new State(
+				name,
+				this.component,
+				this.statesObj[name]
+			);
+		});
+	}
 }

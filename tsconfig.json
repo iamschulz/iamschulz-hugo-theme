@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"sourceMap": true,
+		"target": "es2017",
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"lib": ["es2015", "dom", "es2017"]
+	}
+}
