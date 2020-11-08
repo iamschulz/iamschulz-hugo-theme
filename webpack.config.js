@@ -30,7 +30,10 @@ module.exports = (env) => {
 				},
 				{
 					test: /\.ts$/,
-					loader: "awesome-typescript-loader",
+					exclude: /(node_modules)/,
+					use: {
+						loader: "ts-loader",
+					},
 				},
 				{
 					test: /\.worker\.js$/,
