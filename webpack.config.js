@@ -68,7 +68,7 @@ module.exports = (env) => {
 			],
 		},
 		resolve: {
-			extensions: [".ts", ".js"],
+			extensions: [".ts", ".js", ".css", ".scss"],
 		},
 		devtool: "source-map",
 		plugins: [

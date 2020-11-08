@@ -85,6 +85,14 @@ window.Modules = {
 		),
 };
 
+// generate chunk. this is not used by any other js, because it's meant to be loaded manually in html
+window.ManualLoad = {
+	presentation: () =>
+		import(
+			/* webpackChunkName: 'presentation' */ "../../layouts/partials/presentation/presentation.scss"
+		),
+};
+
 const initialize = () => {
 	window.EventBus = new EventBus();
 	window.StateMachine = StateMachine;
