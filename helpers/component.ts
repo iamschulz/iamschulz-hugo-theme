@@ -3,12 +3,13 @@ declare const EventBus: any;
 export default class Component {
 	el: HTMLElement;
 	componentName: string;
-	init: Function;
 
 	constructor(el) {
 		this.el = el;
 		this.componentName = this.el.dataset.component;
 	}
+
+	init() {}
 
 	startComponent() {
 		this.assignComponentElements();

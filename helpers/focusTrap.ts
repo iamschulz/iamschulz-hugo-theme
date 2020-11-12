@@ -4,7 +4,12 @@ export default class FocusTrap {
 
 	constructor() {
 		this.el = null;
+		this.boundOnFocusOut = (event) => {
+			this.onFocusOut(event);
+		};
 	}
+
+	boundOnFocusOut(event: FocusEvent) {}
 
 	set Element(newEl) {
 		if (newEl) {
@@ -19,11 +24,11 @@ export default class FocusTrap {
 		this.firstFocusableEl = this.el.querySelector(
 			'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
 		);
-		document.addEventListener("focusout", this.onFocusOut);
+		document.addEventListener("focusout", this.boundOnFocusOut);
 	}
 
-	onFocusOut(event: FocusEvent) {
-		if (!this.el.contains(<HTMLElement>event.relatedTarget)) {
+	onFocusOut(event) {
+		if (!this.el.contains(event.relatedTarget)) {
 			this.firstFocusableEl.focus();
 		}
 	}
@@ -31,10 +36,10 @@ export default class FocusTrap {
 	unsetFocusTrigger() {
 		this.el = null;
 		this.firstFocusableEl = null;
-		document.removeEventListener("focusout", this.onFocusOut);
+		document.removeEventListener("focusout", this.boundOnFocusOut);
 	}
 
 	destroy() {
-		document.removeEventListener("focusout", this.onFocusOut);
+		document.removeEventListener("focusout", this.boundOnFocusOut);
 	}
 }

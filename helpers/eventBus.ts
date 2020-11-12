@@ -1,15 +1,7 @@
-interface Event {
-	[key: number]: Function;
-	// 1: callback(payload);
-}
-
-interface Subscriptions {
-	[key: string]: Event;
-	// onEventName: Event;
-}
+import subscriptionsType from "./types/subscriptions";
 
 export default class EventBus {
-	subscriptions: Subscriptions;
+	subscriptions: subscriptionsType;
 	lastId: number;
 
 	constructor() {

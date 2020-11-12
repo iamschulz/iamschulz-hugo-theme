@@ -8,7 +8,6 @@ import Quicklink from "quicklink/dist/quicklink.js";
 import ComponentLoader from "../componentLoader";
 // eslint-disable-next-line no-unused-vars
 import Component from "../component";
-import StateMachine from "../stateMachine";
 import EventBus from "../eventBus";
 import FocusTrap from "../focusTrap";
 import TextAdventureLoader from "../textAdventureLoader";
@@ -95,7 +94,6 @@ window.ManualLoad = {
 
 const initialize = () => {
 	window.EventBus = new EventBus();
-	window.StateMachine = StateMachine;
 	window.FocusTrap = new FocusTrap();
 	window.ComponentLoader = new ComponentLoader();
 	window.ComponentLoader.updateDom();
