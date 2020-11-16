@@ -21,12 +21,16 @@
 
 import State from "./state";
 import ComponentType from "./types/component";
-//import StatesType from "./types/states";
+import { States as StatesType } from "./types/states";
+
+interface StatesCollection {
+	[key: string]: StatesType;
+}
 
 export default class StateMachine {
 	component: ComponentType;
-	states: any;
-	statesObj: any;
+	states: StatesType; // registered States
+	statesConfig: StatesCollection; // available States
 
 	constructor(component, states) {
 		if (!component || !states) {
@@ -35,18 +39,18 @@ export default class StateMachine {
 		}
 
 		this.component = component;
-		this.statesObj = states;
-		this.states = {};
+		this.statesConfig = states;
+		this.states = Object();
 
 		this.registerStates();
 	}
 
 	registerStates() {
-		Object.keys(this.statesObj).forEach((name) => {
+		Object.keys(this.statesConfig).forEach((name) => {
 			this.states[name] = new State(
 				name,
 				this.component,
-				this.statesObj[name]
+				this.statesConfig[name]
 			);
 		});
 	}

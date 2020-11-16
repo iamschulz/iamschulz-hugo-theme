@@ -1,6 +1,11 @@
-import StateValueType from "./stateValue";
+export interface StateValue {
+	name: string;
+	event: string;
+	on?: string;
+	off?: string;
+}
 
-export default interface States {
-	[key: string]: StateValueType;
-	value?: any;
+export interface States {
+	triggers: Array<StateValue>;
+	value?: string;
 }

@@ -1,5 +1,5 @@
 import ComponentType from "./types/component";
-import StatesType from "./types/states";
+import { States as StatesType, StateValue } from "./types/states";
 
 declare const EventBus: any;
 
@@ -8,13 +8,13 @@ export default class State {
 	el: HTMLElement;
 	states: StatesType;
 	component: ComponentType;
-	currentState: any;
+	currentState: string;
 
-	constructor(name, component, state) {
+	constructor(name: string, component: ComponentType, state: StatesType) {
 		this.name = name;
 		this.states = state;
 		this.component = component;
-		this.currentState = null;
+		this.currentState = null; //todo: rename to currentStateName
 
 		this.addEventMethods();
 
@@ -37,24 +37,29 @@ export default class State {
 	}
 
 	addEventMethods() {
-		Object.keys(this.states).forEach((index) => {
-			const state = this.states[index];
-			if (typeof state !== "object" || !state.event) return;
+		this.states.triggers &&
+			this.states.triggers.forEach((trigger) => {
+				if (typeof trigger !== "object" || !trigger.event) return;
 
-			EventBus.subscribe(state.event, (eventEl) => {
-				this.changeState(index, eventEl);
+				EventBus.subscribe(trigger.event, (eventEl) => {
+					this.changeState(trigger.name, eventEl);
+				});
 			});
-		});
 	}
 
-	changeState(newState, eventEl) {
+	changeState(newState: string, eventEl: HTMLElement) {
 		if (!newState || newState === this.currentState) {
 			return;
 		}
 
 		if (!eventEl || this.isThisInstance(eventEl)) {
 			this.updateStateValue(newState);
-			this.triggerStateTransitionMethods(this.states[newState]);
+			this.states.triggers &&
+				this.triggerStateTransitionMethods(
+					this.states.triggers.filter(
+						(trigger) => trigger.name === newState
+					)[0]
+				);
 		}
 	}
 
@@ -62,17 +67,19 @@ export default class State {
 		return eventEl === this.component.el;
 	}
 
-	triggerStateTransitionMethods(state) {
+	triggerStateTransitionMethods(state: StateValue) {
 		if (state && state.on) this.component[state.on]();
-		if (
-			this.states[this.currentState] &&
-			this.states[this.currentState].off
-		) {
-			this.component[this.states[this.currentState].off]();
+
+		const currentStateObj = this.states.triggers
+			? this.states.triggers.filter((trigger) => trigger === state)[0]
+			: null;
+
+		if (currentStateObj && currentStateObj.off) {
+			this.component[currentStateObj.off]();
 		}
 	}
 
-	updateStateValue(newState) {
+	updateStateValue(newState: string) {
 		const dataName = this.name.charAt(0).toUpperCase() + this.name.slice(1);
 		this.component.el.dataset[`state${dataName}`] = newState;
 

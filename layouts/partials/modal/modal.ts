@@ -16,14 +16,18 @@ export default class Modal extends Component {
 		this.StateMachine = new StateMachine(this, {
 			toggle: {
 				value: "closed",
-				closed: {
-					event: "onModalClose",
-					on: "closeModal",
-				},
-				open: {
-					event: "onModalOpen",
-					on: "openModal",
-				},
+				triggers: [
+					{
+						name: "closed",
+						event: "onModalClose",
+						on: "closeModal",
+					},
+					{
+						name: "open",
+						event: "onModalOpen",
+						on: "openModal",
+					},
+				],
 			},
 		});
 

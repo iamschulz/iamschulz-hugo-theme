@@ -14,12 +14,16 @@ export default class ColorSchemeToggle extends Component {
 				value: window.matchMedia("(prefers-color-scheme:dark)").matches
 					? "dark"
 					: "light",
-				dark: {
-					event: "onColorSchemeDark",
-				},
-				light: {
-					event: "onColorSchemeLight",
-				},
+				triggers: [
+					{
+						name: "dark",
+						event: "onColorSchemeDark",
+					},
+					{
+						name: "light",
+						event: "onColorSchemeLight",
+					},
+				],
 			},
 		});
 

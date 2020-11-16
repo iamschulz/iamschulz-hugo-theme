@@ -9,20 +9,28 @@ export default class body extends Component {
 		this.StateMachine = new StateMachine(this, {
 			scrolling: {
 				value: "enabled",
-				disabled: {
-					event: "onDisableScroll",
-				},
-				enabled: {
-					event: "onEnableScroll",
-				},
+				triggers: [
+					{
+						name: "disabled",
+						event: "onDisableScroll",
+					},
+					{
+						name: "enabled",
+						event: "onEnableScroll",
+					},
+				],
 			},
 			colorScheme: {
-				dark: {
-					event: "onColorSchemeDark",
-				},
-				light: {
-					event: "onColorSchemeLight",
-				},
+				triggers: [
+					{
+						name: "dark",
+						event: "onColorSchemeDark",
+					},
+					{
+						name: "light",
+						event: "onColorSchemeLight",
+					},
+				],
 			},
 		});
 	}

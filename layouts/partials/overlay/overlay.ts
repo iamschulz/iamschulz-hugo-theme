@@ -14,14 +14,18 @@ export default class Overlay extends Component {
 		this.StateMachine = new StateMachine(this, {
 			toggle: {
 				value: "closed",
-				closed: {
-					event: "onOverlayClose",
-					on: "publishCloseEvents",
-				},
-				open: {
-					event: "onOverlayOpen",
-					on: "publishOpenEvents",
-				},
+				triggers: [
+					{
+						name: "closed",
+						event: "onOverlayClose",
+						on: "publishCloseEvents",
+					},
+					{
+						name: "open",
+						event: "onOverlayOpen",
+						on: "publishOpenEvents",
+					},
+				],
 			},
 		});
 
@@ -34,8 +38,7 @@ export default class Overlay extends Component {
 		this.el.addEventListener("click", this.boundOnClick);
 
 		this.boundOnKeyUp = (event) => {
-			debugger;
-			if (event.key === "escape") {
+			if (event.key === "Escape") {
 				this.unassignElement();
 				EventBus.publish("onOverlayClose", this.el);
 			}
