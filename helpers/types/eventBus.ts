@@ -1,7 +1,15 @@
-import subscriptionsType from "./subscriptions";
+export interface Event {
+	[key: number]: Function;
+	// 1: callback(payload);
+}
 
-export default interface EventBus {
-	subscriptions: subscriptionsType;
+export interface Subscriptions {
+	[key: string]: Event;
+	// onEventName: Event;
+}
+
+export interface EventBus {
+	subscriptions: Subscriptions;
 	lastId: number;
 	publish: Function;
 	subscribe: Function;

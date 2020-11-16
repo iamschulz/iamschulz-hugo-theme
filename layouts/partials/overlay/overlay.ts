@@ -1,7 +1,7 @@
 import Component from "../../../helpers/component";
 import StateMachine from "../../../helpers/stateMachine";
 import StateMachineType from "../../../helpers/types/stateMachineInstance";
-import eventBusType from "../../../helpers/types/eventBus";
+import { EventBus as eventBusType } from "../../../helpers/types/eventBus";
 declare const EventBus: eventBusType;
 
 export default class Overlay extends Component {

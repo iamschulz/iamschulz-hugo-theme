@@ -1,5 +1,5 @@
 import Component from "../../../helpers/component";
-import eventBusType from "../../../helpers/types/eventBus";
+import { EventBus as eventBusType } from "../../../helpers/types/eventBus";
 declare const EventBus: eventBusType;
 
 export default class TableOfContents extends Component {

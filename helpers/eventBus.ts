@@ -1,4 +1,4 @@
-import subscriptionsType from "./types/subscriptions";
+import { Subscriptions as subscriptionsType } from "./types/eventBus";
 
 export default class EventBus {
 	subscriptions: subscriptionsType;
@@ -9,7 +9,7 @@ export default class EventBus {
 		this.lastId = 0;
 	}
 
-	subscribe(eventName, callback) {
+	subscribe(eventName: string, callback: Function) {
 		if (!eventName || !callback) {
 			return;
 		}
@@ -28,7 +28,7 @@ export default class EventBus {
 		return id;
 	}
 
-	unsubscribe(eventName, id) {
+	unsubscribe(eventName: string, id: number) {
 		if (!eventName || !id) {
 			return;
 		}
@@ -39,7 +39,7 @@ export default class EventBus {
 		}
 	}
 
-	publish(eventName, arg) {
+	publish(eventName: string, arg: any) {
 		if (!eventName) {
 			return;
 		}
