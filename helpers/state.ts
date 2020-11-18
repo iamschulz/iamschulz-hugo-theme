@@ -1,7 +1,8 @@
 import ComponentType from "./types/component";
 import { States as StatesType, StateValue } from "./types/states";
+import { EventBus as eventBusType } from "./types/eventBus";
 
-declare const EventBus: any;
+declare const EventBus: eventBusType;
 
 export default class State {
 	name: String;

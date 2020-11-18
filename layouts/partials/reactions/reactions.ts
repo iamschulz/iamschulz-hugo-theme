@@ -1,11 +1,41 @@
 import Component from "../../../helpers/component";
 
+interface devReply {
+	type_of: string;
+	id_code: string;
+	created_at: string;
+	body_html: string;
+	user: {
+		name: string;
+		username: string;
+		profile_image_90: string;
+	};
+}
+
+interface wmReply {
+	author: {
+		name: string;
+		url?: string;
+		photo?: string;
+	};
+	content?: {
+		text: string;
+		html: string;
+	};
+	published: string;
+	"like-of": string;
+	"repost-of": string;
+}
+
 export default class Reactions extends Component {
 	apiProxyUrl: string;
 	webmentionsUrl: string;
 	devId: string;
 	targetUrl: string;
-	replies: Array<any>; // todo: refactor into object<timestamp:htmlElement>
+	replies: Array<{
+		timestamp: number;
+		body: string;
+	}>;
 	fetches: Array<Promise<void>>;
 	likes: number;
 	devCommentCounter: number;
@@ -63,7 +93,9 @@ export default class Reactions extends Component {
 		return fetch(apiFetchUrl)
 			.then((response) => response.json())
 			.then((data) => {
-				Array.from(data).forEach((reply) => this.addDevReply(reply));
+				Array.from(data).forEach((reply) =>
+					this.addDevReply(<devReply>reply)
+				);
 				this.devCommentCounter++;
 			})
 			.catch(() => {
@@ -95,7 +127,7 @@ export default class Reactions extends Component {
 			.then((response) => response.json())
 			.then((data) => {
 				Array.from(data.children).forEach((reply) =>
-					this.addWebmentionReply(reply)
+					this.addWebmentionReply(<wmReply>reply)
 				);
 				this.wmCommentCounter++;
 			})
@@ -104,64 +136,68 @@ export default class Reactions extends Component {
 			});
 	}
 
-	addDevReply(replyData) {
-		if (!replyData.user || !replyData.user.name || !replyData.body_html) {
+	addDevReply(devReplyData: devReply) {
+		if (
+			!devReplyData.user ||
+			!devReplyData.user.name ||
+			!devReplyData.body_html
+		) {
 			return;
 		}
 
 		let reply = this.cloneReplyElement();
 
-		reply.name.innerHTML = replyData.user.name;
+		reply.name.innerHTML = devReplyData.user.name;
 		reply.via.innerHTML = "via DEV";
-		reply.via.href = `https://dev.to/${replyData.user.username}/comment/${replyData.id_code}`;
+		reply.via.href = `https://dev.to/${devReplyData.user.username}/comment/${devReplyData.id_code}`;
 
-		reply.link.href = `https://dev.to/${replyData.user.username}`;
-		reply.avatar.src = replyData.user.profile_image_90 || "";
+		reply.link.href = `https://dev.to/${devReplyData.user.username}`;
+		reply.avatar.src = devReplyData.user.profile_image_90 || "";
 
-		// dev api beta doesn't send publish dates for comments
-		const publishDate = replyData.published || -1;
+		const publishDate = devReplyData.created_at || -1;
 		reply.date.remove();
 
-		reply.content.innerHTML = replyData.body_html;
+		reply.content.innerHTML = devReplyData.body_html;
 
 		(<HTMLElement>reply.el.content.firstChild).removeAttribute("hidden");
 
 		const timestamp =
 			new Date(publishDate).getTime() + this.devCommentCounter;
-		this.replies.push([
-			timestamp,
-			(<HTMLElement>reply.el.content.firstChild).outerHTML,
-		]);
+		this.replies.push({
+			timestamp: timestamp,
+			body: (<HTMLElement>reply.el.content.firstChild).outerHTML,
+		});
 	}
 
-	addWebmentionReply(replyData) {
-		if (!replyData.author || !replyData.author.name) {
+	addWebmentionReply(wmReplyData: wmReply) {
+		console.log("wm", wmReplyData);
+		if (!wmReplyData.author || !wmReplyData.author.name) {
 			return;
 		}
 
-		if (!!replyData && replyData["like-of"] === this.targetUrl) {
+		if (!!wmReplyData && wmReplyData["like-of"] === this.targetUrl) {
 			this.likes += 1;
 			return;
 		}
 
-		if (!replyData.content || !replyData.content.html) {
+		if (!wmReplyData.content || !wmReplyData.content.html) {
 			return;
 		}
 
 		let reply = this.cloneReplyElement();
 
-		reply.name.innerHTML = replyData.author.name;
+		reply.name.innerHTML = wmReplyData.author.name;
 		const source =
-			new URL(replyData["url"]).host === "twitter.com"
+			new URL(wmReplyData["url"]).host === "twitter.com"
 				? "twitter"
-				: new URL(replyData["wm-source"]).host;
+				: new URL(wmReplyData["wm-source"]).host;
 		reply.via.innerHTML = `via ${source}`;
-		reply.via.href = replyData["wm-source"];
+		reply.via.href = wmReplyData["wm-source"];
 
-		reply.link.href = replyData.author.url || replyData["wm-source"];
-		reply.avatar.src = replyData.author.photo || "";
+		reply.link.href = wmReplyData.author.url || wmReplyData["wm-source"];
+		reply.avatar.src = wmReplyData.author.photo || "";
 
-		const publishDate = replyData.published || replyData["wm-received"];
+		const publishDate = wmReplyData.published || wmReplyData["wm-received"];
 		reply.date.innerHTML = publishDate
 			? new Date(publishDate)
 					.toISOString()
@@ -171,16 +207,16 @@ export default class Reactions extends Component {
 					.join(".")
 			: "some time";
 
-		reply.content.innerHTML = replyData.content.html;
+		reply.content.innerHTML = wmReplyData.content.html;
 
 		(<HTMLElement>reply.el.content.firstChild).removeAttribute("hidden");
 
 		let timestamp = publishDate ? new Date(publishDate).getTime() : 0;
 		timestamp = timestamp + this.wmCommentCounter;
-		this.replies.push([
-			timestamp,
-			(<HTMLElement>reply.el.content.firstChild).outerHTML,
-		]);
+		this.replies.push({
+			timestamp: timestamp,
+			body: (<HTMLElement>reply.el.content.firstChild).outerHTML,
+		});
 	}
 
 	cloneReplyElement() {
@@ -228,13 +264,11 @@ export default class Reactions extends Component {
 			return;
 		}
 
-		this.replies.sort(function (a, b) {
-			return a[0] - b[0];
-		});
+		this.replies.sort((a, b) => b.timestamp - a.timestamp);
 
 		let replyListHTML = "";
 		this.replies.forEach((reply) => {
-			replyListHTML += reply[1];
+			replyListHTML += reply.body;
 		});
 
 		this.replyList.insertAdjacentHTML("beforeend", replyListHTML);

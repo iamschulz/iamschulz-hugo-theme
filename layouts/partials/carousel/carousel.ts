@@ -2,6 +2,8 @@ import "./carousel.scss";
 import Component from "../../../helpers/component";
 import SwipeDetection from "../../../helpers/swipeDetection";
 
+//todo: interface swipe events from swipe detection
+
 export default class Carousel extends Component {
 	grid: HTMLElement;
 	items: Array<HTMLElement>;

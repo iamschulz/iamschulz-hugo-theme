@@ -1,3 +1,5 @@
+import ComponentType from "./component";
+
 export interface StateValue {
 	name: string;
 	event: string;
@@ -8,4 +10,14 @@ export interface StateValue {
 export interface States {
 	triggers: Array<StateValue>;
 	value?: string;
+}
+
+export interface StatesCollection {
+	[key: string]: States;
+}
+
+export interface StateMachine {
+	component: ComponentType;
+	states: States;
+	statesConfig: StatesCollection;
 }

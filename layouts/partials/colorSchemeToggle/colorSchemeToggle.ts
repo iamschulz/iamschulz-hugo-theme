@@ -1,6 +1,6 @@
 import Component from "../../../helpers/component";
 import StateMachine from "../../../helpers/stateMachine";
-import StateMachineType from "../../../helpers/types/stateMachineInstance";
+import { StateMachine as StateMachineType } from "../../../helpers/types/states";
 import { EventBus as eventBusType } from "../../../helpers/types/eventBus";
 declare const EventBus: eventBusType;
 

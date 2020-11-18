@@ -19,10 +19,10 @@ export default class Search extends Component {
 		});
 	}
 
-	rgbToHex(rgb) {
+	rgbToHex(rgb: Array<number>) {
 		return `#${[rgb[0], rgb[1], rgb[2]]
 			.map((x) => {
-				const hex = parseInt(x, 10).toString(16);
+				const hex = x.toString(16);
 				return hex.length === 1 ? `0${hex}` : hex;
 			})
 			.join("")}`;
@@ -30,7 +30,12 @@ export default class Search extends Component {
 
 	getRGBValues(source: string) {
 		const bodyStyles = getComputedStyle(document.body);
-		return { ...bodyStyles.getPropertyValue(source).match(/\d+/g) };
+		return {
+			...bodyStyles
+				.getPropertyValue(source)
+				.match(/\d+/g)
+				.map((x) => Number(x)),
+		};
 	}
 
 	setDDGTheme() {

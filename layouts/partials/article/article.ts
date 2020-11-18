@@ -2,6 +2,11 @@ import Component from "../../../helpers/component";
 import { EventBus as eventBusType } from "../../../helpers/types/eventBus";
 declare const EventBus: eventBusType;
 
+interface paragraphInScreen {
+	headline: HTMLElement;
+	inScreen: Boolean;
+}
+
 export default class Article extends Component {
 	el: HTMLElement;
 	content: HTMLElement;
@@ -40,11 +45,13 @@ export default class Article extends Component {
 							entry.isIntersecting === true
 					).length > 0;
 
-				const assignedHeadline = Array.from(this.headlines).filter(
-					(headline: HTMLElement) =>
-						headline.dataset.articleSectionIndex ===
-						thisSectionIndex
-				)[0];
+				const assignedHeadline = <HTMLElement>(
+					Array.from(this.headlines).filter(
+						(headline: HTMLElement) =>
+							headline.dataset.articleSectionIndex ===
+							thisSectionIndex
+					)[0]
+				);
 
 				this.sendEvent({
 					headline: assignedHeadline,
@@ -62,7 +69,7 @@ export default class Article extends Component {
 		});
 	}
 
-	sendEvent(payload) {
+	sendEvent(payload: paragraphInScreen) {
 		if (!payload || !payload.headline) {
 			return;
 		}

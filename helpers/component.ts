@@ -1,4 +1,5 @@
-declare const EventBus: any;
+import { EventBus as eventBusType } from "./types/eventBus";
+declare const EventBus: eventBusType;
 
 export default class Component {
 	el: HTMLElement;

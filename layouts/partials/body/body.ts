@@ -1,5 +1,5 @@
 import Component from "../../../helpers/component";
-import StateMachineType from "../../../helpers/types/stateMachineInstance";
+import { StateMachine as StateMachineType } from "../../../helpers/types/states";
 import StateMachine from "../../../helpers/stateMachine";
 
 export default class body extends Component {

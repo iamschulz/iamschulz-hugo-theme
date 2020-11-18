@@ -21,16 +21,15 @@
 
 import State from "./state";
 import ComponentType from "./types/component";
-import { States as StatesType } from "./types/states";
-
-interface StatesCollection {
-	[key: string]: StatesType;
-}
+import {
+	States as StatesType,
+	StatesCollection as StatesCollectionType,
+} from "./types/states";
 
 export default class StateMachine {
 	component: ComponentType;
 	states: StatesType; // registered States
-	statesConfig: StatesCollection; // available States
+	statesConfig: StatesCollectionType; // available States
 
 	constructor(component, states) {
 		if (!component || !states) {
