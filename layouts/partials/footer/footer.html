@@ -13,3 +13,10 @@
 </footer>
 
 <script src="{{- (index .Site.Data.assetManifest "index.js") | relURL -}}" defer></script>
+<script>
+    var supportsES6 = function() {
+        try { new Function("(a = 0) => a"); return true; } 
+        catch (err) { return false;}
+    }();
+    if (!supportsES6) { document.write('<script src="{{ "/js/legacy.es5.js" | absURL }}"><\/script>'); }
+</script>

@@ -23,7 +23,7 @@ module.exports = (env) => {
 			rules: [
 				{
 					test: /\.js$/,
-					exclude: /(node_modules)/,
+					exclude: [/(node_modules)/, /\.es5.js$/],
 					use: {
 						loader: "babel-loader",
 					},
@@ -80,6 +80,7 @@ module.exports = (env) => {
 			new CopyPlugin([
 				{ from: "assets/fonts", to: "fonts" },
 				{ from: "assets/img", to: "img" },
+				{ from: "./helpers/legacy.es5.js", to: "js" },
 			]),
 			new FixStyleOnlyEntriesPlugin(),
 			new BundleAnalyzerPlugin({
