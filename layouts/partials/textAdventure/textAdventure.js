@@ -6,18 +6,18 @@ To do:
 - add read method for content
 */
 
-import StateMachine from "../../../helpers/stateMachine";
-import Component from "../../../helpers/component";
-import "./textAdventure.scss";
-import * as ROOMS from "./rooms.json";
-import * as ITEMS from "./items.json";
-import * as DIRECTIONS from "./directions.json";
+import StateMachine from '../../../helpers/stateMachine';
+import Component from '../../../helpers/component';
+import './textAdventure.scss';
+import * as ROOMS from './rooms.json';
+import * as ITEMS from './items.json';
+import * as DIRECTIONS from './directions.json';
 
 class Room {
 	constructor(config) {
-		this.name = config.name || "";
-		this.description = config.description || "";
-		this.url = config.url || "";
+		this.name = config.name || '';
+		this.description = config.description || '';
+		this.url = config.url || '';
 		this.directions = config.directions || {};
 		this.objects = config.objects || {};
 	}
@@ -25,16 +25,16 @@ class Room {
 
 class Item {
 	constructor(config) {
-		this.name = config.name || "";
-		this.description = config.description || "";
-		this.interaction = config.interaction || "";
-		this.method = config.method || "";
+		this.name = config.name || '';
+		this.description = config.description || '';
+		this.interaction = config.interaction || '';
+		this.method = config.method || '';
 	}
 }
 
 class Direction {
 	constructor(config) {
-		this.name = config.name || "";
+		this.name = config.name || '';
 	}
 }
 
@@ -56,12 +56,12 @@ export default class TextAdventure extends Component {
 	 */
 	setupGlobals() {
 		this.formats = {
-			default: "color: unset; font-weight: normal;",
-			directions: "color: salmon; font-weight: 900;",
-			items: "color: teal; font-weight: 900;",
-			rooms: "color: cornflowerblue; font-weight: 900;",
-			help: "color: gold; font-weoght: 900;",
-			error: "color: red; font-weight: 900;",
+			default: 'color: unset; font-weight: normal;',
+			directions: 'color: salmon; font-weight: 900;',
+			items: 'color: teal; font-weight: 900;',
+			rooms: 'color: cornflowerblue; font-weight: 900;',
+			help: 'color: gold; font-weoght: 900;',
+			error: 'color: red; font-weight: 900;',
 		};
 
 		window.ta = {
@@ -92,10 +92,11 @@ export default class TextAdventure extends Component {
 	setupRooms() {
 		const startingRoom = sessionStorage.ta
 			? JSON.parse(sessionStorage.ta).rooms
-			: "Lobby";
+			: 'Lobby';
 		const roomsStateConfig = {
 			room: {
 				value: startingRoom,
+				triggers: [],
 			},
 		};
 
@@ -105,10 +106,11 @@ export default class TextAdventure extends Component {
 			roomConfig.name = room;
 			this.rooms[room] = new Room(roomConfig);
 
-			roomsStateConfig.room[room] = {
+			roomsStateConfig.room.triggers.push({
+				name: room,
 				event: `taEnter${room[0].toUpperCase() + room.substring(1)}`,
-				on: "onEnterRoom",
-			};
+				on: 'onEnterRoom',
+			});
 		});
 
 		this.roomsState = new StateMachine(this, roomsStateConfig);
@@ -130,9 +132,9 @@ export default class TextAdventure extends Component {
 	 * displays a help text explaining how to play
 	 */
 	help() {
-		console.log("💡 %cHey! Listen!", this.formats.help);
+		console.log('💡 %cHey! Listen!', this.formats.help);
 		console.log(
-			"You are in Text Adventure mode. That means you can navigate this site as if it were an early computer game."
+			'You are in Text Adventure mode. That means you can navigate this site as if it were an early computer game.'
 		);
 		console.log("It's probably full of bugs and I don't care.");
 		console.log(
@@ -176,7 +178,7 @@ export default class TextAdventure extends Component {
 			this.formats.default
 		);
 		console.log(
-			"• %cta.help()%c displays this message.",
+			'• %cta.help()%c displays this message.',
 			this.formats.help,
 			this.formats.default
 		);
@@ -196,7 +198,7 @@ export default class TextAdventure extends Component {
 
 		if (!direction) {
 			this.log(
-				`❌ You may only go ${Object.keys(this.directions).join(", ")}.`
+				`❌ You may only go ${Object.keys(this.directions).join(', ')}.`
 			);
 			return;
 		}
@@ -217,6 +219,7 @@ export default class TextAdventure extends Component {
 			`taEnter${newRoom[0].toUpperCase() + newRoom.substring(1)}`,
 			this.el
 		);
+
 		this.persistState();
 		this.loadRoomUrl();
 	}
@@ -328,8 +331,8 @@ export default class TextAdventure extends Component {
 
 		parsed = parsed.replace(
 			new RegExp(
-				triggers.map((trigger) => `(${trigger.word})`).join("|"),
-				"gi"
+				triggers.map((trigger) => `(${trigger.word})`).join('|'),
+				'gi'
 			),
 			(match) => {
 				let format = triggers.filter((trigger) => {
@@ -350,11 +353,11 @@ export default class TextAdventure extends Component {
 	startGame() {
 		this.help();
 		console.log(
-			"Now go and %cexplore this website%c!",
+			'Now go and %cexplore this website%c!',
 			this.formats.help,
 			this.formats.default
 		);
-		console.log(" ");
+		console.log(' ');
 		this.log(
 			`✨ You find yourself in a mansions ${this.getCurrentRoom().name}`
 		);
@@ -383,7 +386,7 @@ export default class TextAdventure extends Component {
 		) {
 			this.log(`⚡ ${store.currentItem.interaction}`);
 			console.log(
-				"💡 Use %cta.finish()%c to go back.",
+				'💡 Use %cta.finish()%c to go back.',
 				this.formats.help,
 				this.formats.default
 			);
@@ -398,8 +401,8 @@ export default class TextAdventure extends Component {
 	persistState() {
 		sessionStorage.ta = JSON.stringify({
 			rooms: this.getCurrentRoom().name,
-			currentItem: this.currentItem ? this.currentItem : "",
-			lastTransition: this.lastTransition ? this.lastTransition : "",
+			currentItem: this.currentItem ? this.currentItem : '',
+			lastTransition: this.lastTransition ? this.lastTransition : '',
 		});
 	}
 
@@ -442,7 +445,7 @@ export default class TextAdventure extends Component {
 	 * lists all books (for /tech)
 	 */
 	listBooks() {
-		this.registerArticleItems("Book", "You delve into");
+		this.registerArticleItems('Book', 'You delve into');
 		console.log(
 			'💡 Use `ta.use("%cBook X%c")` to read!',
 			this.formats.items,
@@ -454,7 +457,7 @@ export default class TextAdventure extends Component {
 	 * lists all artworks (for /art)
 	 */
 	listArt() {
-		this.registerArticleItems("Artwork", "You take a very close look at");
+		this.registerArticleItems('Artwork', 'You take a very close look at');
 		console.log(
 			'💡 Use `ta.use("%cArtwork X%c")` to inspire yourself!',
 			this.formats.items,
@@ -466,7 +469,7 @@ export default class TextAdventure extends Component {
 	 * lists all videos (for /video)
 	 */
 	listVideo() {
-		this.registerArticleItems("Video", "You start watching");
+		this.registerArticleItems('Video', 'You start watching');
 		console.log(
 			'💡 Use `ta.use("%cVideo X%c")` to watch!',
 			this.formats.items,
@@ -480,13 +483,13 @@ export default class TextAdventure extends Component {
 	 * blog articles will become items in the current room.
 	 */
 	registerArticleItems(name, transition) {
-		const articles = document.querySelectorAll(".article-card__title > a");
+		const articles = document.querySelectorAll('.article-card__title > a');
 		Object.keys(articles).forEach((i) => {
 			const item = new Item({
 				name: `${name} ${i}`,
 				description: articles[i].text,
 				interaction: `${transition} ${name} ${i}.`,
-				method: "loadItemUrl",
+				method: 'loadItemUrl',
 			});
 			item.url = articles[i].href;
 			this.getCurrentRoom().objects[`${name} ${i}`] = item;
@@ -509,8 +512,8 @@ export default class TextAdventure extends Component {
 	 * It is what it is.
 	 */
 	drinkWine() {
-		document.body.classList.add("is--drunk");
-		this.log("👁️ Well... maaaaybe too large. You feel a bit dizzy.");
+		document.body.classList.add('is--drunk');
+		this.log('👁️ Well... maaaaybe too large. You feel a bit dizzy.');
 	}
 
 	/**
