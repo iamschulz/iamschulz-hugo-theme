@@ -1,52 +1,60 @@
 .image {
-    position: relative;
-    display: flex;
-    overflow: hidden;
+	position: relative;
+	display: flex;
+	overflow: hidden;
 
-    &:not(.is--nodims) {
-        width: calc(var(--width) * 1rem / 16);
-        max-height: 100vh;
-        max-width: 100%;
+	&:not(.is--nodims) {
+		width: calc(var(--width) * 1rem / 16);
+		max-height: 100vh;
+		max-width: 100%;
 
-        &::before {
-            content: "";
-            display: block;
-            width: 100%;
-            height: 0;
-            padding: calc(var(--aspect) * 50%);
-        }
+		&::before {
+			content: '';
+			display: block;
+			width: 100%;
+			height: 0;
+			padding-top: MAX(calc(var(--aspect) * 50%), 30rem);
+		}
 
-        .image__img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: block;
-            object-fit: contain;
-            width: 100%;
-            height: auto;
-            max-height: 100vh;
-            max-width: 100%;
-        }
-    }
+		.image__inner-container {
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: block;
+			object-fit: contain;
+			width: 100%;
+			height: auto;
+			min-height: 30em;
+			max-height: 100vh;
+			max-width: 100%;
+		}
 
-    &__zoom-button {
-        @extend .button.is--icon;
-        position: absolute;
-        top: var(--spacing-x);
-        right: var(--spacing-x);
+		.image__img {
+			object-fit: contain;
+			max-width: 100%;
+			min-height: 30em;
+			max-height: 100vh;
+		}
+	}
 
-        &:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-        }
-    }
+	&__zoom-button {
+		@extend .button.is--icon;
+		position: absolute;
+		top: var(--spacing-x);
+		right: var(--spacing-x);
 
-    &__zoom-content {
-        display: block;
-        max-width: 100%;
-    }
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+	}
+
+	&__zoom-content {
+		display: block;
+		max-width: 100%;
+	}
 }
