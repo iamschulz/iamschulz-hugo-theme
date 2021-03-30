@@ -1,4 +1,4 @@
-import Component from "../../../helpers/component";
+import Component from '../../../helpers/component';
 
 interface devReply {
 	type_of: string;
@@ -10,6 +10,7 @@ interface devReply {
 		username: string;
 		profile_image_90: string;
 	};
+	children: Array<any>;
 }
 
 interface wmReply {
@@ -23,8 +24,8 @@ interface wmReply {
 		html: string;
 	};
 	published: string;
-	"like-of": string;
-	"repost-of": string;
+	'like-of': string;
+	'repost-of': string;
 }
 
 export default class Reactions extends Component {
@@ -148,18 +149,27 @@ export default class Reactions extends Component {
 		let reply = this.cloneReplyElement();
 
 		reply.name.innerHTML = devReplyData.user.name;
-		reply.via.innerHTML = "via DEV";
+		reply.via.innerHTML = 'via DEV';
 		reply.via.href = `https://dev.to/${devReplyData.user.username}/comment/${devReplyData.id_code}`;
 
 		reply.link.href = `https://dev.to/${devReplyData.user.username}`;
-		reply.avatar.src = devReplyData.user.profile_image_90 || "";
+		reply.avatar.src = devReplyData.user.profile_image_90 || '';
 
 		const publishDate = devReplyData.created_at || -1;
 		reply.date.remove();
 
 		reply.content.innerHTML = devReplyData.body_html;
 
-		(<HTMLElement>reply.el.content.firstChild).removeAttribute("hidden");
+		if (devReplyData.children.length > 0) {
+			reply.replyBtn.href = `https://dev.to/${devReplyData.user.username}/comment/${devReplyData.id_code}`;
+			reply.replyBtn.innerText = `${
+				devReplyData.children.length
+			} more comment${devReplyData.children.length > 1 ? 's' : ''}`;
+			reply.replyBtn.removeAttribute('hidden');
+			reply.replyBtn.classList.remove('is--hidden');
+		}
+
+		(<HTMLElement>reply.el.content.firstChild).removeAttribute('hidden');
 
 		const timestamp =
 			new Date(publishDate).getTime() + this.devCommentCounter;
@@ -170,12 +180,12 @@ export default class Reactions extends Component {
 	}
 
 	addWebmentionReply(wmReplyData: wmReply) {
-		console.log("wm", wmReplyData);
+		console.log('wm', wmReplyData);
 		if (!wmReplyData.author || !wmReplyData.author.name) {
 			return;
 		}
 
-		if (!!wmReplyData && wmReplyData["like-of"] === this.targetUrl) {
+		if (!!wmReplyData && wmReplyData['like-of'] === this.targetUrl) {
 			this.likes += 1;
 			return;
 		}
@@ -188,28 +198,28 @@ export default class Reactions extends Component {
 
 		reply.name.innerHTML = wmReplyData.author.name;
 		const source =
-			new URL(wmReplyData["url"]).host === "twitter.com"
-				? "twitter"
-				: new URL(wmReplyData["wm-source"]).host;
+			new URL(wmReplyData['url']).host === 'twitter.com'
+				? 'twitter'
+				: new URL(wmReplyData['wm-source']).host;
 		reply.via.innerHTML = `via ${source}`;
-		reply.via.href = wmReplyData["wm-source"];
+		reply.via.href = wmReplyData['wm-source'];
 
-		reply.link.href = wmReplyData.author.url || wmReplyData["wm-source"];
-		reply.avatar.src = wmReplyData.author.photo || "";
+		reply.link.href = wmReplyData.author.url || wmReplyData['wm-source'];
+		reply.avatar.src = wmReplyData.author.photo || '';
 
-		const publishDate = wmReplyData.published || wmReplyData["wm-received"];
+		const publishDate = wmReplyData.published || wmReplyData['wm-received'];
 		reply.date.innerHTML = publishDate
 			? new Date(publishDate)
 					.toISOString()
 					.slice(0, 10)
-					.split("-")
+					.split('-')
 					.reverse()
-					.join(".")
-			: "some time";
+					.join('.')
+			: 'some time';
 
 		reply.content.innerHTML = wmReplyData.content.html;
 
-		(<HTMLElement>reply.el.content.firstChild).removeAttribute("hidden");
+		(<HTMLElement>reply.el.content.firstChild).removeAttribute('hidden');
 
 		let timestamp = publishDate ? new Date(publishDate).getTime() : 0;
 		timestamp = timestamp + this.wmCommentCounter;
@@ -220,7 +230,7 @@ export default class Reactions extends Component {
 	}
 
 	cloneReplyElement() {
-		let el = document.createElement("template");
+		let el = document.createElement('template');
 		el.innerHTML = this.prototype.outerHTML;
 		let link = <HTMLAnchorElement>(
 			(<HTMLElement>el.content.firstChild).querySelector(
@@ -240,47 +250,53 @@ export default class Reactions extends Component {
 				'[data-reactions-el="via"]'
 			)
 		);
-		let date = (<HTMLElement>el.content.firstChild).querySelector(
+		let date = (<HTMLTimeElement>el.content.firstChild).querySelector(
 			'[data-reactions-el="date"]'
 		);
-		let content = (<HTMLElement>el.content.firstChild).querySelector(
+		let content = (<HTMLDivElement>el.content.firstChild).querySelector(
 			'[data-reactions-el="content"]'
+		);
+		let replyBtn = <HTMLAnchorElement>(
+			(<HTMLElement>el.content.firstChild).querySelector(
+				'[data-reactions-el="reply"]'
+			)
 		);
 
 		return {
-			el: el,
-			link: link,
-			avatar: avatar,
-			name: name,
-			via: via,
-			date: date,
-			content: content,
+			el,
+			link,
+			avatar,
+			name,
+			via,
+			date,
+			content,
+			replyBtn,
 		};
 	}
 
 	showReplies() {
-		this.loader.classList.add("is--hidden");
+		this.loader.classList.add('is--hidden');
 		if (this.replies.length < 1) {
 			return;
 		}
 
 		this.replies.sort((a, b) => b.timestamp - a.timestamp);
 
-		let replyListHTML = "";
+		let replyListHTML = '';
 		this.replies.forEach((reply) => {
 			replyListHTML += reply.body;
 		});
 
-		this.replyList.insertAdjacentHTML("beforeend", replyListHTML);
-		this.repliesTitle.removeAttribute("hidden");
+		this.replyList.insertAdjacentHTML('beforeend', replyListHTML);
+		this.repliesTitle.removeAttribute('hidden');
 	}
 
 	showLikes() {
-		this.loader.classList.add("is--hidden");
+		this.loader.classList.add('is--hidden');
 		if (this.likes < 1) {
 			return;
 		}
 		this.likesCounter.innerHTML = String(this.likes);
-		this.likesTitle.removeAttribute("hidden");
+		this.likesTitle.removeAttribute('hidden');
 	}
 }
