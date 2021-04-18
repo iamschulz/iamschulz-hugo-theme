@@ -153,7 +153,8 @@ export default class Reactions extends Component {
 		reply.via.href = `https://dev.to/${devReplyData.user.username}/comment/${devReplyData.id_code}`;
 
 		reply.link.href = `https://dev.to/${devReplyData.user.username}`;
-		reply.avatar.src = devReplyData.user.profile_image_90 || '';
+		reply.avatar.dataset['src'] = devReplyData.user.profile_image_90 || '';
+		reply.avatar.classList.add('is--lazy');
 
 		const publishDate = devReplyData.created_at || -1;
 		reply.date.remove();
@@ -205,7 +206,8 @@ export default class Reactions extends Component {
 		reply.via.href = wmReplyData['wm-source'];
 
 		reply.link.href = wmReplyData.author.url || wmReplyData['wm-source'];
-		reply.avatar.src = wmReplyData.author.photo || '';
+		reply.avatar.dataset['src'] = wmReplyData.author.photo || '';
+		reply.avatar.classList.add('is--lazy');
 
 		const publishDate = wmReplyData.published || wmReplyData['wm-received'];
 		reply.date.innerHTML = publishDate
@@ -289,6 +291,7 @@ export default class Reactions extends Component {
 
 		this.replyList.insertAdjacentHTML('beforeend', replyListHTML);
 		this.repliesTitle.removeAttribute('hidden');
+		(window as any).Lazyload.update();
 	}
 
 	showLikes() {
