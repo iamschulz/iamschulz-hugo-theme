@@ -1,11 +1,15 @@
 <ul class="article-list">
-    {{ range .paginator.Pages }}
-        {{ if eq .Type "post"}}
+    {{ range $i, $post := .paginator.Pages }}
+        {{ if eq $post.Type "post"}}
+            {{ $lazy := true }}
+            {{ if eq $i 0 }}
+                {{ $lazy = false }}
+            {{ end }}
             <li class="article-list__entry">
-                {{ partial "articleCard/articleCard.html" . }}
+                {{ partial "articleCard/articleCard.html" (dict "ctx" $post "lazyImage" $lazy) }}
             </li>
 
-            {{ if in (index (first 1 (split .RawContent "<!--more-->")) 0) "zoom=true" }}
+            {{ if in (index (first 1 (split $post.RawContent "<!--more-->")) 0) "zoom=true" }}
                 {{ $.root.Page.Scratch.Set "renderModal" true }}
                 {{ $.root.Page.Scratch.Set "renderOverlay" true }}
             {{ end }}
