@@ -93,6 +93,7 @@
 	&__content,
 	&__reply-button {
 		margin-left: calc(var(--image-size) + var(--spacing-x));
+		word-break: break-word;
 	}
 
 	&__reply-button {
