@@ -3,6 +3,7 @@
 {{ $alt := .alt }}
 {{ $class := .class }}
 {{ $zoom := .zoom }}
+{{ $lazy := .lazy }}
 
 {{ $small := $img }}
 {{ $medium := $img }}
@@ -32,6 +33,7 @@
 <span 
     class="
         image
+        {{ if eq $lazy true }}is--lazy{{ end }}
         {{ if eq $skipDims true }}is--nodims{{ end }}
         {{ with $class }}{{ . }}{{ end }}
     "
@@ -42,11 +44,11 @@
             "
     {{ end }}
 >
-    <picture>
+    <picture class="image__picture-wrapper">
         {{ if and (eq $skipDims false) (eq $hasWebp true) }}
             <source 
                 type="image/webp"
-                data-srcset='
+                {{ if eq $lazy true }} data-{{ end }}srcset='
                     {{ replace $img.Permalink (path.Ext $img.Permalink) ".webp" }} {{ $img.Width }}w
                     {{ if ge $img.Width "380" }}
                         {{ with $small.Permalink }},{{ replace . (path.Ext .) ".webp" }} 380w {{ end }}
@@ -63,7 +65,7 @@
         
         {{ if eq $skipDims false }}
             <source 
-                data-srcset='
+                {{ if eq $lazy true }} data-{{ end }}srcset='
                     {{ $img.Permalink }} {{ $img.Width }}w
                     {{ if ge $img.Width "380" }}
                         {{ with $small.Permalink }},{{.}} 380w {{ end }}
@@ -79,13 +81,16 @@
         {{ end }}
 
         <img
-            class="image__img is--lazy" 
+            class="
+                image__img
+                {{ if eq $lazy true }}is--lazy{{ end }}
+            " 
             {{ if eq $skipDims false }}
                 width="{{ $img.Width }}" 
                 height="{{ $img.Height }}" 
             {{ end }}
-            data-src="{{ $img.Permalink }}" 
-            src=""
+            {{ if eq $lazy true }} data-{{ end }}src="{{ $img.Permalink }}" 
+            {{ if eq $lazy true }} src=""{{ end }}
             alt="{{- with $alt -}}{{ . }}{{ end }}"
         >
     </picture>
@@ -109,6 +114,7 @@
             {{ end }}
             src="{{ $img.Permalink }}" 
             alt="{{- with $alt -}}{{ . }}{{ end }}"
+            {{ if eq $lazy true }} loading="lazy"{{ end }}
         >
     </noscript>
 

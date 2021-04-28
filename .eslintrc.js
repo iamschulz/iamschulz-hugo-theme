@@ -52,6 +52,7 @@ module.exports = {
         'EventBus': true,
         'FocusTrap': true,
         'StateMachine': true,
-        'ComponentLoader': true
+        'ComponentLoader': true,
+        'Lazyload': true
     }
 }

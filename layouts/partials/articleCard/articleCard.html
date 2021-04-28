@@ -1,31 +1,34 @@
-<article {{ if .Params.lang }}lang="{{ .Params.language }}"{{ end }} class="article__card" aria-label="{{ .Title }}">
-    {{ if .Params.banner }}
-        <a href="{{ .Permalink }}">
-            {{ $bannerAlt := .Title }}
-            {{ if .Params.banner_alt }}
-                {{ $bannerAlt = .Params.banner_alt }}
+{{ $article := .ctx }}
+{{ $lazy := .lazyImage }}
+
+<article {{ if $article.Params.lang }}lang="{{ $article.Params.language }}"{{ end }} class="article__card" aria-label="{{ $article.Title }}">
+    {{ if $article.Params.banner }}
+        <a href="{{ $article.Permalink }}">
+            {{ $bannerAlt := $article.Title }}
+            {{ if $article.Params.banner_alt }}
+                {{ $bannerAlt = $article.Params.banner_alt }}
             {{ end }} 
-            {{ partial "image/image.html" (dict "ctx" .Page "src" .Params.banner "class" "article-card__banner" "alt" $bannerAlt) }}
+            {{ partial "image/image.html" (dict "ctx" $article.Page "src" $article.Params.banner "class" "article-card__banner" "alt" $bannerAlt "lazy" $lazy) }}
         </a>
     {{ end }}
 
     <aside class="article-card__meta">
-        <time datetime="{{ .Date.Format "2006-01-02" }}" class="article-card__date">{{ .Date.Format "02.01.2006" }}</time>
-        {{ if .Params.language }}
+        <time datetime="{{ $article.Date.Format "2006-01-02" }}" class="article-card__date">{{ $article.Date.Format "02.01.2006" }}</time>
+        {{ if $article.Params.language }}
             <p class="article-card__language">
-                {{ .Params.language }}
+                {{ $article.Params.language }}
             </p>
         {{ end }}
     </aside>
 
     <h1 class="article-card__title">
-        <a href="{{ .Permalink }}">{{ .Title }}</a>
+        <a href="{{ $article.Permalink }}">{{ $article.Title }}</a>
     </h1>
 
-    <div class="article-card__content">{{ .Summary }}</div>
+    <div class="article-card__content">{{ $article.Summary }}</div>
     
-    {{ if .Truncated }}
-        <a href="{{ .Permalink }}" class="article-card__more">
+    {{ if $article.Truncated }}
+        <a href="{{ $article.Permalink }}" class="article-card__more">
             <span class="is--visually-hidden">to article</span>
             {{ partial "icon.html" "chevron-right-solid" }}
             {{ partial "icon.html" "chevron-right-solid" }}

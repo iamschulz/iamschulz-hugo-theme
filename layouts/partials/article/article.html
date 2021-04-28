@@ -1,16 +1,11 @@
 <article {{ if .Params.lang }}lang="{{ .Params.language }}"{{ end }} class="article h-entry" data-component="article">
     <a hidden href="{{ .Permalink }}" class="u-url"></a>
     {{ if .Params.banner }}
-        <!--<img 
-            class="article__banner" 
-            src="{{ .Params.banner }}" 
-            alt="{{ if .Params.banner_alt }}{{ .Params.banner_alt }}{{ else }}{{ .Title }}{{ end }}">-->
-
             {{ $bannerAlt := .Title }}
             {{ if .Params.banner_alt }}
                 {{ $bannerAlt = .Params.banner_alt }}
             {{ end }} 
-            {{ partial "image/image.html" (dict "ctx" .Page "src" .Params.banner "class" "article__banner" "alt" $bannerAlt) }}
+            {{ partial "image/image.html" (dict "ctx" .Page "src" .Params.banner "class" "article__banner" "alt" $bannerAlt "lazy" false) }}
     {{ end }}
 
     {{ if eq .Page.Type "post" }}
