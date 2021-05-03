@@ -47,6 +47,6 @@
 
 @media (min-width: $max-width) {
     .table-of-contents {
-        right: calc(100vw - var(--max-width));
+        right: calc(50vw - var(--max-width) / 2);
     }
 }
