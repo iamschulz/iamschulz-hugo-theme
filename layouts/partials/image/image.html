@@ -48,7 +48,7 @@
         {{ if and (eq $skipDims false) (eq $hasWebp true) }}
             <source 
                 type="image/webp"
-                {{ if eq $lazy true }} data-{{ end }}srcset='
+                {{ if eq $lazy true }} srcset data-{{ end }}srcset='
                     {{ replace $img.Permalink (path.Ext $img.Permalink) ".webp" }} {{ $img.Width }}w
                     {{ if ge $img.Width "380" }}
                         {{ with $small.Permalink }},{{ replace . (path.Ext .) ".webp" }} 380w {{ end }}
@@ -65,7 +65,7 @@
         
         {{ if eq $skipDims false }}
             <source 
-                {{ if eq $lazy true }} data-{{ end }}srcset='
+                {{ if eq $lazy true }} srcset data-{{ end }}srcset='
                     {{ $img.Permalink }} {{ $img.Width }}w
                     {{ if ge $img.Width "380" }}
                         {{ with $small.Permalink }},{{.}} 380w {{ end }}
@@ -89,8 +89,7 @@
                 width="{{ $img.Width }}" 
                 height="{{ $img.Height }}" 
             {{ end }}
-            {{ if eq $lazy true }} data-{{ end }}src="{{ $img.Permalink }}" 
-            {{ if eq $lazy true }} src=""{{ end }}
+            {{ if eq $lazy true }} src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-{{ end }}src="{{ $img.Permalink }}" 
             alt="{{- with $alt -}}{{ . }}{{ end }}"
         >
     </picture>

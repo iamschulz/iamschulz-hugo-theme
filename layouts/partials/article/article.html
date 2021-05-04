@@ -19,14 +19,14 @@
         </aside>
     {{ end }}
     
-    <h2 class="article__title p-name">{{ .Title }}</h2>
+    <h1 class="article__title p-name">{{ .Title }}</h1>
 
     {{ if and (gt .WordCount 250 ) (.TableOfContents) }}
         {{ partial "tableOfContents/tableOfContents.html" . }}
     {{ end }}
     
     <div class="article__content e-content" data-article-el="content">
-        {{ .Content }}
+        {{ .Content | replaceRE "<h1" "<h2 class=\"h1\"" | replaceRE "</h1" "</h2" | safeHTML }}
     </div>
 
     <a href="https://brid.gy/publish/twitter"></a>

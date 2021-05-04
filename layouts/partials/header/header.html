@@ -1,8 +1,8 @@
 <header class="header h-card p-author">
-    <h1 class="header__title">
+    <span class="h1 header__title">
         <a href="{{ .Site.BaseURL }}" class="header__title-link u-url p-name">{{ .Site.Title }}</a>
         <img hidden loading="lazy" class="u-photo" src="{{- (index .Site.Data.assetManifest "favicon.svg") | relURL -}}" alt="iamschulz avatar">
-    </h1>
+    </span>
 </header>
 <nav class="header__menu">
     <ul class="header__menu-list">
