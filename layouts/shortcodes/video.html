@@ -1,0 +1,7 @@
+{{ $mp4 := .Params.mp4 }}
+{{ $webm := .Params.webm }}
+{{ $controls := .Params.controls }}
+{{ $autoplay := .Params.autoplay }}
+{{ $loop := .Params.loop }}
+
+{{ partial "video/video.html" (dict "ctx" $.Page "mp4" $mp4 "webm" $webm "controls" $controls "autoplay" $autoplay "loop" $loop) }}
