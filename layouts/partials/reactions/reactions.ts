@@ -181,7 +181,6 @@ export default class Reactions extends Component {
 	}
 
 	addWebmentionReply(wmReplyData: wmReply) {
-		console.log('wm', wmReplyData);
 		if (!wmReplyData.author || !wmReplyData.author.name) {
 			return;
 		}

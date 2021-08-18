@@ -2,9 +2,9 @@
     <aside 
         class="share-links"
         data-component="shareLinks"
-        data-share-links-title="Basic Components"
-        data-share-links-text="Some basic components that I use from time to time. Also a bit of JS framework around them."
-        data-share-links-url="https://iamschulz.github.io/basics/"
+        data-share-links-title="{{ .Page.Title }}"
+        data-share-links-text="{{ .Page.Summary | truncate 180 }}"
+        data-share-links-url="{{ .Page.Permalink }}"
     >
         <h2 class="share-links__title">Share this article:</h2>
         <ul class="share-links__list">
