@@ -1,52 +1,54 @@
 .table-of-contents {
-    margin-bottom: var(--spacing-y);
+	margin-bottom: var(--spacing-y);
 
-    ul {
-        list-style: none;
-        padding-inline-start: 0;
-        margin: 0;
-    }
+	ul {
+		list-style: none;
+		padding-inline-start: 0;
+		margin: 0;
+	}
 
-    a {
-        display: inline-block;
-        padding: 0.2em 0;
+	a {
+		display: inline-block;
+		padding: 0.2em 0;
 
-        &:hover {
-            color: var(--fg-color);
-        }
-    }
+		&:hover {
+			color: var(--fg-color);
+		}
+	}
 }
 
 @media (min-width: $xl-width) {
-    .table-of-contents {
-        position: fixed;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        width: calc((#{$xl-width} - #{$lg-width}) / 2);
-        margin-top: 0.4em;
-        padding: var(--spacing-y) var(--spacing-x) var(--spacing-y) calc(var(--spacing-x) * 2);
-        overflow: auto;
+	.table-of-contents {
+		position: fixed;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		width: calc((#{$xl-width} - #{$lg-width}) / 2);
+		margin-top: 0.4em;
+		padding: var(--spacing-y) var(--spacing-x) var(--spacing-y)
+			calc(var(--spacing-x) * 2);
+		overflow: auto;
 
-        nav {
-            position: sticky;
-            top: 0;
-        }
+		nav {
+			position: sticky;
+			top: 0;
+		}
 
-        li, a {
-            @include article__meta();
-            transition: color 1s ease-out;
-            text-decoration: none;
-        }
+		li,
+		a {
+			@include article__meta();
+			transition: color 1s ease-out;
+			text-decoration: none;
+		}
 
-        .is--active {
-            color: var(--accent-color);
-        }
-    }
+		.is--active {
+			color: var(--accent-color);
+		}
+	}
 }
 
 @media (min-width: $max-width) {
-    .table-of-contents {
-        right: calc(50vw - var(--max-width) / 2);
-    }
+	.table-of-contents {
+		right: calc(50vw - var(--max-width) / 2);
+	}
 }

@@ -1,7 +1,7 @@
 :root {
 	--spacing-x: 1rem;
 	--spacing-y: 1rem;
-	--content-width: 48rem;
+	--content-width: 64rem;
 	--content-narrow-width: 70ch;
 	--border-width: 3px;
 	--z-overlay: 100;
@@ -33,7 +33,7 @@ body {
 	color: var(--fg-color);
 	max-width: var(--max-width);
 
-	&[data-state-scrolling='disabled'] {
+	&[data-state-scrolling="disabled"] {
 		overflow: hidden;
 	}
 }
@@ -111,7 +111,7 @@ blockquote {
 	margin: var(--spacing-y) 0;
 
 	&:before {
-		content: '';
+		content: "";
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -234,7 +234,7 @@ button {
 	pointer-events: none;
 
 	&::after {
-		content: '';
+		content: "";
 		width: 2rem;
 		height: 2rem;
 		border: var(--border-width) solid var(--grey);
