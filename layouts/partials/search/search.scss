@@ -1,28 +1,30 @@
 .search {
-    display: flex;
+	display: flex;
 
-    &__input {
-        max-width: 45vw;
-    }
+	&__input {
+		max-width: 45vw;
+	}
 
-    &__styles {
-        display: none;
-        background-color: var(--base-color);
+	&__styles {
+		display: none;
+		background-color: var(--base-color);
 
-        &::before {
-            background-color: var(--fg-color);
-        }
+		&::before {
+			background-color: var(--fg-color);
+		}
 
-        &::after {
-            background-color: var(--grey);
-        }
-    }
+		&::after {
+			background-color: var(--grey);
+		}
+	}
 
-    &__button {
-        background-color: var(--grey);
+	&__button {
+		background-color: var(--grey);
+		position: relative;
+		top: 0.5rem;
 
-        .icon {
-            font-size: 1.8em;
-        }
-    }
+		.icon {
+			font-size: 1.8em;
+		}
+	}
 }

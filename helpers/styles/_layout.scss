@@ -195,18 +195,15 @@ button {
 	input,
 	textarea {
 		-webkit-appearance: none;
-		margin: 0;
+		margin: 0.5rem 0 0;
 		border: 1px solid var(--grey);
 		border-radius: 0;
 		background: transparent;
 		font-size: 1em;
 		color: var(--grey);
 
-		&:focus,
-		&:valid {
-			+ span {
-				transform: translate(-0.4ch, -1.7em) scale(0.8);
-			}
+		+ span {
+			transform: translate(-0.4ch, -1.3em) scale(0.8);
 		}
 	}
 
