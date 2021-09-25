@@ -19,6 +19,11 @@
     {{ $hasWebp = false }}
 {{ end }}
 
+{{ $hasAvif := true }}
+{{ if eq $img.MediaType.SubType "svg" }}
+    {{ $hasAvif = false }}
+{{ end }}
+
 {{/* Resizing gifs isn't supported by Hugo yet */}}
 {{ if and (ne $img.MediaType.SubType "gif") (eq $skipDims false) }}
     {{ $smallw := default "380x" }}
@@ -45,10 +50,28 @@
     {{ end }}
 >
     <picture class="image__picture-wrapper">
+        {{ if and (eq $skipDims false) (eq $hasAvif true) }}
+            <source 
+                type="image/avif"
+                {{- if eq $lazy true -}} srcset='' data-{{- end -}}srcset='
+                    {{ replace $img.Permalink (path.Ext $img.Permalink) ".avif" }} {{ $img.Width }}w
+                    {{ if ge $img.Width "380" }}
+                        {{ with $small.Permalink }},{{ replace . (path.Ext .) ".avif" }} 380w {{ end }}
+                    {{ end }}
+                    {{ if ge $img.Width "590" }}
+                        {{ with $medium.Permalink }},{{ replace . (path.Ext .) ".avif" }} 590w {{ end }}
+                    {{ end }}
+                    {{ if ge $img.Width "786" }}
+                        {{ with $large.Permalink }},{{ replace . (path.Ext .) ".avif" }} 786w {{ end }}
+                    {{ end }}
+                '
+            >
+        {{ end }}
+        
         {{ if and (eq $skipDims false) (eq $hasWebp true) }}
             <source 
                 type="image/webp"
-                {{ if eq $lazy true }} srcset data-{{ end }}srcset='
+                {{- if eq $lazy true -}} srcset data-{{- end -}}srcset='
                     {{ replace $img.Permalink (path.Ext $img.Permalink) ".webp" }} {{ $img.Width }}w
                     {{ if ge $img.Width "380" }}
                         {{ with $small.Permalink }},{{ replace . (path.Ext .) ".webp" }} 380w {{ end }}
@@ -127,10 +150,21 @@
         </button>
         <div hidden="hidden" data-modal-content="{{ $uuid }}">
             <picture>
-                {{ if eq $hasWebp true }}
-                    <source type="image/webp" srcset="{{ replace $img.Permalink (path.Ext $img.Permalink) ".webp" }}">
+                {{ if eq $hasAvif true }}
+                <source 
+                    type="image/avif" 
+                    srcset='' 
+                    data-srcset='{{ replace $img.Permalink (path.Ext $img.Permalink) ".avif" }}'
+                >
                 {{ end }}
-                <source srcset="{{ $img.Permalink }}">
+                {{ if eq $hasWebp true }}
+                    <source 
+                        type="image/webp" 
+                        srcset='' 
+                        data-srcset='{{ replace $img.Permalink (path.Ext $img.Permalink) ".webp" }}'
+                    >
+                {{ end }}
+                <source srcset="" data-srcset="{{ $img.Permalink }}">
                 <img class="image__zoom-content hidden is--lazy" data-src="{{ $img.Permalink }}" alt="{{- with $alt -}}{{ . }}{{ end }}">
             </picture>
         </div>
