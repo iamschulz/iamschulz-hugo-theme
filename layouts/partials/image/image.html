@@ -20,7 +20,7 @@
 {{ end }}
 
 {{ $hasAvif := true }}
-{{ if eq $img.MediaType.SubType "svg" }}
+{{ if or (eq $img.MediaType.SubType "svg") (eq $img.MediaType.SubType "gif") }}
     {{ $hasAvif = false }}
 {{ end }}
 
