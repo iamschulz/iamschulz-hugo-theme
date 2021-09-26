@@ -2,6 +2,7 @@
     <meta charset="utf-8">
     <link rel="preload" href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" as="style">
     <link rel="preload" href="{{- (index .Site.Data.assetManifest "index.js") | relURL -}}" as="script">
+    <link rel="preload" href="/fonts/share-v10-latin-700.woff2" as="font" crossorigin>
     <title>{{ if .IsHome }} {{ .Site.Title }} {{ else }} {{ .Title }} &bull; {{ .Site.Title }} {{ end }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0e181b">
