@@ -1,3 +1,27 @@
+@keyframes reactions-bling {
+	from {
+		clip-path: circle(0%);
+		opacity: 0;
+		transform: rotate(0deg);
+	}
+
+	5% {
+		opacity: 1;
+		clip-path: circle(45%);
+	}
+
+	90% {
+		clip-path: circle(45%);
+		opacity: 1;
+	}
+
+	to {
+		clip-path: circle(45%);
+		transform: rotate(120deg);
+		opacity: 0;
+	}
+}
+
 .reactions {
 	--image-size: 4rem;
 
@@ -20,6 +44,12 @@
 				.reactions__icon {
 					color: var(--accent-color);
 				}
+			}
+		}
+
+		&[aria-disabled="true"] {
+			.reactions__icon {
+				color: var(--accent-color);
 			}
 		}
 	}
@@ -46,8 +76,37 @@
 	}
 
 	&__icon {
+		position: relative;
 		color: transparent;
-		text-shadow: 0 0 var(--fg-color);
+		--shadow-width: 0.25rem;
+		text-shadow: 0 0 var(--fg-color),
+			0 var(--shadow-width) var(--base-color),
+			var(--shadow-width) 0 var(--base-color),
+			0 calc(var(--shadow-width) * -1) var(--base-color),
+			calc(var(--shadow-width) * -1) 0 var(--base-color);
+		z-index: 1;
+
+		.is--animated > &::before {
+			content: "";
+			position: absolute;
+			top: -60%;
+			left: -50%;
+			right: -50%;
+			bottom: -50%;
+			z-index: -1;
+			background: repeating-conic-gradient(
+				from 0deg at 50% 50%,
+				var(--accent-color) 0%,
+				var(--accent-color) 3%,
+				rgba(0, 0, 0, 0) 3%,
+				rgba(0, 0, 0, 0) 10%
+			);
+			animation: reactions-bling 5s linear infinite;
+		}
+	}
+
+	&__counter {
+		z-index: 0;
 	}
 
 	&__header {

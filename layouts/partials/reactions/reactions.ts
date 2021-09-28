@@ -333,7 +333,6 @@ export default class Reactions extends Component {
 		const storedLikes = JSON.parse(localStorage.getItem("likes")) || {};
 
 		if (storedLikes[articleUrl]) {
-			console.log("foo");
 			return;
 		}
 
@@ -352,11 +351,19 @@ export default class Reactions extends Component {
 					storedLikes[articleUrl] = true;
 					localStorage.setItem("likes", JSON.stringify(storedLikes));
 					this.likesTitle.setAttribute("aria-disabled", "true");
+					this.animateLikeButton();
 				});
 			},
 			{ once: true }
 		);
 
 		this.likesTitle.removeAttribute("aria-disabled");
+	}
+
+	animateLikeButton() {
+		this.likesTitle.classList.add("is--animated");
+		window.setTimeout(() => {
+			this.likesTitle.classList.remove("is--animated");
+		}, 5000);
 	}
 }
