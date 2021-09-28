@@ -34,8 +34,13 @@
 
 	&__title {
 		background: transparent;
+		padding: 0;
 		border: none;
 		color: inherit;
+
+		> * {
+			vertical-align: baseline;
+		}
 
 		&:not([aria-disabled="true"]) {
 			cursor: pointer;
