@@ -8,6 +8,22 @@
 		margin-top: calc(var(--spacing-y) * 2.5);
 	}
 
+	&__title {
+		background: transparent;
+		border: none;
+		color: inherit;
+
+		&:not([aria-disabled="true"]) {
+			cursor: pointer;
+
+			&:hover {
+				.reactions__icon {
+					color: var(--accent-color);
+				}
+			}
+		}
+	}
+
 	&__list {
 		list-style: none;
 		padding: 0;

@@ -1,4 +1,4 @@
-import Component from '../../../helpers/component';
+import Component from "../../../helpers/component";
 
 interface devReply {
 	type_of: string;
@@ -24,8 +24,8 @@ interface wmReply {
 		html: string;
 	};
 	published: string;
-	'like-of': string;
-	'repost-of': string;
+	"like-of": string;
+	"repost-of": string;
 }
 
 export default class Reactions extends Component {
@@ -46,7 +46,7 @@ export default class Reactions extends Component {
 	replyList: HTMLElement;
 	repliesTitle: HTMLElement;
 	likesCounter: HTMLElement;
-	likesTitle: HTMLElement;
+	likesTitle: HTMLButtonElement;
 
 	init() {
 		this.apiProxyUrl = this.el.dataset.reactionsApiProxy;
@@ -59,7 +59,7 @@ export default class Reactions extends Component {
 		}
 		this.replies = [];
 		this.likes = 0;
-		this.fetches = [];
+		this.fetches = [this.getLikes()];
 
 		if (this.devId) {
 			this.fetches.push(this.getDevLikes());
@@ -70,6 +70,8 @@ export default class Reactions extends Component {
 		if (this.webmentionsUrl) {
 			this.fetches.push(this.getWebmentions());
 		}
+
+		this.initLikeButton();
 
 		if (this.fetches.length < 1) {
 			this.showReplies();
@@ -87,9 +89,31 @@ export default class Reactions extends Component {
 		}
 	}
 
+	getLikes() {
+		const articleUrl = window.location.href.replace(
+			window.location.protocol + "//",
+			""
+		);
+		const likeGetUrl = `https://iamschulz.com/like-api/get/${articleUrl}`;
+		const apiFetchUrl = `${
+			this.apiProxyUrl
+		}${likeGetUrl}&time=${Date.now()}`;
+
+		return fetch(apiFetchUrl)
+			.then((response) => response.text())
+			.then((data) => {
+				this.likes += Number(data);
+			})
+			.catch(() => {
+				return;
+			});
+	}
+
 	getDevComments() {
 		this.devCommentCounter = 0;
-		const apiFetchUrl = `https://dev.to/api/comments?a_id=${this.devId}`;
+		const apiFetchUrl = `https://dev.to/api/comments?a_id=${
+			this.devId
+		}&time=${Date.now()}`;
 
 		return fetch(apiFetchUrl)
 			.then((response) => response.json())
@@ -105,7 +129,9 @@ export default class Reactions extends Component {
 	}
 
 	getDevLikes() {
-		const apiFetchUrl = `https://dev.to/api/articles/${this.devId}`;
+		const apiFetchUrl = `https://dev.to/api/articles/${
+			this.devId
+		}&time=${Date.now()}`;
 
 		return fetch(apiFetchUrl)
 			.then((response) => response.json())
@@ -149,12 +175,12 @@ export default class Reactions extends Component {
 		let reply = this.cloneReplyElement();
 
 		reply.name.innerHTML = devReplyData.user.name;
-		reply.via.innerHTML = 'via DEV';
+		reply.via.innerHTML = "via DEV";
 		reply.via.href = `https://dev.to/${devReplyData.user.username}/comment/${devReplyData.id_code}`;
 
 		reply.link.href = `https://dev.to/${devReplyData.user.username}`;
-		reply.avatar.dataset['src'] = devReplyData.user.profile_image_90 || '';
-		reply.avatar.classList.add('is--lazy');
+		reply.avatar.dataset["src"] = devReplyData.user.profile_image_90 || "";
+		reply.avatar.classList.add("is--lazy");
 
 		const publishDate = devReplyData.created_at || -1;
 		reply.date.remove();
@@ -165,12 +191,12 @@ export default class Reactions extends Component {
 			reply.replyBtn.href = `https://dev.to/${devReplyData.user.username}/comment/${devReplyData.id_code}`;
 			reply.replyBtn.innerText = `${
 				devReplyData.children.length
-			} more comment${devReplyData.children.length > 1 ? 's' : ''}`;
-			reply.replyBtn.removeAttribute('hidden');
-			reply.replyBtn.classList.remove('is--hidden');
+			} more comment${devReplyData.children.length > 1 ? "s" : ""}`;
+			reply.replyBtn.removeAttribute("hidden");
+			reply.replyBtn.classList.remove("is--hidden");
 		}
 
-		(<HTMLElement>reply.el.content.firstChild).removeAttribute('hidden');
+		(<HTMLElement>reply.el.content.firstChild).removeAttribute("hidden");
 
 		const timestamp =
 			new Date(publishDate).getTime() + this.devCommentCounter;
@@ -185,7 +211,7 @@ export default class Reactions extends Component {
 			return;
 		}
 
-		if (!!wmReplyData && wmReplyData['like-of'] === this.targetUrl) {
+		if (!!wmReplyData && wmReplyData["like-of"] === this.targetUrl) {
 			this.likes += 1;
 			return;
 		}
@@ -198,29 +224,29 @@ export default class Reactions extends Component {
 
 		reply.name.innerHTML = wmReplyData.author.name;
 		const source =
-			new URL(wmReplyData['url']).host === 'twitter.com'
-				? 'twitter'
-				: new URL(wmReplyData['wm-source']).host;
+			new URL(wmReplyData["url"]).host === "twitter.com"
+				? "twitter"
+				: new URL(wmReplyData["wm-source"]).host;
 		reply.via.innerHTML = `via ${source}`;
-		reply.via.href = wmReplyData['wm-source'];
+		reply.via.href = wmReplyData["wm-source"];
 
-		reply.link.href = wmReplyData.author.url || wmReplyData['wm-source'];
-		reply.avatar.dataset['src'] = wmReplyData.author.photo || '';
-		reply.avatar.classList.add('is--lazy');
+		reply.link.href = wmReplyData.author.url || wmReplyData["wm-source"];
+		reply.avatar.dataset["src"] = wmReplyData.author.photo || "";
+		reply.avatar.classList.add("is--lazy");
 
-		const publishDate = wmReplyData.published || wmReplyData['wm-received'];
+		const publishDate = wmReplyData.published || wmReplyData["wm-received"];
 		reply.date.innerHTML = publishDate
 			? new Date(publishDate)
 					.toISOString()
 					.slice(0, 10)
-					.split('-')
+					.split("-")
 					.reverse()
-					.join('.')
-			: 'some time';
+					.join(".")
+			: "some time";
 
 		reply.content.innerHTML = wmReplyData.content.html;
 
-		(<HTMLElement>reply.el.content.firstChild).removeAttribute('hidden');
+		(<HTMLElement>reply.el.content.firstChild).removeAttribute("hidden");
 
 		let timestamp = publishDate ? new Date(publishDate).getTime() : 0;
 		timestamp = timestamp + this.wmCommentCounter;
@@ -231,7 +257,7 @@ export default class Reactions extends Component {
 	}
 
 	cloneReplyElement() {
-		let el = document.createElement('template');
+		let el = document.createElement("template");
 		el.innerHTML = this.prototype.outerHTML;
 		let link = <HTMLAnchorElement>(
 			(<HTMLElement>el.content.firstChild).querySelector(
@@ -276,29 +302,61 @@ export default class Reactions extends Component {
 	}
 
 	showReplies() {
-		this.loader.classList.add('is--hidden');
+		this.loader.classList.add("is--hidden");
 		if (this.replies.length < 1) {
 			return;
 		}
 
 		this.replies.sort((a, b) => b.timestamp - a.timestamp);
 
-		let replyListHTML = '';
+		let replyListHTML = "";
 		this.replies.forEach((reply) => {
 			replyListHTML += reply.body;
 		});
 
-		this.replyList.insertAdjacentHTML('beforeend', replyListHTML);
-		this.repliesTitle.removeAttribute('hidden');
+		this.replyList.insertAdjacentHTML("beforeend", replyListHTML);
+		this.repliesTitle.removeAttribute("hidden");
 		(window as any).Lazyload.update();
 	}
 
 	showLikes() {
-		this.loader.classList.add('is--hidden');
-		if (this.likes < 1) {
+		this.loader.classList.add("is--hidden");
+		this.likesCounter.innerHTML = String(this.likes);
+		this.likesTitle.removeAttribute("hidden");
+	}
+
+	initLikeButton() {
+		const articleUrl = window.location.href.replace(
+			window.location.protocol + "//",
+			""
+		);
+		const storedLikes = JSON.parse(localStorage.getItem("likes")) || {};
+
+		if (storedLikes[articleUrl]) {
+			console.log("foo");
 			return;
 		}
-		this.likesCounter.innerHTML = String(this.likes);
-		this.likesTitle.removeAttribute('hidden');
+
+		const likePutUrl = `https://iamschulz.com/like-api/put/${articleUrl}`;
+		const apiFetchUrl = `${this.apiProxyUrl}${encodeURIComponent(
+			likePutUrl
+		)}&time=${Date.now()}`;
+
+		this.likesTitle.addEventListener(
+			"click",
+			() => {
+				fetch(apiFetchUrl).then(() => {
+					this.likes += 1;
+					this.likesCounter.innerHTML = String(this.likes);
+
+					storedLikes[articleUrl] = true;
+					localStorage.setItem("likes", JSON.stringify(storedLikes));
+					this.likesTitle.setAttribute("aria-disabled", "true");
+				});
+			},
+			{ once: true }
+		);
+
+		this.likesTitle.removeAttribute("aria-disabled");
 	}
 }
