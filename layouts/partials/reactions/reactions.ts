@@ -337,9 +337,9 @@ export default class Reactions extends Component {
 		}
 
 		const likePutUrl = `https://iamschulz.com/like-api/put/${articleUrl}`;
-		const apiFetchUrl = `${this.apiProxyUrl}${encodeURIComponent(
-			likePutUrl
-		)}&time=${Date.now()}`;
+		const apiFetchUrl = `${
+			this.apiProxyUrl
+		}${likePutUrl}&time=${Date.now()}${Math.floor(Math.random() * 10000)}`;
 
 		this.likesTitle.addEventListener(
 			"click",
