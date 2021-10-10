@@ -43,7 +43,7 @@ body {
 
 main {
 	width: var(--content-width);
-	max-width: 64rem;
+	max-width: min(64rem, 100%);
 	margin: var(--content-margin);
 	padding: 0 var(--spacing-x) var(--spacing-y);
 }
