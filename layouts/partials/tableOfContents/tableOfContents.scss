@@ -17,16 +17,15 @@
 	}
 }
 
-@media (min-width: $xl-width) {
+@media (min-width: $lg-width) {
 	.table-of-contents {
 		position: fixed;
 		right: 0;
 		top: 0;
 		bottom: 0;
-		width: calc((#{$xl-width} - #{$lg-width}) / 2);
+		width: var(--aside-width);
 		margin-top: 0.4em;
-		padding: var(--spacing-y) var(--spacing-x) var(--spacing-y)
-			calc(var(--spacing-x) * 2);
+		padding: var(--spacing-y) var(--spacing-x) var(--spacing-y) calc(var(--spacing-x) * 2);
 		overflow: auto;
 
 		nav {

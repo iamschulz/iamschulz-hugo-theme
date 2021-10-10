@@ -2,6 +2,7 @@
 	--spacing-x: 1rem;
 	--spacing-y: 1rem;
 	--content-width: 64rem;
+	--content-margin: 0;
 	--content-narrow-width: 70ch;
 	--border-width: 3px;
 	--z-overlay: 100;
@@ -9,6 +10,8 @@
 	--z-menu: 110;
 	--z-below: -1;
 	--max-width: #{$max-width};
+	--content-margin: auto;
+	--aside-width: 22.5rem; // 360px
 }
 
 * {
@@ -33,22 +36,21 @@ body {
 	color: var(--fg-color);
 	max-width: var(--max-width);
 
-	&[data-state-scrolling="disabled"] {
+	&[data-state-scrolling='disabled'] {
 		overflow: hidden;
 	}
 }
 
 main {
-	max-width: var(--content-width);
-	margin: auto;
+	width: var(--content-width);
+	max-width: 64rem;
+	margin: var(--content-margin);
 	padding: 0 var(--spacing-x) var(--spacing-y);
 }
 
 .breakout {
 	position: relative;
-	left: calc(
-		(100vw - min(var(--content-width), 100vw)) / -2 - var(--spacing-x)
-	);
+	left: calc((100vw - min(var(--content-width), 100vw)) / -2 - var(--spacing-x));
 	width: 100vw;
 	max-width: none;
 }
@@ -111,7 +113,7 @@ blockquote {
 	margin: var(--spacing-y) 0;
 
 	&:before {
-		content: "";
+		content: '';
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -231,7 +233,7 @@ button {
 	pointer-events: none;
 
 	&::after {
-		content: "";
+		content: '';
 		width: 2rem;
 		height: 2rem;
 		border: var(--border-width) solid var(--grey);
@@ -263,8 +265,15 @@ button {
 	}
 }
 
-@media screen and (min-width: $lg-width) {
+@media screen and (min-width: $md-width) {
 	:root {
 		--z-menu: var(--z-header);
+	}
+}
+
+@media screen and (min-width: $lg-width) and (max-width: $xl-width) {
+	[data-type='post'] {
+		--content-margin: 0;
+		--content-width: calc(100vw - var(--aside-width));
 	}
 }
