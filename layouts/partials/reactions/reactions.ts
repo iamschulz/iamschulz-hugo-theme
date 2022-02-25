@@ -1,4 +1,4 @@
-import Component from '../../../helpers/component';
+import Component from "../../../helpers/component";
 
 interface devReply {
 	type_of: string;
@@ -24,8 +24,8 @@ interface wmReply {
 		html: string;
 	};
 	published: string;
-	'like-of': string;
-	'repost-of': string;
+	"like-of": string;
+	"repost-of": string;
 }
 
 export default class Reactions extends Component {
@@ -92,9 +92,14 @@ export default class Reactions extends Component {
 	}
 
 	getLikes() {
-		const articleUrl = window.location.href.replace(window.location.protocol + '//', '');
+		const articleUrl = window.location.href.replace(
+			window.location.protocol + "//",
+			""
+		);
 		const likeGetUrl = `https://iamschulz.com/like-api/get/${articleUrl}`;
-		const apiFetchUrl = `${this.apiProxyUrl}${likeGetUrl}&time=${Date.now()}`;
+		const apiFetchUrl = `${
+			this.apiProxyUrl
+		}${likeGetUrl}&time=${Date.now()}`;
 
 		return fetch(apiFetchUrl)
 			.then((response) => response.text())
@@ -108,12 +113,16 @@ export default class Reactions extends Component {
 
 	getDevComments() {
 		this.devCommentCounter = 0;
-		const apiFetchUrl = `https://dev.to/api/comments?a_id=${this.devId}&time=${Date.now()}`;
+		const apiFetchUrl = `https://dev.to/api/comments?a_id=${
+			this.devId
+		}&time=${Date.now()}`;
 
 		return fetch(apiFetchUrl)
 			.then((response) => response.json())
 			.then((data) => {
-				Array.from(data).forEach((reply) => this.addDevReply(<devReply>reply));
+				Array.from(data).forEach((reply) =>
+					this.addDevReply(<devReply>reply)
+				);
 				this.devCommentCounter++;
 			})
 			.catch(() => {
@@ -122,7 +131,9 @@ export default class Reactions extends Component {
 	}
 
 	getDevLikes() {
-		const apiFetchUrl = `https://dev.to/api/articles/${this.devId}&time=${Date.now()}`;
+		const apiFetchUrl = `https://dev.to/api/articles/${
+			this.devId
+		}&time=${Date.now()}`;
 
 		return fetch(apiFetchUrl)
 			.then((response) => response.json())
@@ -137,12 +148,16 @@ export default class Reactions extends Component {
 	getWebmentions() {
 		this.wmCommentCounter = 0;
 		const webmentionsFetchUrl = `https://webmention.io/api/mentions.jf2?domain=${this.webmentionsUrl}&target=${this.targetUrl}`;
-		const apiFetchUrl = `${this.apiProxyUrl}${encodeURIComponent(webmentionsFetchUrl)}&time=${Date.now()}`;
+		const apiFetchUrl = `${this.apiProxyUrl}${encodeURIComponent(
+			webmentionsFetchUrl
+		)}&time=${Date.now()}`;
 
 		return fetch(apiFetchUrl)
 			.then((response) => response.json())
 			.then((data) => {
-				Array.from(data.children).forEach((reply) => this.addWebmentionReply(<wmReply>reply));
+				Array.from(data.children).forEach((reply) =>
+					this.addWebmentionReply(<wmReply>reply)
+				);
 				this.wmCommentCounter++;
 			})
 			.catch(() => {
@@ -151,37 +166,50 @@ export default class Reactions extends Component {
 	}
 
 	addDevReply(devReplyData: devReply) {
-		if (!devReplyData.user || !devReplyData.user.name || !devReplyData.body_html) {
+		if (
+			!devReplyData.user ||
+			!devReplyData.user.name ||
+			!devReplyData.body_html
+		) {
 			return;
 		}
 
 		let reply = this.cloneReplyElement();
 
 		reply.name.innerHTML = devReplyData.user.name;
-		reply.via.innerHTML = 'via DEV';
+		reply.via.innerHTML = "via DEV";
 		reply.via.href = `https://dev.to/${devReplyData.user.username}/comment/${devReplyData.id_code}`;
 
 		reply.link.href = `https://dev.to/${devReplyData.user.username}`;
-		reply.avatar.dataset['src'] = devReplyData.user.profile_image_90 || '';
-		reply.avatar.classList.add('is--lazy');
+		reply.avatar.dataset["src"] = devReplyData.user.profile_image_90 || "";
+		reply.avatar.classList.add("is--lazy");
 
 		const publishDate = devReplyData.created_at || -1;
-		reply.date.remove();
+		reply.date.innerHTML = publishDate
+			? new Date(publishDate).toLocaleTimeString([], {
+					year: "numeric",
+					month: "numeric",
+					day: "numeric",
+					hour: "2-digit",
+					minute: "2-digit",
+			  })
+			: "some time";
 
 		reply.content.innerHTML = devReplyData.body_html;
 
 		if (devReplyData.children.length > 0) {
 			reply.replyBtn.href = `https://dev.to/${devReplyData.user.username}/comment/${devReplyData.id_code}`;
-			reply.replyBtn.innerText = `${devReplyData.children.length} more comment${
-				devReplyData.children.length > 1 ? 's' : ''
-			}`;
-			reply.replyBtn.removeAttribute('hidden');
-			reply.replyBtn.classList.remove('is--hidden');
+			reply.replyBtn.innerText = `${
+				devReplyData.children.length
+			} more comment${devReplyData.children.length > 1 ? "s" : ""}`;
+			reply.replyBtn.removeAttribute("hidden");
+			reply.replyBtn.classList.remove("is--hidden");
 		}
 
-		(<HTMLElement>reply.el.content.firstChild).removeAttribute('hidden');
+		(<HTMLElement>reply.el.content.firstChild).removeAttribute("hidden");
 
-		const timestamp = new Date(publishDate).getTime() + this.devCommentCounter;
+		const timestamp =
+			new Date(publishDate).getTime() + this.devCommentCounter;
 		this.replies.push({
 			timestamp: timestamp,
 			body: (<HTMLElement>reply.el.content.firstChild).outerHTML,
@@ -193,7 +221,7 @@ export default class Reactions extends Component {
 			return;
 		}
 
-		if (!!wmReplyData && wmReplyData['like-of'] === this.targetUrl) {
+		if (!!wmReplyData && wmReplyData["like-of"] === this.targetUrl) {
 			this.likes += 1;
 			return;
 		}
@@ -206,22 +234,30 @@ export default class Reactions extends Component {
 
 		reply.name.innerHTML = wmReplyData.author.name;
 		const source =
-			new URL(wmReplyData['url']).host === 'twitter.com' ? 'twitter' : new URL(wmReplyData['wm-source']).host;
+			new URL(wmReplyData["url"]).host === "twitter.com"
+				? "twitter"
+				: new URL(wmReplyData["wm-source"]).host;
 		reply.via.innerHTML = `via ${source}`;
-		reply.via.href = wmReplyData['wm-source'];
+		reply.via.href = wmReplyData["wm-source"];
 
-		reply.link.href = wmReplyData.author.url || wmReplyData['wm-source'];
-		reply.avatar.dataset['src'] = wmReplyData.author.photo || '';
-		reply.avatar.classList.add('is--lazy');
+		reply.link.href = wmReplyData.author.url || wmReplyData["wm-source"];
+		reply.avatar.dataset["src"] = wmReplyData.author.photo || "";
+		reply.avatar.classList.add("is--lazy");
 
-		const publishDate = wmReplyData.published || wmReplyData['wm-received'];
+		const publishDate = wmReplyData.published || wmReplyData["wm-received"];
 		reply.date.innerHTML = publishDate
-			? new Date(publishDate).toISOString().slice(0, 10).split('-').reverse().join('.')
-			: 'some time';
+			? new Date(publishDate).toLocaleTimeString([], {
+					year: "numeric",
+					month: "numeric",
+					day: "numeric",
+					hour: "2-digit",
+					minute: "2-digit",
+			  })
+			: "some time";
 
 		reply.content.innerHTML = wmReplyData.content.html;
 
-		(<HTMLElement>reply.el.content.firstChild).removeAttribute('hidden');
+		(<HTMLElement>reply.el.content.firstChild).removeAttribute("hidden");
 
 		let timestamp = publishDate ? new Date(publishDate).getTime() : 0;
 		timestamp = timestamp + this.wmCommentCounter;
@@ -232,18 +268,36 @@ export default class Reactions extends Component {
 	}
 
 	cloneReplyElement() {
-		let el = document.createElement('template');
+		let el = document.createElement("template");
 		el.innerHTML = this.prototype.outerHTML;
-		let link = <HTMLAnchorElement>(<HTMLElement>el.content.firstChild).querySelector('[data-reactions-el="link"]');
-		let avatar = <HTMLImageElement>(
-			(<HTMLElement>el.content.firstChild).querySelector('[data-reactions-el="avatar"]')
+		let link = <HTMLAnchorElement>(
+			(<HTMLElement>el.content.firstChild).querySelector(
+				'[data-reactions-el="link"]'
+			)
 		);
-		let name = (<HTMLElement>el.content.firstChild).querySelector('[data-reactions-el="name"]');
-		let via = <HTMLAnchorElement>(<HTMLElement>el.content.firstChild).querySelector('[data-reactions-el="via"]');
-		let date = (<HTMLTimeElement>el.content.firstChild).querySelector('[data-reactions-el="date"]');
-		let content = (<HTMLDivElement>el.content.firstChild).querySelector('[data-reactions-el="content"]');
+		let avatar = <HTMLImageElement>(
+			(<HTMLElement>el.content.firstChild).querySelector(
+				'[data-reactions-el="avatar"]'
+			)
+		);
+		let name = (<HTMLElement>el.content.firstChild).querySelector(
+			'[data-reactions-el="name"]'
+		);
+		let via = <HTMLAnchorElement>(
+			(<HTMLElement>el.content.firstChild).querySelector(
+				'[data-reactions-el="via"]'
+			)
+		);
+		let date = (<HTMLTimeElement>el.content.firstChild).querySelector(
+			'[data-reactions-el="date"]'
+		);
+		let content = (<HTMLDivElement>el.content.firstChild).querySelector(
+			'[data-reactions-el="content"]'
+		);
 		let replyBtn = <HTMLAnchorElement>(
-			(<HTMLElement>el.content.firstChild).querySelector('[data-reactions-el="reply"]')
+			(<HTMLElement>el.content.firstChild).querySelector(
+				'[data-reactions-el="reply"]'
+			)
 		);
 
 		return {
@@ -259,63 +313,68 @@ export default class Reactions extends Component {
 	}
 
 	showReplies() {
-		this.loader.classList.add('is--hidden');
+		this.loader.classList.add("is--hidden");
 		if (this.replies.length < 1) {
 			return;
 		}
 
 		this.replies.sort((a, b) => b.timestamp - a.timestamp);
 
-		let replyListHTML = '';
+		let replyListHTML = "";
 		this.replies.forEach((reply) => {
 			replyListHTML += reply.body;
 		});
 
-		this.replyList.insertAdjacentHTML('beforeend', replyListHTML);
-		this.repliesTitle.removeAttribute('hidden');
+		this.replyList.insertAdjacentHTML("beforeend", replyListHTML);
+		this.repliesTitle.removeAttribute("hidden");
 		(window as any).Lazyload.update();
 	}
 
 	showLikes() {
-		this.loader.classList.add('is--hidden');
+		this.loader.classList.add("is--hidden");
 		this.likesCounter.innerHTML = String(this.likes);
-		this.likesTitle.removeAttribute('hidden');
+		this.likesTitle.removeAttribute("hidden");
 	}
 
 	initLikeButton() {
-		const articleUrl = window.location.href.replace(window.location.protocol + '//', '');
-		const storedLikes = JSON.parse(localStorage.getItem('likes')) || {};
+		const articleUrl = window.location.href.replace(
+			window.location.protocol + "//",
+			""
+		);
+		const storedLikes = JSON.parse(localStorage.getItem("likes")) || {};
 
 		if (storedLikes[articleUrl]) {
 			return;
 		}
 
 		const likePutUrl = `https://iamschulz.com/like-api/put/${articleUrl}`;
-		const apiFetchUrl = `${this.apiProxyUrl}${likePutUrl}&time=${Date.now()}${Math.floor(Math.random() * 10000)}`;
+		const apiFetchUrl = `${
+			this.apiProxyUrl
+		}${likePutUrl}&time=${Date.now()}${Math.floor(Math.random() * 10000)}`;
 
 		this.likesTitle.addEventListener(
-			'click',
+			"click",
 			() => {
 				fetch(apiFetchUrl).then(() => {
 					this.likes += 1;
 					this.likesCounter.innerHTML = String(this.likes);
 
 					storedLikes[articleUrl] = true;
-					localStorage.setItem('likes', JSON.stringify(storedLikes));
-					this.likesTitle.setAttribute('aria-disabled', 'true');
+					localStorage.setItem("likes", JSON.stringify(storedLikes));
+					this.likesTitle.setAttribute("aria-disabled", "true");
 					this.animateLikeButton();
 				});
 			},
 			{ once: true }
 		);
 
-		this.likesTitle.removeAttribute('aria-disabled');
+		this.likesTitle.removeAttribute("aria-disabled");
 	}
 
 	animateLikeButton() {
-		this.likesTitle.classList.add('is--animated');
+		this.likesTitle.classList.add("is--animated");
 		window.setTimeout(() => {
-			this.likesTitle.classList.remove('is--animated');
+			this.likesTitle.classList.remove("is--animated");
 		}, 5000);
 	}
 

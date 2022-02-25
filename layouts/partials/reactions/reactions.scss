@@ -69,8 +69,7 @@
 		border-bottom: var(--border-width) dashed var(--grey);
 		padding: var(--spacing-y) 0;
 
-		// 1st of type is the prototype
-		&:nth-of-type(2) {
+		&:nth-of-type(1) {
 			padding-top: 0;
 		}
 
