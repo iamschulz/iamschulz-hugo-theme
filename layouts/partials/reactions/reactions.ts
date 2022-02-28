@@ -217,7 +217,7 @@ export default class Reactions extends Component {
 	}
 
 	addWebmentionReply(wmReplyData: wmReply) {
-		if (!wmReplyData.author || !wmReplyData.author.name) {
+		if (!wmReplyData.author || !wmReplyData.author.name || wmReplyData.author.url.startsWith('https://iamschulz.com/')) {
 			return;
 		}
 
