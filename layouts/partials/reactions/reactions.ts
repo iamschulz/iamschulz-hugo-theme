@@ -54,7 +54,7 @@ export default class Reactions extends Component {
 	init() {
 		this.apiProxyUrl = this.el.dataset.reactionsApiProxy;
 		this.webmentionsUrl = this.el.dataset.webmentionsUrl;
-		this.hiddenWebmentions = this.el.dataset.hideWebmentions ? JSON.parse(this.el.dataset.hideWebmentions) : [];
+		this.hiddenWebmentions = this.el.dataset.hideWebmentions ? this.el.dataset.reactionsHideWebmentions.replace(/[' ]/g, '').split(',') : [];
 		this.devId = this.el.dataset.reactionsDevId;
 		this.targetUrl = window.location.href;
 
@@ -160,7 +160,6 @@ export default class Reactions extends Component {
 		}
 
 		let reply = this.cloneReplyElement();
-        console.log(reply.el, devReplyData)
 
 		reply.name.innerHTML = devReplyData.user.name;
 		reply.via.innerHTML = 'via DEV';

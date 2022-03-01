@@ -10,7 +10,7 @@ banner_alt: ""
 url: "{{ .Name }}"
 dev_id: ""
 hide_reactions: false
-hide_webmentions: []
+hide_webmentions: 
 ---
 
 <!--more-->
