@@ -1,4 +1,4 @@
-{{ if eq .Page.Type "post" }}
+{{ if and (eq .Page.Type "post") (not (eq .Params.hide_reactions true)) }}
     <aside 
         class="reactions" 
         data-component="reactions" 
