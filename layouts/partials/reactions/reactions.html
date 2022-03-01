@@ -5,6 +5,7 @@
         {{ with $.Site.Params.apiProxy }}data-reactions-api-proxy="{{ . }}"{{ end }}
         {{ with $.Site.Params.webmentionURL }}data-webmentions-url="{{ . }}"{{ end }}
         {{ with $.Page.Params.dev_id }}data-reactions-dev-id="{{ . }}"{{ end }}
+        {{ with .Params.hide_webmentions }}data-reactions-hide-webmentions="{{ . }}"{{ end }}
     >
         <span class="reactions__loader loader" data-reactions-el="loader"><span class="is--visually-hidden">Loading Reactions</span></span>
 

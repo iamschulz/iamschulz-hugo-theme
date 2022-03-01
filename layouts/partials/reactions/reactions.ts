@@ -26,11 +26,14 @@ interface wmReply {
 	published: string;
 	'like-of': string;
 	'repost-of': string;
+	'wm-private': string;
+	'wm-id': string;
 }
 
 export default class Reactions extends Component {
 	apiProxyUrl: string;
 	webmentionsUrl: string;
+    hiddenWebmentions: string[];
 	devId: string;
 	targetUrl: string;
 	replies: Array<{
@@ -51,6 +54,7 @@ export default class Reactions extends Component {
 	init() {
 		this.apiProxyUrl = this.el.dataset.reactionsApiProxy;
 		this.webmentionsUrl = this.el.dataset.webmentionsUrl;
+		this.hiddenWebmentions = this.el.dataset.hideWebmentions ? JSON.parse(this.el.dataset.hideWebmentions) : [];
 		this.devId = this.el.dataset.reactionsDevId;
 		this.targetUrl = window.location.href;
 
@@ -156,6 +160,7 @@ export default class Reactions extends Component {
 		}
 
 		let reply = this.cloneReplyElement();
+        console.log(reply.el, devReplyData)
 
 		reply.name.innerHTML = devReplyData.user.name;
 		reply.via.innerHTML = 'via DEV';
@@ -187,6 +192,7 @@ export default class Reactions extends Component {
 			reply.replyBtn.classList.remove('is--hidden');
 		}
 
+        (<HTMLElement>reply.el.content.firstChild).setAttribute('data-dev-id', devReplyData.id_code);
 		(<HTMLElement>reply.el.content.firstChild).removeAttribute('hidden');
 
 		const timestamp = new Date(publishDate).getTime() + this.devCommentCounter;
@@ -200,6 +206,8 @@ export default class Reactions extends Component {
 		if (
 			!wmReplyData.author ||
 			!wmReplyData.author.name ||
+            wmReplyData['wm-private'] ||
+            this.hiddenWebmentions.includes(wmReplyData['wm-id']) ||
 			wmReplyData.author.url.startsWith('https://iamschulz.com')
 		) {
 			return;
@@ -218,27 +226,28 @@ export default class Reactions extends Component {
 
 		reply.name.innerHTML = wmReplyData.author.name;
 		const source =
-			new URL(wmReplyData['url']).host === 'twitter.com' ? 'twitter' : new URL(wmReplyData['wm-source']).host;
+        new URL(wmReplyData['url']).host === 'twitter.com' ? 'twitter' : new URL(wmReplyData['wm-source']).host;
 		reply.via.innerHTML = `via ${source}`;
 		reply.via.href = wmReplyData['wm-source'];
-
+        
 		reply.link.href = wmReplyData.author.url || wmReplyData['wm-source'];
 		reply.avatar.dataset['src'] = wmReplyData.author.photo || '';
 		reply.avatar.classList.add('is--lazy');
-
+        
 		const publishDate = wmReplyData.published || wmReplyData['wm-received'];
 		reply.date.innerHTML = publishDate
-			? new Date(publishDate).toLocaleTimeString([], {
-					year: 'numeric',
-					month: 'numeric',
-					day: 'numeric',
-					hour: '2-digit',
-					minute: '2-digit',
-			  })
-			: 'some time';
-
+        ? new Date(publishDate).toLocaleTimeString([], {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+        })
+        : 'some time';
+        
 		reply.content.innerHTML = wmReplyData.content.html;
-
+        
+        (<HTMLElement>reply.el.content.firstChild).setAttribute('data-wm-id', wmReplyData['wm-id']);
 		(<HTMLElement>reply.el.content.firstChild).removeAttribute('hidden');
 
 		let timestamp = publishDate ? new Date(publishDate).getTime() : 0;
