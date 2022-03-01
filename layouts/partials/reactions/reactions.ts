@@ -206,7 +206,7 @@ export default class Reactions extends Component {
 			!wmReplyData.author ||
 			!wmReplyData.author.name ||
             wmReplyData['wm-private'] ||
-            this.hiddenWebmentions.includes(wmReplyData['wm-id']) ||
+            this.hiddenWebmentions.includes(String(wmReplyData['wm-id'])) ||
 			wmReplyData.author.url.startsWith('https://iamschulz.com')
 		) {
 			return;
