@@ -54,7 +54,7 @@ export default class Reactions extends Component {
 	init() {
 		this.apiProxyUrl = this.el.dataset.reactionsApiProxy;
 		this.webmentionsUrl = this.el.dataset.webmentionsUrl;
-		this.hiddenWebmentions = this.el.dataset.hideWebmentions ? this.el.dataset.reactionsHideWebmentions.replace(/[' ]/g, '').split(',') : [];
+		this.hiddenWebmentions = this.el.dataset.reactionsHideWebmentions ? this.el.dataset.reactionsHideWebmentions.replace(/[' ]/g, '').split(',') : [];
 		this.devId = this.el.dataset.reactionsDevId;
 		this.targetUrl = window.location.href;
 
