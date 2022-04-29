@@ -1,7 +1,7 @@
 <head>
 	<meta charset="utf-8" />
-	<link rel="preload" href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" as="style"> <link
-	rel="preload" href="{{- (index .Site.Data.assetManifest "index.js") | relURL -}}" as="script">
+	<link rel="preload" href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" as="style">
+	<link rel="preload" href="{{- (index .Site.Data.assetManifest "index.js") | relURL -}}" as="script">
 	<link rel="preload" href="/fonts/share-v10-latin-700.woff2" as="font" crossorigin />
 	<title>{{ if .IsHome }} {{ .Site.Title }} {{ else }} {{ .Title }} &bull; {{ .Site.Title }} {{ end }}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,10 +18,12 @@
 	/>
 	<meta name="google-site-verification" content="YXi9gLgXdTu-0XVP6VAzIPmczJgpXBACJPYcfyjr7bY" />
 
-	{{ partial "head/meta-twitter.html" . }} {{ partial "head/meta-opengraph.html" . }} {{ partial
-	"head/meta-webmentions.html" . }} {{ partial "head/meta-webmonetization.html" . }} <link rel="icon" href="{{- (index
-	.Site.Data.assetManifest "favicon.svg") | relURL -}}"> <link href="{{- (index .Site.Data.assetManifest "index.css")
-	| relURL -}}" rel="stylesheet" type="text/css">
+	{{ partial "head/meta-twitter.html" . }}
+	{{ partial "head/meta-opengraph.html" . }}
+	{{ partial "head/meta-webmentions.html" . }}
+	{{ partial "head/meta-webmonetization.html" . }}
+	<link rel="icon" href="{{- (index.Site.Data.assetManifest "favicon.svg") | relURL -}}">
+	<link href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" rel="stylesheet" type="text/css">
 
 	<link
 		rel="canonical"
