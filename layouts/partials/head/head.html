@@ -1,33 +1,34 @@
 <head>
-    <meta charset="utf-8">
-    <link rel="preload" href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" as="style">
-    <link rel="preload" href="{{- (index .Site.Data.assetManifest "index.js") | relURL -}}" as="script">
-    <link rel="preload" href="/fonts/share-v10-latin-700.woff2" as="font" crossorigin>
-    <title>{{ if .IsHome }} {{ .Site.Title }} {{ else }} {{ .Title }} &bull; {{ .Site.Title }} {{ end }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#0e181b">
-    <meta name="description" content="
+	<meta charset="utf-8" />
+	<link rel="preload" href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" as="style"> <link
+	rel="preload" href="{{- (index .Site.Data.assetManifest "index.js") | relURL -}}" as="script">
+	<link rel="preload" href="/fonts/share-v10-latin-700.woff2" as="font" crossorigin />
+	<title>{{ if .IsHome }} {{ .Site.Title }} {{ else }} {{ .Title }} &bull; {{ .Site.Title }} {{ end }}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="theme-color" content="#0e181b" />
+	<meta
+		name="description"
+		content="
         {{ if and (.IsPage) (gt (.Page.Summary | truncate 120 | countwords) 0) }}
             {{ .Page.Summary | truncate 120 }}
         {{ else }}
             {{ $.Site.Params.description }}
         {{ end }}
-    ">
-    <meta name="google-site-verification" content="YXi9gLgXdTu-0XVP6VAzIPmczJgpXBACJPYcfyjr7bY" />
+    "
+	/>
+	<meta name="google-site-verification" content="YXi9gLgXdTu-0XVP6VAzIPmczJgpXBACJPYcfyjr7bY" />
 
-    {{ partial "head/meta-twitter.html" . }}
-    {{ partial "head/meta-opengraph.html" . }}
-    {{ partial "head/meta-webmentions.html" . }}
-    {{ partial "head/meta-webmonetization.html" . }}
-    {{ partial "head/meta-mastodon.html" . }}
+	{{ partial "head/meta-twitter.html" . }} {{ partial "head/meta-opengraph.html" . }} {{ partial
+	"head/meta-webmentions.html" . }} {{ partial "head/meta-webmonetization.html" . }} <link rel="icon" href="{{- (index
+	.Site.Data.assetManifest "favicon.svg") | relURL -}}"> <link href="{{- (index .Site.Data.assetManifest "index.css")
+	| relURL -}}" rel="stylesheet" type="text/css">
 
-    <link rel="icon" href="{{- (index .Site.Data.assetManifest "favicon.svg") | relURL -}}">
-    <link href="{{- (index .Site.Data.assetManifest "index.css") | relURL -}}" rel="stylesheet" type="text/css">
+	<link
+		rel="canonical"
+		href="{{ if .Page.Params.canonical }}{{ .Page.Params.canonical }}{{ else }}{{ .Page.Permalink }}{{ end}}"
+	/>
 
-    <link 
-        rel="canonical" 
-        href="{{ if .Page.Params.canonical }}{{ .Page.Params.canonical }}{{ else }}{{ .Page.Permalink }}{{ end}}"
-    >
-
-    {{ with .OutputFormats.Get "RSS" }}<link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />{{ end }}
+	{{ with .OutputFormats.Get "RSS" }}
+	<link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
+	{{ end }}
 </head>
