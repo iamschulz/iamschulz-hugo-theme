@@ -50,6 +50,7 @@
     {{ end }}
 >
     <picture class="image__picture-wrapper">
+        {{/* 
         {{ if and (eq $skipDims false) (eq $hasAvif true) }}
             <source 
                 type="image/avif"
@@ -85,6 +86,7 @@
                 '
             >
         {{ end }}
+        */}}
         
         {{ if eq $skipDims false }}
             <source 
@@ -150,6 +152,7 @@
         </button>
         <div hidden="hidden" data-modal-content="{{ $uuid }}">
             <picture>
+                {{/*
                 {{ if eq $hasAvif true }}
                 <source 
                     type="image/avif" 
@@ -164,6 +167,7 @@
                         data-srcset='{{ replace $img.Permalink (path.Ext $img.Permalink) ".webp" }}'
                     >
                 {{ end }}
+                */}}
                 <source srcset="" data-srcset="{{ $img.Permalink }}">
                 <img class="image__zoom-content hidden is--lazy" data-src="{{ $img.Permalink }}" alt="{{- with $alt -}}{{ . }}{{ end }}">
             </picture>
